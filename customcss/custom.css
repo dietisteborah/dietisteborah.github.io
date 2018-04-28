@@ -4,7 +4,7 @@
 
 .caption {
     position: absolute;
-    top: 20%;
+    top: 25%;
     left: 0;
     width: 100%;
 }
@@ -17,3 +17,38 @@
 ul {
     list-style-image: url('appellogo_small2.png');
 }
+.orange{
+	background-color: rgb(244, 166, 63);
+}
+.green{
+	background-color: rgb(141, 198, 63);
+}
+
+
+/* Style all font awesome icons */
+.fa {
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+	border-radius: 50%;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+    opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+/*.fa-facebook {
+    background: #3B5998;
+    color: white;
+}*/
+
+/* Twitter */
+/*.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}*/
