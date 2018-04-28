@@ -3949,6 +3949,8 @@ input[type="button"].btn-block {
   font-size: 1.25rem;
   line-height: inherit;
   white-space: nowrap;
+  max-height: 50px;
+  max-width: 250px;
 }
 .navbar-brand:hover, .navbar-brand:focus {
   text-decoration: none;
