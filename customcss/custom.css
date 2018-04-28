@@ -11,3 +11,9 @@
 .white {
 	color: white;
 }
+.top-buffer { 
+	margin-top:20px; 
+}
+ul {
+    list-style-image: url('appellogo_small2.png');
+}
