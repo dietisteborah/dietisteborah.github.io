@@ -3941,15 +3941,6 @@ input[type="button"].btn-block {
   justify-content: space-between;
 }
 
-/*.navbar-brand {
-  display: inline-block;
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
-  margin-right: 1rem;
-  font-size: 1.25rem;
-  line-height: inherit;
-  white-space: nowrap;
-}*/
 .navbar-brand {
   display: inline-block;
   padding-top: 0.3125rem;
@@ -3958,13 +3949,7 @@ input[type="button"].btn-block {
   font-size: 1.25rem;
   line-height: inherit;
   white-space: nowrap;
-    max-height: 40px;
-    max-width: 30%; 
-    overflow: visible;
-    padding-top: 0;
-    padding-bottom: 0; 
 }
-
 .navbar-brand:hover, .navbar-brand:focus {
   text-decoration: none;
 }
