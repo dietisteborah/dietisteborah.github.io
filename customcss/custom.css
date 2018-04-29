@@ -23,10 +23,27 @@ ul {
 .green{
 	background-color: rgb(141, 198, 63);
 }
-.brown{
+.brown_text{
 	color: rgb(128, 66, 42);
 }
+.orange_text{
+	color: rgb(244, 166, 63);
+}
 
+/*lettertype */
+.font_Khula {
+	/*font-family: 'Cagliostro';font-size: 18px;*/
+	font-family: 'Khula';font-size: 18px;
+}
+.custom_header {
+	font-family: 'Sofia';font-size: 33px;
+}
+.custom_heading {
+	font-family: 'Amaranth';font-size: 50px;
+}
+.custom_heading_small {
+	font-family: 'Amaranth';font-size: 30px;
+}
 /* Style all font awesome icons */
 .fa {
     padding: 20px;
