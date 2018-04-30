@@ -38,16 +38,7 @@ ul {
     background-repeat: no-repeat;
 	background-position: right bottom;
 }
-@media screen and (max-width: 600px) {
-  #title_message {
-    visibility: hidden;
-    clear: both;
-    float: left;
-    margin: 10px auto 5px 20px;
-    width: 28%;
-    display: none;
-  }
-}
+
 .orange{
 	background-color: rgb(244, 166, 63);
 }
