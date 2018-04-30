@@ -14,6 +14,9 @@
 .top-buffer { 
 	margin-top:20px; 
 }
+.top-buffer-small { 
+	margin-top:10px; 
+}
 ul {
     list-style-image: url('appellogo_small2.png');
 }
