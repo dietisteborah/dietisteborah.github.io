@@ -40,6 +40,10 @@
 .font_Khula {
 	font-family: 'Khula';font-size: 18px;
 }
+.font_Khula_navbar {
+	font-family: 'Khula';font-size: 18px;
+	font-variant: small-caps;
+}
 .custom_header {
 	font-family: 'Sofia';font-size: 33px;
 }
