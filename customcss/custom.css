@@ -19,6 +19,7 @@
 }
 .appelList {
     list-style-image: url('appellogo_small2.png');
+	margin-left: 40px;
 }
 .appelList-tarieven {
     list-style-image: url('appellogo_small2.png');
