@@ -70,7 +70,7 @@ hr.style18 {
 } 
 
 /* Style all font awesome icons */
-.fa {
+.fab {
     padding: 5px;
 	font-size: 30px;
 	width: 50px;
@@ -85,17 +85,7 @@ hr.style18 {
 
 /* Set a specific color for each icon */
 
-/* Facebook */
-.fa-facebook {
-    background: #125688;
-    color: white;
-}
 
-/* Instagram */
-.fa-instagram{
-    background: #125688;
-    color: white;
-}
 /* Adres */
 .fa-home {
     background: white;
