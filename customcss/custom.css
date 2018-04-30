@@ -11,6 +11,9 @@
 .white {
 	color: white;
 }
+.top-buffer-35 { 
+	margin-top:35px; 
+}
 .top-buffer-30 { 
 	margin-top:30px; 
 }
@@ -40,7 +43,7 @@ ul {
 	background-color: rgb(141, 198, 63);
 }
 .brown_text{
-	color: rgb(128, 66, 42);
+	color: rgb(128, 66, 42) !important;
 }
 .orange_text{
 	color: rgb(244, 166, 63);
