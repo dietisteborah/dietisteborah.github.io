@@ -69,15 +69,6 @@ hr.style18 {
   margin-top: 10px;
 } 
 
-/* Style all font awesome icons */
-.fa {
-    padding: 5px;
-	font-size: 30px;
-	width: 50px;
-    text-align: center;
-    text-decoration: none;
-}
-
 /* Add a hover effect if you want */
 .fa:hover {
     opacity: 0.7;
@@ -88,8 +79,7 @@ hr.style18 {
 /* Facebook */
 .fa-facebook {
     padding: 5px;
-	font-size: 30px;
-	width: 50px;
+	width: 80px;
     text-align: center;
     text-decoration: none;
 }
@@ -97,7 +87,6 @@ hr.style18 {
 /* Instagram */
 .fa-instagram{
     padding: 5px;
-	font-size: 30px;
 	width: 50px;
     text-align: center;
     text-decoration: none;
@@ -105,16 +94,19 @@ hr.style18 {
 /* Adres */
 .fa-home {
     background: white;
-    color: rgb(244, 166, 63)
+    color: rgb(244, 166, 63);
+	margin-right: 10px;
 }
 /* Mail */
 .fa-envelope{
     background: white;
     color: rgb(244, 166, 63);
+	margin-right: 10px;
 }
 
 /* Phone */
 .fa-phone{
     background: white;
     color: rgb(244, 166, 63);
+	margin-right: 10px;
 }
