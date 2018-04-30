@@ -11,6 +11,9 @@
 .white {
 	color: white;
 }
+.top-buffer-30 { 
+	margin-top:30px; 
+}
 .top-buffer { 
 	margin-top:20px; 
 }
@@ -22,7 +25,7 @@
 }
 .appelListTarieven {
     list-style-image: url('appellogo_small2.png');
-	margin-left: 40px;
+	margin-left: 5px;
 }
 ul {
   list-style-type: none;
