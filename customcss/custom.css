@@ -33,6 +33,11 @@
 ul {
   list-style-type: none;
 }
+.backgroundcirkel{
+    background-image: url("vragen.png.png");
+    background-repeat: no-repeat;
+	background-position: right bottom;
+}
 .orange{
 	background-color: rgb(244, 166, 63);
 }
