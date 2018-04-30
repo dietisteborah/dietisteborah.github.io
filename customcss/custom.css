@@ -20,6 +20,11 @@
 .appelList {
     list-style-image: url('appellogo_small2.png');
 }
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
 .orange{
 	background-color: rgb(244, 166, 63);
 }
@@ -41,7 +46,7 @@
 	font-family: 'Khula';font-size: 18px;
 }
 .font_Khula_navbar {
-	font-family: 'Khula';font-size: 25px;
+	font-family: 'Khula';font-size: 20px;
 }
 .custom_header {
 	font-family: 'Sofia';font-size: 33px;
@@ -78,7 +83,7 @@ hr.style18 {
     opacity: 0.7;
 }
 
-/* Set a specific color for each brand */
+/* Set a specific color for each icon */
 
 /* Facebook */
 .fa-facebook {
@@ -90,4 +95,20 @@ hr.style18 {
 .fa-instagram{
     background: #125688;
     color: white;
+}
+/* Adres */
+.fa-home {
+    background: white;
+    color: rgb(244, 166, 63)
+}
+/* Mail */
+.fa-envelope{
+    background: white;
+    color: rgb(244, 166, 63);
+}
+
+/* Phone */
+.fa-phone{
+    background: white;
+    color: rgb(244, 166, 63);
 }
