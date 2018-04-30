@@ -55,6 +55,8 @@ hr.style18 {
   border-color: #8c8b8b; 
   border-width: 1px 0 0 0; 
   border-radius: 20px; 
+  margin-bottom: 5px;
+  margin-top: 10px;
 } 
 
 /* Style all font awesome icons */
