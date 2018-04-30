@@ -112,10 +112,19 @@ hr.style18 {
     color: rgb(244, 166, 63);
 	margin-right: 10px;
 }
-
 /* Phone */
 .fa-phone{
     background: white;
     color: rgb(244, 166, 63);
 	margin-right: 10px;
+}
+/* Clock */
+.fa-clock{
+	background: white;
+	color: rgb(244, 166, 63);
+}
+/* Euro */
+.fa-euro-sign{
+	background: white;
+	color: rgb(244, 166, 63);
 }
