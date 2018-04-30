@@ -30,10 +30,6 @@
     list-style-image: url('appellogo_small2.png');
 	margin-left: 5px;
 }
-.contactlist{
-	style: "color: rgb(141, 198, 63)" !important;
-	margin-left: 0px !important;
-}
 ul {
   list-style-type: none;
 }
