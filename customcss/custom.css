@@ -85,7 +85,23 @@ hr.style18 {
 
 /* Set a specific color for each icon */
 
+/* Facebook */
+.fa-facebook {
+    padding: 5px;
+	font-size: 30px;
+	width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
 
+/* Instagram */
+.fa-instagram{
+    padding: 5px;
+	font-size: 30px;
+	width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
 /* Adres */
 .fa-home {
     background: white;
