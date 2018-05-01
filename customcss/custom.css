@@ -4,7 +4,7 @@
 
 .caption {
     position: absolute;
-    top: 25%;
+    top: 23%;
     left: 0;
     width: 100%;
 }
@@ -59,7 +59,7 @@ ul {
 .font_Khula {
 	font-family: 'Khula';font-size: 18px;
 }
-.font_Khula_navbar {
+.font_Alegreya_navbar {
 	font-family: 'Alegreya Sans SC';font-size: 20px;
 }
 .custom_header {
@@ -73,10 +73,10 @@ ul {
 	font-family: 'Coiny';font-size: 30px;
 }
 .custom_heading_mobile {
-	font-family: 'Alegreya Sans SC';font-size: 35px;
+	font-family: 'Coiny';font-size: 35px;
 }
 .custom_heading_small_mobile {
-	font-family: 'Alegreya Sans SC';font-size: 25px;
+	font-family: 'Coiny';font-size: 25px;
 }
 /* horizontal line */
 hr.style18 { 
