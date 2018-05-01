@@ -72,10 +72,10 @@ ul {
 	font-family: 'Alegreya Sans SC';font-size: 30px;
 }
 .custom_heading_mobile {
-	font-family: 'Alegreya Sans SC';font-size: 5px;
+	font-family: 'Alegreya Sans SC';font-size: 5px !important;
 }
 .custom_heading_small_mobile {
-	font-family: 'Alegreya Sans SC';font-size: 5px;
+	font-family: 'Alegreya Sans SC';font-size: 5px !important;
 }
 /* horizontal line */
 hr.style18 { 
