@@ -66,10 +66,11 @@ ul {
 	font-family: 'Sofia';font-size: 33px;
 }
 .custom_heading {
-	font-family: 'Alegreya Sans SC';font-size: 50px;
+	/*font-family: 'Alegreya Sans SC';font-size: 50px;*/
+	font-family: 'Coiny';font-size: 50px;
 }
 .custom_heading_small {
-	font-family: 'Alegreya Sans SC';font-size: 30px;
+	font-family: 'Coiny';font-size: 30px;
 }
 .custom_heading_mobile {
 	font-family: 'Alegreya Sans SC';font-size: 35px;
