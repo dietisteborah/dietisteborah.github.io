@@ -44,28 +44,28 @@
 	$(function(){
 		$("#footer").load("footer.html");
 	});
-	$(document).ready(function(){
-    $('.button').click(function(){
-        var clickBtnValue = $(this).val();
-        var ajaxurl = 'afspraak_backend.php',
-        data =  {'action': clickBtnValue};
-        $.post(ajaxurl, data, function (response) {
-            // Response div goes here.
-            alert("action performed successfully");
-        });
-    });
-
 });
 </script>
+<?php
+require_once '/home/borahv1q/etc/google-api-php-client/src/Google/autoload.php';
+
+putenv('GOOGLE_APPLICATION_CREDENTIALS=/home/borahv1q/public_html/service_account.json');
+
+$client = new Google_Client();
+$client->useApplicationDefaultCredentials();
+
+$sqladmin = new Google_Service_SQLAdmin($client);
+$response = $sqladmin->instances
+    ->listInstances('challenger')->getItems();
+echo json_encode($response) . "\n";
+?>
 <div id="header">
 </div>	
 <div class="container">
 	<!-- Terugbetaling -->
 	<div class="row brown_text">
 		<div class="col-md-12">
-			<h2 class="custom_header top-buffer-35" align="left">Online afspraak maken - under construction</h2>
-			<input type="submit" class="button" name="insert" value="insert" />
-	
+			<h2 class="custom_header top-buffer-35" align="left">Online afspraak maken - under construction</h2
 		</div>
 	</div>	
 </div>
