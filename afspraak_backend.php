@@ -11,6 +11,10 @@ if (isset($_POST['action'])) {
             break;
     }
 }
+function select() {
+    echo "The select function is called.";
+    exit;
+}
 function insert() {
     echo "The insert function is called.";
 	
