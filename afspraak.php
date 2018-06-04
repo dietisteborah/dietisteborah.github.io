@@ -59,9 +59,28 @@
 		$client = new Google_Client();
 		$client->useApplicationDefaultCredentials();
 
-		$sqladmin = new Google_Service_SQLAdmin($client);
-		$response = $sqladmin->instances->listInstances('challenger')->getItems();
-		echo json_encode($response) . "\n";
+		// Print the next 10 events on the user's calendar.
+		$calendarId = 'primary';
+		$optParams = array(
+		  'maxResults' => 10,
+		  'orderBy' => 'startTime',
+		  'singleEvents' => true,
+		  'timeMin' => date('c'),
+		);
+		$results = $service->events->listEvents($calendarId, $optParams);
+
+		if (empty($results->getItems())) {
+			print "No upcoming events found.\n";
+		} else {
+			print "Upcoming events:\n";
+			foreach ($results->getItems() as $event) {
+				$start = $event->start->dateTime;
+				if (empty($start)) {
+					$start = $event->start->date;
+				}
+				printf("%s (%s)\n", $event->getSummary(), $start);
+			}
+		}
 	}
 
 	authAPI();
