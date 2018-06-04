@@ -57,16 +57,7 @@
 
 		phpinfo();
 
-		function authAPI(){
-			$client = new Google_Client();
-			$client->useApplicationDefaultCredentials();
 
-			$sqladmin = new Google_Service_SQLAdmin($client);
-			$response = $sqladmin->instances->listInstances('challenger')->getItems();
-			echo json_encode($response) . "\n";
-		}
-
-		auth();
 	?>
 	<!-- Terugbetaling -->
 	<div class="row brown_text">
