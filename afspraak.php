@@ -58,6 +58,9 @@
 	function authAPI(){
 		$client = new Google_Client();
 		$client->useApplicationDefaultCredentials();
+		$client->setScopes(array(
+			'https://www.googleapis.com/auth/calendar.readonly'
+		));
 		$service = new Google_Service_Calendar($client);
 		// Print the next 10 events on the user's calendar.
 		$calendarId = 'primary';
