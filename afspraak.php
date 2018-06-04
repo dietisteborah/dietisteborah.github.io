@@ -63,7 +63,7 @@
 		));
 		$service = new Google_Service_Calendar($client);
 		// Print the next 10 events on the user's calendar.
-		$calendarId = 'primary';
+		$calendarId = 'getchallengedapp@gmail.com';
 		$optParams = array(
 		  'maxResults' => 10,
 		  'orderBy' => 'startTime',
