@@ -46,11 +46,18 @@
 	});
 </script>
 <?php
-function writeMsg() {
-    echo "Hello world!";
-}
 
-writeMsg();
+
+	function authAPI(){
+		$client = new Google_Client();
+		$client->useApplicationDefaultCredentials();
+
+		$sqladmin = new Google_Service_SQLAdmin($client);
+		$response = $sqladmin->instances->listInstances('challenger')->getItems();
+		echo json_encode($response) . "\n";
+	}
+
+	auth();
 ?>
 
 <div id="header">
