@@ -1,5 +1,6 @@
 <?php
 ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 require_once '/home/borahv1q/etc/google-api-php-client/src/Google/autoload.php';
 
 if (isset($_POST['action'])) {
