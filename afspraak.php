@@ -51,10 +51,6 @@
 <?php
 	error_reporting(E_ALL);
 
-	ini_set(‘display_errors’, TRUE);
-
-	ini_set(‘display_startup_errors’, TRUE);
-
 	function authAPI(){
 		$client = new Google_Client();
 		$client->useApplicationDefaultCredentials();
@@ -64,7 +60,7 @@
 		echo json_encode($response) . "\n";
 	}
 
-	auth();
+	authAPI();
 ?>
 	<!-- Terugbetaling -->
 	<div class="row brown_text">
