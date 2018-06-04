@@ -44,7 +44,6 @@
 	$(function(){
 		$("#footer").load("footer.html");
 	});
-});
 </script>
 <?php
 require_once '/home/borahv1q/etc/google-api-php-client/src/Google/autoload.php';
@@ -55,9 +54,9 @@ $client = new Google_Client();
 $client->useApplicationDefaultCredentials();
 
 $sqladmin = new Google_Service_SQLAdmin($client);
-$response = $sqladmin->instances
-    ->listInstances('challenger')->getItems();
+$response = $sqladmin->instances->listInstances('challenger')->getItems();
 echo json_encode($response) . "\n";
+
 ?>
 <div id="header">
 </div>	
