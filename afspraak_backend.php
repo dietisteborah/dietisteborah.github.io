@@ -174,7 +174,7 @@ class Calendar {
     }*/
 	
     private function _showDay($hour,$day){         
-        $ID= $hour.$day
+        $ID= $hour.$day;
         return '<li id="li-'.$ID.'">'.$cellNumber.'</li>';
     } 
     /**
