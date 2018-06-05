@@ -78,7 +78,7 @@ class Calendar {
         $this->daysInMonth=$this->_daysInMonth($month,$year);  
          
 		$this->currentWeek=$week;
-		
+		/*
         $content='<div id="calendar">'.
 						'<div class="box">'.
 						$this->_createNaviWeek().
@@ -104,8 +104,9 @@ class Calendar {
              
                         $content.='</div>';
                  
-        $content.='</div>';
-		        $content.='<div id="calendar">'.
+        $content.='</div>'; */
+		
+		        $content='<div id="calendar">'.
 						'<div class="box">'.
 						$this->_createNaviWeek().
 						'</div>'.
@@ -115,12 +116,12 @@ class Calendar {
                                 $content.='<ul class="dates">';    
                                  
                                 $weeksInMonth = $this->_weeksInMonth($month,$year);
-                                // Create weeks in a month
-                                for( $i=0; $i<$weeksInMonth; $i++ ){
+                                // Create hours in a day
+                                for( $i=0; $i<24; $i++ ){
                                      
                                     //Create days in a week
                                     for($j=1;$j<=7;$j++){
-                                        $content.=$this->_showDay($i*7+$j);
+                                        $content.=$this->_showDay($i);
                                     }
                                 }
                                  
@@ -138,42 +139,15 @@ class Calendar {
     /**
     * create the li element for ul
     */
-    private function _showDay($cellNumber){
+    private function _showDay($cellNumber){         
          
-        if($this->currentDay==0){
-             
-            $firstDayOfTheWeek = date('N',strtotime($this->currentYear.'-'.$this->currentMonth.'-01'));
-                     
-            if(intval($cellNumber) == intval($firstDayOfTheWeek)){
-                 
-                $this->currentDay=1;
-                 
-            }
-        }
-         
-        if( ($this->currentDay!=0)&&($this->currentDay<=$this->daysInMonth) ){
-             
-            $this->currentDate = date('Y-m-d',strtotime($this->currentYear.'-'.$this->currentMonth.'-'.($this->currentDay)));
-             
-            $cellContent = $this->currentDay;
-             
-            $this->currentDay++;   
-             
-        }else{
-             
-            $this->currentDate =null;
- 
-            $cellContent=null;
-        }
-             
-         
-        return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
-                ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';
+        return '<li>'.$cellNumber.'</li>';
     }
      
     /**
     * create navigation
     */
+	/*
     private function _createNavi(){
          
         $nextMonth = $this->currentMonth==12?1:intval($this->currentMonth)+1;
@@ -190,7 +164,7 @@ class Calendar {
                     '<span class="title">'.date('Y M',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
                 '<a class="next" href="'.$this->naviHref.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Next</a>'.
             '</div>';
-    }
+    }*/
     /**
     * create week navigation
     */
