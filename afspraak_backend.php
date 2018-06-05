@@ -218,11 +218,12 @@ class Calendar {
     */
     private function _createLabels(){  
                  
-        $content='';
+        $daydate='';
         $counter=1; 
 		$wday = date('w', $this->currentWeek); 
         foreach($this->dayLabels as $index=>$label){
-            $content.='<li class="'.($label==6?'end title':'start title').' title">'.$label.'</li>';
+            $daydate=$label." ".date('d-mmm', $this->currentWeek - ($wday - $counter)*86400); 
+            $content.='<li class="'.($label==6?'end title':'start title').' title">'.$daydate.'</li>';
 			$counter++;
         }
          
