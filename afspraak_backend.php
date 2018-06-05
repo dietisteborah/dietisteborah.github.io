@@ -82,8 +82,10 @@ class Calendar {
         $content='<div id="calendar">'.
                         '<div class="box">'.
                         $this->_createNavi().
-						$this->_createNaviWeek().
                         '</div>'.
+						'<div class="box">'.
+						$this->_createNaviWeek().
+						'</div>'.
                         '<div class="box-content">'.
                                 '<ul class="label">'.$this->_createLabels().'</ul>';   
                                 $content.='<div class="clear"></div>';     
