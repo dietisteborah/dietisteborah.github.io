@@ -27,6 +27,8 @@ class Calendar {
     private $daysInMonth=0;
      
     private $naviHref= null;
+	
+	private $currentWeek=0;
      
     /********************* PUBLIC **********************/  
         
@@ -37,6 +39,8 @@ class Calendar {
         $year  = null;
          
         $month = null;
+		
+		$week = null;
          
         if(null==$year&&isset($_GET['year'])){
  
@@ -57,16 +61,28 @@ class Calendar {
             $month = date("m",time());
          
         }                  
+
+        if(null==$week&&isset($_GET['week'])){
+ 
+            $week = $_GET['week'];
          
+        }else if(null==$week){
+ 
+            $week = time();
+         
+        }  		
         $this->currentYear=$year;
          
         $this->currentMonth=$month;
          
         $this->daysInMonth=$this->_daysInMonth($month,$year);  
          
+		$this->currentWeek=$week;
+		
         $content='<div id="calendar">'.
                         '<div class="box">'.
                         $this->_createNavi().
+						$this->_createNaviWeek().
                         '</div>'.
                         '<div class="box-content">'.
                                 '<ul class="label">'.$this->_createLabels().'</ul>';   
@@ -150,7 +166,21 @@ class Calendar {
                 '<a class="next" href="'.$this->naviHref.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Next</a>'.
             '</div>';
     }
+    /**
+    * create week navigation
+    */
+    private function _createNaviWeek(){
          
+		$nextWeek = $this->today+7;
+		$preWeek = $this->today-7;
+         
+        return
+            '<div class="header">'.
+                '<a class="prev" href="'.$this->naviHref.'?week='.sprintf('%02d',$preWeek)'">Prev</a>'.
+                    '<span class="title">'.$this->today.'</span>'.
+                '<a class="next" href="'.$this->naviHref.'?week='.sprintf("%02d", $nextWeek)'">Next</a>'.
+            '</div>';
+    }         
     /**
     * create calendar week labels
     */
