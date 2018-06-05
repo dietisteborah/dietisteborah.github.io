@@ -176,9 +176,9 @@ class Calendar {
          
         return
             '<div class="header">'.
-                '<a class="prev" href="'.$this->naviHref.'?week='.sprintf('%02d',$preWeek)'">Prev</a>'.
+                '<a class="prev" href="'.$this->naviHref.'?week='.sprintf('%02d',$preWeek).'">Prev</a>'.
                     '<span class="title">'.$this->today.'</span>'.
-                '<a class="next" href="'.$this->naviHref.'?week='.sprintf("%02d", $nextWeek)'">Next</a>'.
+                '<a class="next" href="'.$this->naviHref.'?week='.sprintf("%02d", $nextWeek).'">Next</a>'.
             '</div>';
     }         
     /**
