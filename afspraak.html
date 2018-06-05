@@ -33,6 +33,10 @@
 	<!--<script type="text/javascript" src="jquery.js"></script>-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
+	<link href="calendar.css" type="text/css" rel="stylesheet" />
+
+	
+	
     <title>Dietiste Borah Van Doorslaer</title>
 	
   </head>
@@ -48,9 +52,9 @@
 	$(document).ready(function(){
 		$('.button').click(function(){
 			var clickBtnValue = $(this).val();
-			var ajaxurl = 'afspraak_backend.php',
+			var phpfile = 'afspraak_backend.php',
 			data =  {'action': clickBtnValue};
-			$.post(ajaxurl, data, function (response) {
+			$.post(phpfile, data, function (response) {
 				// Response div goes here.
 				alert("action performed successfully");
 			});
@@ -58,17 +62,27 @@
 	});
 	
 </script>
-<div id="header">
-</div>	
-<div class="container">
-	<!-- Terugbetaling -->
-	<div class="row brown_text">
-		<div class="col-md-12">
-			<h2 class="custom_header top-buffer-35" align="left">Online afspraak maken - under construction</h2>
-			<input type="submit" class="button" name="insert" value="authAPI" />
-		</div>
+<body>
+	<div id="header">
 	</div>	
-</div>
-<div id="footer">
-</div>
+	<div class="container">
+		<!-- Terugbetaling -->
+		<div class="row brown_text">
+			<div class="col-md-12">
+				<h2 class="custom_header top-buffer-35" align="left">Online afspraak maken - under construction</h2>
+
+				<?php
+				include 'afspraak_backend.php';
+				 
+				$calendar = new Calendar();
+				 
+				echo $calendar->show();
+				?>
+				
+			</div>
+		</div>	
+	</div>
+	<div id="footer">
+	</div>
+</body>
 </html>
