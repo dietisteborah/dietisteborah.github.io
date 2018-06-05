@@ -175,11 +175,11 @@ class Calendar {
          
 		$nextWeek = $this->currentWeek+7;
 		$preWeek = $this->currentWeek-7;
-        $wday = date('w', $currentWeek); 
+        $wday = date('w', $this->currentWeek); 
         return
             '<div class="header">'.
                 '<a class="prev" href="'.$this->naviHref.'?week='.sprintf('%02d',$preWeek).'">Prev</a>'.
-                    '<span class="title">'.date('m-d-Y', $currentWeek - ($wday - 1)*86400).'</span>'.
+                    '<span class="title">'.date('m-d-Y', $this->currentWeek - ($wday - 1)*86400).'</span>'.
                 '<a class="next" href="'.$this->naviHref.'?week='.sprintf("%02d", $nextWeek).'">Next</a>'.
             '</div>';
 			
