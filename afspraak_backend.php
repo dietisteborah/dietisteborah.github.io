@@ -223,7 +223,7 @@ class Calendar {
 		$wday = date('w', $this->currentWeek); 
         foreach($this->dayLabels as $index=>$label){
             $content=$label." ".date('d-mmm', $this->currentWeek - ($wday - $counter)*86400); 
-            $content.='<li class="'.($label==6?'end title':'start title').' title">'.$label.'</li>';
+            $content.='<li class="'.($label==6?'end title':'start title').' title">'.$content.'</li>';
 			$counter++;
         }
          
