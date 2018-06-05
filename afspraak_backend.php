@@ -175,7 +175,7 @@ class Calendar {
 	
     private function _showDay($hour,$day){         
          
-        return '<li id="li-'.$this->hour.''.$this->day'">'.$cellNumber.'</li>';
+        return '<li id="li-'.$this->hour.$this->day.'">'.$cellNumber.'</li>';
     } 
     /**
     * create navigation
