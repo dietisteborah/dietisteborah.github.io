@@ -34,9 +34,9 @@ class Calendar {
     * print out the calendar
     */
     public function show() {
-        $year  == null;
+        $year  = null;
          
-        $month == null;
+        $month = null;
          
         if(null==$year&&isset($_GET['year'])){
  
