@@ -222,8 +222,7 @@ class Calendar {
         $counter=1; 
 		$wday = date('w', $this->currentWeek); 
         foreach($this->dayLabels as $index=>$label){
-            $content=$label;
-            $content.='<li class="'.($label==6?'end title':'start title').' title">'.$content.'</li>';
+            $content.='<li class="'.($label==6?'end title':'start title').' title">'.$label.'</li>';
 			$counter++;
         }
          
