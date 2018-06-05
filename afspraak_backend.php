@@ -171,13 +171,13 @@ class Calendar {
     */
     private function _createNaviWeek(){
          
-		$nextWeek = $this->today+7;
-		$preWeek = $this->today-7;
+		$nextWeek = $this->currentWeek+7;
+		$preWeek = $this->currentWeek-7;
          
         return
             '<div class="header">'.
                 '<a class="prev" href="'.$this->naviHref.'?week='.sprintf('%02d',$preWeek).'">Prev</a>'.
-                    '<span class="title">'.$this->today.'</span>'.
+                    '<span class="title">'.$this->currentWeek.'</span>'.
                 '<a class="next" href="'.$this->naviHref.'?week='.sprintf("%02d", $nextWeek).'">Next</a>'.
             '</div>';
     }         
