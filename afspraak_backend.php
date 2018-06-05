@@ -115,13 +115,12 @@ class Calendar {
                                 $content.='<div class="clear"></div>';     
                                 $content.='<ul class="dates">';    
                                  
-                                $weeksInMonth = $this->_weeksInMonth($month,$year);
                                 // Create hours in a day
                                 for( $i=7; $i<22; $i++ ){
                                      
                                     //Create days in a week
                                     for($j=1;$j<=7;$j++){
-                                        $content.=$this->_showDay($i,$j);
+                                        $content.=$this->_showHour($i,$j);
                                     }
                                 }
                                  
@@ -173,7 +172,7 @@ class Calendar {
                 ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';
     }*/
 	
-    private function _showDay($hour,$day){         
+    private function _showHour($hour,$day){         
         $ID= $hour.$day;
         return '<li id="li-'.$ID.'">'.$hour.'</li>';
     } 
@@ -220,11 +219,12 @@ class Calendar {
     private function _createLabels(){  
                  
         $content='';
-         
+        $counter=1; 
+		$wday = date('w', $this->currentWeek); 
         foreach($this->dayLabels as $index=>$label){
-             
+            $content=$label." ".date('d-mmm', $this->currentWeek - ($wday - counter)*86400); 
             $content.='<li class="'.($label==6?'end title':'start title').' title">'.$label.'</li>';
- 
+			$counter++;
         }
          
         return $content;
