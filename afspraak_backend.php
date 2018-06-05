@@ -14,7 +14,7 @@ class Calendar {
     }
      
     /********************* PROPERTY ********************/  
-    private $dayLabels = array("Mon","Tue","Wed","Thu","Fri","Sat","Sun");
+    private $dayLabels = array("Maandag","Dinsdag","Woensdag","Donderdag","Vrijdag","Zaterdag","Zondag");
      
     private $currentYear=0;
      
@@ -80,9 +80,32 @@ class Calendar {
 		$this->currentWeek=$week;
 		
         $content='<div id="calendar">'.
-                        '<div class="box">'.
-                        $this->_createNavi().
-                        '</div>'.
+						'<div class="box">'.
+						$this->_createNaviWeek().
+						'</div>'.
+                        '<div class="box-content">'.
+                                '<ul class="label">'.$this->_createLabels().'</ul>';   
+                                $content.='<div class="clear"></div>';     
+                                $content.='<ul class="dates">';    
+                                 
+                                $weeksInMonth = $this->_weeksInMonth($month,$year);
+                                // Create weeks in a month
+                                for( $i=0; $i<$weeksInMonth; $i++ ){
+                                     
+                                    //Create days in a week
+                                    for($j=1;$j<=7;$j++){
+                                        $content.=$this->_showDay($i*7+$j);
+                                    }
+                                }
+                                 
+                                $content.='</ul>';
+                                 
+                                $content.='<div class="clear"></div>';     
+             
+                        $content.='</div>';
+                 
+        $content.='</div>';
+		        $content='<div id="calendar">'.
 						'<div class="box">'.
 						$this->_createNaviWeek().
 						'</div>'.
