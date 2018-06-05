@@ -117,11 +117,11 @@ class Calendar {
                                  
                                 $weeksInMonth = $this->_weeksInMonth($month,$year);
                                 // Create hours in a day
-                                for( $i=0; $i<24; $i++ ){
+                                for( $i=7; $i<22; $i++ ){
                                      
                                     //Create days in a week
                                     for($j=1;$j<=7;$j++){
-                                        $content.=$this->_showDay($i);
+                                        $content.=$this->_showDay($i,$j);
                                     }
                                 }
                                  
@@ -139,11 +139,44 @@ class Calendar {
     /**
     * create the li element for ul
     */
-    private function _showDay($cellNumber){         
+	/*
+    private function _showDay($cellNumber){
          
-        return '<li>'.$cellNumber.'</li>';
-    }
-     
+        if($this->currentDay==0){
+             
+            $firstDayOfTheWeek = date('N',strtotime($this->currentYear.'-'.$this->currentMonth.'-01'));
+                     
+            if(intval($cellNumber) == intval($firstDayOfTheWeek)){
+                 
+                $this->currentDay=1;
+                 
+            }
+        }
+         
+        if( ($this->currentDay!=0)&&($this->currentDay<=$this->daysInMonth) ){
+             
+            $this->currentDate = date('Y-m-d',strtotime($this->currentYear.'-'.$this->currentMonth.'-'.($this->currentDay)));
+             
+            $cellContent = $this->currentDay;
+             
+            $this->currentDay++;   
+             
+        }else{
+             
+            $this->currentDate =null;
+ 
+            $cellContent=null;
+        }
+             
+         
+        return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
+                ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';
+    }*/
+	
+    private function _showDay($hour,$day){         
+         
+        return '<li id="li-'.$this->hour.' '.$this->day'">'.$cellNumber.'</li>';
+    } 
     /**
     * create navigation
     */
