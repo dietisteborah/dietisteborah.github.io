@@ -105,7 +105,7 @@ class Calendar {
                         $content.='</div>';
                  
         $content.='</div>';
-		        $content='<div id="weekcalendar">'.
+		        $content.='<div id="calendar">'.
 						'<div class="box">'.
 						$this->_createNaviWeek().
 						'</div>'.
