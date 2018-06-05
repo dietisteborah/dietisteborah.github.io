@@ -72,13 +72,12 @@
 				<h2 class="custom_header top-buffer-35" align="left">Online afspraak maken - under construction</h2>
 
 				<?php
-				include 'afspraak_backend.php';
+				include 'calendar.php';
 				 
 				$calendar = new Calendar();
 				 
 				echo $calendar->show();
-				?>
-				
+				?>	
 			</div>
 		</div>	
 	</div>
