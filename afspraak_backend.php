@@ -36,31 +36,12 @@ class Calendar {
     * print out the calendar
     */
     public function show() {
-        $year  = null;
-         
-        $month = null;
-		
+         	
 		$week = null;
-         
-        if(null==$year&&isset($_GET['year'])){
- 
-            $year = $_GET['year'];
-         
-        }else if(null==$year){
- 
-            $year = date("Y",time());  
-         
-        }          
-         
-        if(null==$month&&isset($_GET['month'])){
- 
-            $month = $_GET['month'];
-         
-        }else if(null==$month){
- 
-            $month = date("m",time());
-         
-        }                  
+        
+		$day = null;
+		
+		$hour = null;               
 
         if(null==$week&&isset($_GET['week'])){
  
@@ -70,13 +51,17 @@ class Calendar {
  
             $week = time();
          
-        }  		
-        $this->currentYear=$year;
+        }  	
+        if(null==$hour&&isset($_GET['hour'])){
+			$timeArray = explode ( '-' , $_GET['hour'] );
+            $hour = $timeArray[0];
+			$week = $timeArray[1];
+        }else if(null==$hour){
+ 
+            $hour = date("h",time());
          
-        $this->currentMonth=$month;
-         
-        $this->daysInMonth=$this->_daysInMonth($month,$year);  
-         
+        }  			
+                 
 		$this->currentWeek=$week;
 		/*
         $content='<div id="calendar">'.
@@ -172,9 +157,17 @@ class Calendar {
                 ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';
     }*/
 	
-    private function _showHour($hour,$day){         
-        $ID= $hour.$day;
-        return '<li id="li-'.$ID.'">'.$hour.'</li>';
+    private function _showHour($hour,$day){    
+		/*z$wday = date('w', $this->currentWeek);
+		$ID = $hour."-".date('d-m-Y', $this->currentWeek - ($wday - $day)*86400);
+        //$ID= $hour.$day;
+        //return '<li id="li-'.$ID.'" href="'.$this->naviHref.'?hour='.sprintf('%03d',$ID).'">'.$hour.'</li>';
+		return '<li> <a href="'.$this->naviHref.'?hour='.$ID.'">'.$hour.'</a></li>';
+		*/
+		$ID = $hour."-".$this->currentWeek;
+        //$ID= $hour.$day;
+        //return '<li id="li-'.$ID.'" href="'.$this->naviHref.'?hour='.sprintf('%03d',$ID).'">'.$hour.'</li>';
+		return '<li> <a href="'.$this->naviHref.'?hour='.$ID.'">'.$hour.'</a></li>';
     } 
     /**
     * create navigation
@@ -216,6 +209,20 @@ class Calendar {
     /**
     * create calendar week labels
     */
+	/*
+	private function _createLabels(){  
+                 
+        $content='';
+         
+        foreach($this->dayLabels as $index=>$label){
+             
+            $content.='<li class="'.($label==6?'end title':'start title').' title">'.$label.'</li>';
+ 
+        }
+         
+        return $content;
+    }
+	*/
     private function _createLabels(){  
                  
         $content='';
@@ -224,59 +231,13 @@ class Calendar {
         foreach($this->dayLabels as $index=>$label){
             $daydate=$label;
 			$daydate.=" ";
-			$daydate.=date('d-m', $this->currentWeek - ($wday - $counter)*86400); 
+			$daydate.=date('d/m', $this->currentWeek - ($wday - $counter)*86400); 
             $content.='<li>'.$daydate.'</li>';
 			$counter++;
         }
          
         return $content;
     }
-     
-     
-     
-    /**
-    * calculate number of weeks in a particular month
-    */
-    private function _weeksInMonth($month=null,$year=null){
-         
-        if( null==($year) ) {
-            $year =  date("Y",time()); 
-        }
-         
-        if(null==($month)) {
-            $month = date("m",time());
-        }
-         
-        // find number of days in this month
-        $daysInMonths = $this->_daysInMonth($month,$year);
-         
-        $numOfweeks = ($daysInMonths%7==0?0:1) + intval($daysInMonths/7);
-         
-        $monthEndingDay= date('N',strtotime($year.'-'.$month.'-'.$daysInMonths));
-         
-        $monthStartDay = date('N',strtotime($year.'-'.$month.'-01'));
-         
-        if($monthEndingDay<$monthStartDay){
-             
-            $numOfweeks++;
-         
-        }
-         
-        return $numOfweeks;
-    }
- 
-    /**
-    * calculate number of days in a particular month
-    */
-    private function _daysInMonth($month=null,$year=null){
-         
-        if(null==($year))
-            $year =  date("Y",time()); 
- 
-        if(null==($month))
-            $month = date("m",time());
-             
-        return date('t',strtotime($year.'-'.$month.'-01'));
-    }
+
      
 }
