@@ -224,7 +224,7 @@ class Calendar {
         foreach($this->dayLabels as $index=>$label){
             $daydate=$label;
 			$daydate.=" ";
-			$daydate.=date('mm"/"dd', $this->currentWeek - ($wday - $counter)*86400); 
+			$daydate.=date('d-m-Y', $this->currentWeek); 
             $content.='<li>'.$daydate.'</li>';
 			$counter++;
         }
