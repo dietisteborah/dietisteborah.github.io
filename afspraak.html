@@ -32,11 +32,10 @@
 	<!-- jquery -->
 	<!--<script type="text/javascript" src="jquery.js"></script>-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
-	<link href="calendar.css" type="text/css" rel="stylesheet" />
 
-	
-	
+	<!-- hello week -->
+	<script src="/node_modules/hello-week/dist/helloweek.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/node_modules/hello-week/dist/helloweek.min.css">
     <title>Dietiste Borah Van Doorslaer</title>
 	
   </head>
@@ -59,8 +58,7 @@
 				alert("action performed successfully");
 			});
 		});
-	});
-	
+	});	
 </script>
 <body>
 	<div id="header">
@@ -71,17 +69,45 @@
 			<div class="col-md-12">
 				<h2 class="custom_header top-buffer-35" align="left">Online afspraak maken - under construction</h2>
 
-				<?php
-				include 'afspraak_backend.php';
-				 
-				$calendar = new Calendar();
-				 
-				echo $calendar->show();
-				?>	
+				<div class="hello-week">
+					<div class="hello-week__header">
+						<button class="hello-week__prev">Prev</button>
+						<div class="hello-week__label"></div>
+						<button class="hello-week__next">Next</button>
+					</div>
+					<div class="hello-week__week"></div>
+					<div class="hello-week__month"></div>
+				</div>	
 			</div>
 		</div>	
 	</div>
 	<div id="footer">
 	</div>
 </body>
+<script>
+	//hello week init
+	new HelloWeek({
+		selector: '.hello-week',
+		lang: 'nl',
+		langFolder: './node_modules/hello-week/dist/langs/',
+		format: false,
+		weekShort: true,
+		monthShort: false,
+		multiplePick: false,
+		defaultDate: false,
+		todayHighlight: true,
+		disablePastDays: true,
+		disabledDaysOfWeek: false,
+		disableDates: false,
+		weekStart: 1,
+		daysHighlight: false,
+		range: false,
+		minDate: false,
+		maxDate: false,
+		onLoad: () => { /** callback function */ },
+		onChange: () => { /** callback function */ },
+		onSelect: () => { /** callback function */ },
+		onClear: () => { /** callback function */ }
+	});
+</script>
 </html>
