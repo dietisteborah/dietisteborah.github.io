@@ -50,9 +50,8 @@
 	
 	$(document).ready(function(){
 		$('.button').click(function(){
-			var clickBtnValue = $(this).val();
 			var phpfile = 'afspraak_backend.php',
-			data =  {'action': clickBtnValue};
+			data =  {'action': 'action'};
 			$.post(phpfile, data, function (response) {
 				// Response div goes here.
 				alert("action performed successfully");
