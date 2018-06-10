@@ -143,3 +143,14 @@ hr.style18 {
 	background: white;
 	color: rgb(244, 166, 63);
 }
+
+/* Afspraken pagina */
+.custom-hello-week {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: var(--hello-week-border-radius);
+    background-color: var(--hello-week-bg-color);
+    box-shadow: 0 2px 20px 8px rgba(0,0,0,.12);
+    user-select: none
+}
