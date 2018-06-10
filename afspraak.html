@@ -47,20 +47,6 @@
 	$(function(){
 		$("#footer").load("footer.html");
 	});
-	
-	$(document).ready(function(){
-		$('.button').click(function(){
-			var phpfile = 'afspraken_backend.php',
-			data =  'action';
-			$.post(phpfile, data, function (response) {
-				// Response div goes here.
-				alert("action performed successfully");
-			});
-		});
-	});	
-	function getAvailableHours(date){
-		
-	}
 </script>
 <body>
 	<div id="header">
@@ -105,7 +91,7 @@
         }
     }
 	function updateInfo() {
-			var phpfile = '/php/afspraken_backend.php',
+			var phpfile = 'afspraken_backend.php',
 			data =  {'action': 'action'};
 			$.post(phpfile, data, function (response) {
 				// Response div goes here.
