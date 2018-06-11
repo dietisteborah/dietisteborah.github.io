@@ -51,6 +51,7 @@
 		return $client;
 	}
 	
+	function authAPI(){
 		$client = getClient();
 		$service = new Google_Service_Calendar($client);
 		
@@ -76,5 +77,5 @@
 				printf("%s (%s)\n", $event->getSummary(), $start);
 			}
 		}
-
+	}
 ?>
