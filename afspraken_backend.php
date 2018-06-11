@@ -1,9 +1,8 @@
 <?php
  ini_set('display_errors', 'On');
  error_reporting(E_ALL);
-	//require_once '/home/borahv1q/etc/google-api-php-client-master/src/Google/autoload.php';
-	require_once '/../vendor/autoload.php';
-	putenv('GOOGLE_APPLICATION_CREDENTIALS=/home/borahv1q/public_html/service_account.json');
+	require_once '../vendor/autoload.php';
+	putenv('GOOGLE_APPLICATION_CREDENTIALS=/home/borahv1q/public_html/client_secret.json');
 	
 	if (isset($_POST['action'])) {
 		switch ($_POST['action']) {
