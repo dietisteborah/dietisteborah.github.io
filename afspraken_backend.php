@@ -2,7 +2,7 @@
  ini_set('display_errors', 'On');
  error_reporting(E_ALL);
 	require_once '../vendor/autoload.php';
-	putenv('GOOGLE_APPLICATION_CREDENTIALS=/home/borahv1q/public_html/service_account.json');
+	putenv('GOOGLE_APPLICATION_CREDENTIALS=/home/borahv1q/public_html/client_secret.json');
 	
 	if (isset($_POST['action'])) {
 		switch ($_POST['action']) {
@@ -14,13 +14,15 @@
 	
 	function authAPI(){
 		$client = new Google_Client();
+		$client->setAccessType("offline");
 		$client->useApplicationDefaultCredentials();
 		$client->setScopes(array(
 			'https://www.googleapis.com/auth/calendar.readonly'
 		));
 		$service = new Google_Service_Calendar($client);
 		// Print the next 10 events on the user's calendar.
-		$calendarId = 'calendar-service-php@dietiste-calendar-site.iam.gserviceaccount.com';
+		//$calendarId = 'calendar-service-php@dietiste-calendar-site.iam.gserviceaccount.com';
+		$calendarId = 'dietiste.borah@gmail.com';
 		$optParams = array(
 		  'maxResults' => 10,
 		  'orderBy' => 'startTime',
