@@ -22,14 +22,10 @@
 
 		// Load previously authorized credentials from a file.
 		$credentialsPath = '/home/borahv1q/public_html/credentials.json';
-		if (file_exists($credentialsPath)) {
-			$accessToken = json_decode(file_get_contents($credentialsPath), true);
-		} else {
-			// Request authorization from the user.
 			$authUrl = $client->createAuthUrl();
 			printf("Open the following link in your browser:\n%s\n", $authUrl);
 			print 'Enter verification code: ';
-			$authCode = trim(fgets(STDIN));
+			$authCode = trim(fgets("4/AAAOSUZdxUmD1h1gI2zBPigvrox6cZf8PsVvePF447drFoCLs6G2ORM"));
 
 			// Exchange authorization code for an access token.
 			$accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
@@ -40,7 +36,7 @@
 			}
 			file_put_contents($credentialsPath, json_encode($accessToken));
 			printf("Credentials saved to %s\n", $credentialsPath);
-		}
+			
 		$client->setAccessToken($accessToken);
 
 		// Refresh the token if it's expired.
