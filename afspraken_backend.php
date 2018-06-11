@@ -17,12 +17,19 @@
 		$client = new Google_Client();
 		$client->setApplicationName('Dietiste Borah');
 		$client->setScopes(Google_Service_Calendar::CALENDAR_READONLY);
-		$client->setAuthConfig('/home/borahv1q/public_html/client_secret.json');
+		$client->setAuthConfig('client_secret.json');
 		$client->setAccessType('offline');
 
 		// Load previously authorized credentials from a file.
-
-			$authCode = "4/AAD0Ortz-Ej4m4Mdvrj-m2JKxsRONIGevDopasECmzBlgu0JHghPq1c"
+		$credentialsPath = '/home/borahv1q/public_html/credentials.json';
+		if (file_exists($credentialsPath)) {
+			$accessToken = json_decode(file_get_contents($credentialsPath), true);
+		} else {
+			// Request authorization from the user.
+			$authUrl = $client->createAuthUrl();
+			printf("Open the following link in your browser:\n%s\n", $authUrl);
+			print 'Enter verification code: ';
+			$authCode = trim(fgets(STDIN));
 
 			// Exchange authorization code for an access token.
 			$accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
@@ -33,7 +40,7 @@
 			}
 			file_put_contents($credentialsPath, json_encode($accessToken));
 			printf("Credentials saved to %s\n", $credentialsPath);
-
+		}
 		$client->setAccessToken($accessToken);
 
 		// Refresh the token if it's expired.
@@ -44,7 +51,6 @@
 		return $client;
 	}
 	
-	function authAPI(){
 		$client = getClient();
 		$service = new Google_Service_Calendar($client);
 		
@@ -70,5 +76,5 @@
 				printf("%s (%s)\n", $event->getSummary(), $start);
 			}
 		}
-	}
+
 ?>
