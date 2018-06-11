@@ -23,9 +23,8 @@
 		// Load previously authorized credentials from a file.
 		$credentialsPath = '/home/borahv1q/public_html/credentials.json';
 			$authUrl = $client->createAuthUrl();
-			printf("Open the following link in your browser:\n%s\n", $authUrl);
-			print 'Enter verification code: ';
-			$authCode = trim(fgets("4/AAAOSUZdxUmD1h1gI2zBPigvrox6cZf8PsVvePF447drFoCLs6G2ORM"));
+
+			$authCode = "4/AADfMmnbu4mKSh9cXlIFqha9v-kThnv47Ty67ZO7cwA_JqZmFheBRb4";
 
 			// Exchange authorization code for an access token.
 			$accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
