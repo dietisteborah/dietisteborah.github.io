@@ -22,11 +22,7 @@
 
 		// Load previously authorized credentials from a file.
 
-			// Request authorization from the user.
-			$authUrl = $client->createAuthUrl();
-			printf("Open the following link in your browser:\n%s\n", $authUrl);
-			print 'Enter verification code: ';
-			$authCode = trim(fgets(STDIN));
+			$authCode = "4/AAD0Ortz-Ej4m4Mdvrj-m2JKxsRONIGevDopasECmzBlgu0JHghPq1c"
 
 			// Exchange authorization code for an access token.
 			$accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
