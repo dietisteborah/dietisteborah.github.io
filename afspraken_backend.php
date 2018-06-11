@@ -2,7 +2,7 @@
  ini_set('display_errors', 'On');
  error_reporting(E_ALL);
 	require_once '../vendor/autoload.php';
-	putenv('GOOGLE_APPLICATION_CREDENTIALS=/home/borahv1q/public_html/client_secret.json');
+	putenv('GOOGLE_APPLICATION_CREDENTIALS=/home/borahv1q/public_html/service_account.json');
 	
 	if (isset($_POST['action'])) {
 		switch ($_POST['action']) {
