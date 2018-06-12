@@ -6,8 +6,11 @@
 	
 	if (isset($_POST['action'])) {
 		switch ($_POST['action']) {
-			case 'authAPI':
-				authAPI();
+			case 'getAvailable':
+				getAvailable($_POST['service']);
+				break;
+			case 'auth':
+				auth();
 				break;
 		}
 	}	
@@ -25,21 +28,7 @@
 		if (file_exists($credentialsPath)) {
 			$accessToken = json_decode(file_get_contents($credentialsPath), true);
 		} else {
-			// Request authorization from the user.
-			$authUrl = $client->createAuthUrl();
-			printf("Open the following link in your browser:\n%s\n", $authUrl);
-			print 'Enter verification code: ';
-			$authCode = trim(fgets(STDIN));
-
-			// Exchange authorization code for an access token.
-			$accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
-
-			// Store the credentials to disk.
-			if (!file_exists(dirname($credentialsPath))) {
-				mkdir(dirname($credentialsPath), 0700, true);
-			}
-			file_put_contents($credentialsPath, json_encode($accessToken));
-			printf("Credentials saved to %s\n", $credentialsPath);
+			printf("Er is een probleem met de kalendar. \n Gelieve een mail te sturen naar dietiste.borah@gmail.com");
 		}
 		$client->setAccessToken($accessToken);
 
@@ -50,11 +39,13 @@
 		}
 		return $client;
 	}
-	
-	function authAPI(){
+	function auth() {
 		$client = getClient();
 		$service = new Google_Service_Calendar($client);
-		
+		echo $service;
+	}
+	function getAvailable($service){
+
 		// Print the next 10 events on the user's calendar.
 		//$calendarId = 'calendar-service-php@dietiste-calendar-site.iam.gserviceaccount.com';
 		$calendarId = 'dietiste.borah@gmail.com';
