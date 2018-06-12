@@ -70,25 +70,15 @@
 	</div>
 </body>
 <script>
-	//update functie
-	const last = document.querySelector('.selected-day');
-	const service = null;
 	$(function(){
 		$("#header").load("navbar.html");
 	});
 	$(function(){
 		$("#footer").load("footer.html");
 	});
-	$(function(){
-		var phpfile = 'afspraken_backend.php',
-		data =  {'action': 'auth'};
-		$.post(phpfile, data, function (response) {
-			// Response div goes here.
-			alert("response" + response);
-			service = response;
-		});
-	});	
-
+	
+	//update functie
+	const last = document.querySelector('.selected-day');
 	
 	/* keep to see how to add records to the list
 	function updateInfo2() {
@@ -101,8 +91,7 @@
     }*/
 	function updateInfo() {
 			var phpfile = 'afspraken_backend.php',
-			data =  {'action': 'getAvailable',
-					  'service': service};
+			data =  {'action': 'getAvailable'};
 			$.post(phpfile, data, function (response) {
 				// Response div goes here.
 				alert("response" + response);

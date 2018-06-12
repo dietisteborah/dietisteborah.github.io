@@ -7,10 +7,7 @@
 	if (isset($_POST['action'])) {
 		switch ($_POST['action']) {
 			case 'getAvailable':
-				getAvailable($_POST['service']);
-				break;
-			case 'auth':
-				auth();
+				getAvailable();
 				break;
 		}
 	}	
@@ -39,13 +36,12 @@
 		}
 		return $client;
 	}
-	function auth() {
-		$client = getClient();
-		$service = new Google_Service_Calendar($client);
-		echo $service;
-	}
-	function getAvailable($service){
-
+	
+	function getAvailable(){
+		if(is_null($client)){
+			$client = getClient();
+			$service = new Google_Service_Calendar($client);
+		}
 		// Print the next 10 events on the user's calendar.
 		//$calendarId = 'calendar-service-php@dietiste-calendar-site.iam.gserviceaccount.com';
 		$calendarId = 'dietiste.borah@gmail.com';
