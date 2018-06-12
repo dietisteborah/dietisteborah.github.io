@@ -7,7 +7,7 @@
 	if (isset($_POST['action'])) {
 		switch ($_POST['action']) {
 			case 'getAvailable':
-				getAvailable();
+				getAvailable($_POST['date']);
 				break;
 		}
 	}	
@@ -37,11 +37,9 @@
 		return $client;
 	}
 	
-	function getAvailable(){
-		if(is_null($client)){
-			$client = getClient();
-			$service = new Google_Service_Calendar($client);
-		}
+	function getAvailable($date){
+		$client = getClient();
+		$service = new Google_Service_Calendar($client);
 		// Print the next 10 events on the user's calendar.
 		//$calendarId = 'calendar-service-php@dietiste-calendar-site.iam.gserviceaccount.com';
 		$calendarId = 'dietiste.borah@gmail.com';
@@ -49,7 +47,8 @@
 		  'maxResults' => 10,
 		  'orderBy' => 'startTime',
 		  'singleEvents' => true,
-		  'timeMin' => date('c'),
+		  'timeMax' => $date + 'T00:00:00Z',
+		  'timeMin' => $date + 'T00:00:00Z',
 		);
 		$results = $service->events->listEvents($calendarId, $optParams);
 		if (!($results->getItems())) {

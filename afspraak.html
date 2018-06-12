@@ -91,7 +91,8 @@
     }*/
 	function updateInfo() {
 			var phpfile = 'afspraken_backend.php',
-			data =  {'action': 'getAvailable'};
+			data =  {'action': 'getAvailable',
+					  'date' : 'this.lastSelectedDay'};
 			$.post(phpfile, data, function (response) {
 				// Response div goes here.
 				alert("response" + response);
@@ -102,7 +103,7 @@
 		selector: '.hello-week',
 		lang: 'nl',
 		langFolder: './node_modules/hello-week/dist/langs/',
-		format: 'DD-MM-YYYY',
+		format: 'YYYY-MM-DD',
 		weekShort: true,
 		monthShort: false,
 		multiplePick: false,
