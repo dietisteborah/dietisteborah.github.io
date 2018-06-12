@@ -43,11 +43,15 @@
 		// Print the next 10 events on the user's calendar.
 		//$calendarId = 'calendar-service-php@dietiste-calendar-site.iam.gserviceaccount.com';
 		$calendarId = 'dietiste.borah@gmail.com';
+		
+		//time max
+		$date->add(new DateInterval('P1D'));
+		
 		$optParams = array(
 		  'maxResults' => 10,
 		  'orderBy' => 'startTime',
 		  'singleEvents' => true,
-		  'timeMax' => $date . 'T00:00:00Z',
+		  'timeMax' => $date->format('YYYY-MM-DD') . 'T00:00:00Z',
 		  'timeMin' => $date . 'T00:00:00Z',
 		);
 		$results = $service->events->listEvents($calendarId, $optParams);
