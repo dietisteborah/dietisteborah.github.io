@@ -46,7 +46,7 @@
 		
 		//time max
 		$date = date_create_from_format('YYYY-MM-DD', $date);
-		$date->add(new DateInterval('P1D'));
+		$date->getTimestamp()->add(new DateInterval('P1D'));
 		
 		$optParams = array(
 		  'maxResults' => 10,
