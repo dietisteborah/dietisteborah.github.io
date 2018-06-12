@@ -47,8 +47,8 @@
 		  'maxResults' => 10,
 		  'orderBy' => 'startTime',
 		  'singleEvents' => true,
-		  'timeMax' => $date + 'T00:00:00Z',
-		  'timeMin' => $date + 'T00:00:00Z',
+		  'timeMax' => $date . 'T00:00:00Z',
+		  'timeMin' => $date . 'T00:00:00Z',
 		);
 		$results = $service->events->listEvents($calendarId, $optParams);
 		if (!($results->getItems())) {
