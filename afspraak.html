@@ -103,7 +103,7 @@
 	};
 	function loadToday() {
 			var phpfile = 'afspraken_backend.php';
-			var today = getToday('YYYY-MM-DD');				
+			var today = this.getToday('YYYY-MM-DD');				
 			data =  {'action': 'getAvailable',
 					  'date' : today};
 			$.post(phpfile, data, function (response) {
