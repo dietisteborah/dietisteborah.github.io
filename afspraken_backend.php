@@ -52,8 +52,8 @@
 		//$realdate = date('YYYY-MM-DD', $date)->add(new DateInterval('P1D'));
 		$nextdate = new DateTime($strdate);
 		$nextdate->add(new DateInterval('P1D'));
-		//echo $nextdate->format('Y-m-d') . "\n" . $strdate;
-					
+		echo $nextdate->format('Y-m-d') . "\n" . $strdate . " " . date('H:i:s');
+		/*			
 		$optParams = array(
 		  'maxResults' => 10,
 		  'orderBy' => 'startTime',
@@ -74,6 +74,6 @@
 				printf("%s (%s)\n", $event->getSummary(), $start);
 			}
 		}
-		
+		*/
 	}
 ?>
