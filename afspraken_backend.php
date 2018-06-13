@@ -50,7 +50,7 @@
 
 		//$date = strtotime($strdate);
 		//$realdate = date('YYYY-MM-DD', $date)->add(new DateInterval('P1D'));
-		
+		$thisdate = $strdate;
 		$nextdate = new DateTime($strdate);
 		$nextdate->add(new DateInterval('P1D'));
 		echo $nextdate->format('YYYY-MM-DD') . "\n";
