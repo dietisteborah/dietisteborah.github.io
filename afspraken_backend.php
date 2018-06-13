@@ -49,6 +49,7 @@
 		$diffDays = (integer)$diff->format( "%R%a" ); // Extract days count in interval
 
 		if($diffDays > 0){
+			$open = false;
 			$client = getClient();
 			$service = new Google_Service_Calendar($client);
 			// Print the next 10 events on the user's calendar.
@@ -60,11 +61,9 @@
 			$nextdate->add(new DateInterval('P1D'));
 						
 			$optParams = array(
-			  'maxResults' => 10,
 			  'orderBy' => 'startTime',
 			  'singleEvents' => true,
 			  'timeMax' => $nextdate->format('Y-m-d') . 'T00:00:00Z',
-			  //'timeMin' => $strdate . 'T00:00:00Z',
 			  'timeMin' => $strdate . 'T00:00:00Z',
 			);
 			$results = $service->events->listEvents($calendarId, $optParams);
@@ -73,19 +72,27 @@
 			} else {
 				print "Upcoming events:\n";
 				foreach ($results->getItems() as $event) {
-					$start = $event->start->dateTime;
-					if (!($start)) {
-						$start = $event->start->date;
+					if($event->getSummary() == "Open"){
+						$open=true;
+						break;
 					}
-					printf("%s (%s)\n", $event->getSummary(), $start);
+				}
+				if($open){
+					foreach ($results->getItems() as $event) {
+						$start = $event->start->dateTime;
+						if (!($start)) {
+							$start = $event->start->date;
+						}
+						printf("%s (%s)\n", $event->getSummary(), $start);
+					}
 				}
 			}
 		}
 		else{
-			print "Geen tijdstippen vrij op deze datum.\n" . date('Y-m-d') . " strdate:" . $strdate;
+			print "Geen tijdstippen vrij op deze datum.\n";
 		}
 	}
 	function loadToday($strdate){
-		print "Geen tijdstippen vrij vandaag.\n" . date('Y-m-d') . " strdate:" . $strdate;
+		print "Geen tijdstippen vrij vandaag.\n";
 	}
 ?>
