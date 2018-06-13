@@ -113,7 +113,7 @@
 	};
 	//todays date
 	var today = new Date();
-	var dd = today.getDate();
+	var dd = today.getDate()+1;
 	var mm = today.getMonth()+1; //January is 0!
 	var yyyy = today.getFullYear();
 
@@ -136,7 +136,7 @@
 		monthShort: false,
 		multiplePick: false,
 		defaultDate: false,
-		todayHighlight: true,
+		todayHighlight: false,
 		disablePastDays: true,
 		disabledDaysOfWeek: false,
 		disableDates: false,
