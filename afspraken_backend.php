@@ -48,8 +48,8 @@
 		//$strdate = date_create_from_format('YYYY-MM-DD', $strdate);
 		//$strdate->add(new DateInterval('P1D'));
 		
-		$date = strtotime(strdate);
-		$realdate = date('YYYY-MM-DD', strdate);
+		$date = strtotime($strdate);
+		$realdate = date('YYYY-MM-DD', $date);
 		$realdate->add(new DateInterval('P1D'));
 		
 		$optParams = array(
