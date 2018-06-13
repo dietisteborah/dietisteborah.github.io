@@ -53,15 +53,13 @@
 		$nextdate = new DateTime($strdate);
 		$nextdate->add(new DateInterval('P1D'));
 		//echo $nextdate->format('Y-m-d') . "\n" . $strdate;
-				
-
-		
+					
 		$optParams = array(
 		  'maxResults' => 10,
 		  'orderBy' => 'startTime',
 		  'singleEvents' => true,
 		  'timeMax' => $nextdate->format('Y-m-d') . 'T00:00:00Z',
-		  'timeMin' => $strdate . 'T00:00:00Z',
+		  'timeMin' => $strdate . 'T' . date('H:i:s') . 'Z',
 		);
 		$results = $service->events->listEvents($calendarId, $optParams);
 		if (!($results->getItems())) {
