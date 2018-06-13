@@ -41,7 +41,14 @@
 	}
 	
 	function getAvailable($strdate){
-		if(new DateTime($strdate) == date('Y-m-d')){
+		$today = new DateTime(); // This object represents current date/time
+		$today->setTime( 0, 0, 0 ); // reset time part, to prevent partial comparison
+		$match_date = DateTime::createFromFormat( "Y-m-d", $strdate );
+		$match_date->setTime( 0, 0, 0 ); // reset time part, to prevent partial comparison
+		$diff = $today->diff( $match_date );
+		$diffDays = (integer)$diff->format( "%R%a" ); // Extract days count in interval
+
+		if($diffDays > 0){
 			$client = getClient();
 			$service = new Google_Service_Calendar($client);
 			// Print the next 10 events on the user's calendar.
