@@ -90,13 +90,25 @@
         }
     }
 	function updateInfo() {
+		if (this.lastSelectedDay) {
 			var phpfile = 'afspraken_backend.php';
 			var selectedday = this.lastSelectedDay;				
 			data =  {'action': 'getAvailable',
 					  'date' : selectedday};
 			$.post(phpfile, data, function (response) {
 				// Response div goes here.
-				alert("response" + response);
+				alert("response updateInfo: " + response);
+			});
+		}
+	};
+	function loadToday() {
+			var phpfile = 'afspraken_backend.php';
+			var today = getToday('YYYY-MM-DD');				
+			data =  {'action': 'getAvailable',
+					  'date' : today};
+			$.post(phpfile, data, function (response) {
+				// Response div goes here.
+				alert("response loadToday: " + response);
 			});
 	};
 	//hello week init
@@ -118,7 +130,7 @@
 		range: false,
 		minDate: false,
 		maxDate: false,
-        onLoad: updateInfo,
+        onLoad: loadToday,
         onChange: updateInfo,
         onSelect: updateInfo,
 		onClear: () => { /** callback function */ }
