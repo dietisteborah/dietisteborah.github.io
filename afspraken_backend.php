@@ -75,10 +75,10 @@
 			}
 		}
 		else{
-			print "Geen tijdstippen vrij op deze datum.\n";
+			print "Geen tijdstippen vrij op deze datum.\n" . date('Y-m-d');
 		}
 	}
 	function loadToday($strdate){
-		print "Geen tijdstippen vrij vandaag.\n";
+		print "Geen tijdstippen vrij vandaag.\n" . date('Y-m-d');
 	}
 ?>
