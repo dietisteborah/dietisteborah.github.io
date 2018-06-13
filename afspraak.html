@@ -91,7 +91,7 @@
     }
 	function updateInfo() {
 			var phpfile = 'afspraken_backend.php',
-			var selectedday = this.lastSelectedDay;
+			var selectedday = this.lastSelectedDay,
 			data =  {'action': 'getAvailable',
 					  'date' : selectedday};
 			$.post(phpfile, data, function (response) {
