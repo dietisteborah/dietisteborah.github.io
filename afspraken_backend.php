@@ -9,7 +9,10 @@
 			case 'getAvailable':
 				getAvailable($_POST['date']);
 				break;
-		}
+			case 'loadToday':
+				loadToday($_POST['date']);
+				break;
+				}
 	}	
 
 	function getClient()
@@ -76,5 +79,8 @@
 			}
 		}
 		
+	}
+	function getAvailable($strdate){
+		print "Geen tijdstippen vrij op deze datum.\n";
 	}
 ?>
