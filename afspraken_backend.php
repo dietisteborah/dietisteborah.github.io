@@ -80,7 +80,7 @@
 		}
 		
 	}
-	function getAvailable($strdate){
+	function loadToday($strdate){
 		print "Geen tijdstippen vrij op deze datum.\n";
 	}
 ?>
