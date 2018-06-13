@@ -41,7 +41,7 @@
 	}
 	
 	function getAvailable($strdate){
-		if($strdate == date('Y-m-d'){
+		if($strdate == date('Y-m-d')){
 			$client = getClient();
 			$service = new Google_Service_Calendar($client);
 			// Print the next 10 events on the user's calendar.
