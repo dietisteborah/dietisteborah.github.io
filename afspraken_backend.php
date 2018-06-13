@@ -51,7 +51,7 @@
 		if($diffDays > 0){
 			$open = false;
 			$startOpen = "";
-			$endOpen = ""
+			$endOpen = "";
 			$client = getClient();
 			$service = new Google_Service_Calendar($client);
 			// Print the next 10 events on the user's calendar.
