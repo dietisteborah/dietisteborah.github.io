@@ -50,7 +50,7 @@
 		
 		$date = strtotime(strdate);
 		$realdate = date('YYYY-MM-DD', strdate);
-		$realdate->add(new DateInterval('P1D');
+		$realdate->add(new DateInterval('P1D'));
 		
 		$optParams = array(
 		  'maxResults' => 10,
