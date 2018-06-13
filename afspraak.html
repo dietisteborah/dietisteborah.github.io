@@ -107,8 +107,10 @@
 			data =  {'action': 'loadToday',
 					  'date' : today};
 			$.post(phpfile, data, function (response) {
-				// Response div goes here.
-				alert("response loadToday: " + response);
+				last.innerHTML = '';
+				var li = document.createElement('li');
+				li.innerHTML = response;
+				last.appendChild(li);
 			});
 	};
 	//hello week init
