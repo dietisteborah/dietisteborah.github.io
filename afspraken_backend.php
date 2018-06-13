@@ -47,16 +47,22 @@
 		//time max
 		//$strdate = date_create_from_format('YYYY-MM-DD', $strdate);
 		//$strdate->add(new DateInterval('P1D'));
+
+		//$date = strtotime($strdate);
+		//$realdate = date('YYYY-MM-DD', $date)->add(new DateInterval('P1D'));
 		
-		$date = strtotime($strdate);
-		$realdate = date('YYYY-MM-DD', $date)->add(new DateInterval('P1D'));
+		$nextdate = new DateTime($strdate);
+		$nextdate->add(new DateInterval('P1D'));
+		echo $nextdate->format('YYYY-MM-DD') . "\n";
+				
+
 		
 		$optParams = array(
 		  'maxResults' => 10,
 		  'orderBy' => 'startTime',
 		  'singleEvents' => true,
-		  'timeMax' => $date->format('YYYY-MM-DD') . 'T00:00:00Z',
-		  'timeMin' => $date . 'T00:00:00Z',
+		  'timeMax' => $nextdate->format('YYYY-MM-DD') . 'T00:00:00Z',
+		  'timeMin' => $strdate . 'T00:00:00Z',
 		);
 		$results = $service->events->listEvents($calendarId, $optParams);
 		if (!($results->getItems())) {
