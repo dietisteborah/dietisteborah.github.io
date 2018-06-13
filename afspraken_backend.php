@@ -87,9 +87,9 @@
 					$results = $service->events->listEvents($calendarId, $optParams);
 					foreach ($results->getItems() as $event) {
 						$start = $event->start->dateTime;
+						$end = $event->getEnd();
 						if (!($start)) {
-							$start = $event->start->date;
-							$end = $event->getEnd();
+							$start = $event->start->date;							
 						}
 						printf("%s (%s) (%s)\n", $event->getSummary(), $start,$end);
 					}
