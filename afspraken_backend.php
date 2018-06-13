@@ -37,7 +37,7 @@
 		return $client;
 	}
 	
-	function getAvailable($date){
+	function getAvailable($strdate){
 		$client = getClient();
 		$service = new Google_Service_Calendar($client);
 		// Print the next 10 events on the user's calendar.
@@ -45,8 +45,12 @@
 		$calendarId = 'dietiste.borah@gmail.com';
 		
 		//time max
-		$date = date_create_from_format('YYYY-MM-DD', $date);
-		$date->add(new DateInterval('P1D'));
+		//$strdate = date_create_from_format('YYYY-MM-DD', $strdate);
+		//$strdate->add(new DateInterval('P1D'));
+		
+		$date = strtotime(strdate);
+		$realdate = date('YYYY-MM-DD', strdate)->add(new DateInterval('P1D');
+		
 		
 		$optParams = array(
 		  'maxResults' => 10,
