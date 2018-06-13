@@ -50,6 +50,8 @@
 
 		if($diffDays > 0){
 			$open = false;
+			$startOpen = "";
+			$endOpen = ""
 			$client = getClient();
 			$service = new Google_Service_Calendar($client);
 			// Print the next 10 events on the user's calendar.
@@ -73,6 +75,8 @@
 				foreach ($results->getItems() as $event) {
 					if($event->getSummary() == "Open"){
 						$open=true;
+						$startOpen = $event->start->dateTime;
+						$endOpen = $event->getEnd()->dateTime;
 						break;
 					}
 				}
@@ -81,8 +85,8 @@
 					$optParams = array(
 					  'orderBy' => 'startTime',
 					  'singleEvents' => true,
-					  'timeMax' => $nextdate->format('Y-m-d') . 'T00:00:00Z',
-					  'timeMin' => $strdate . 'T00:00:00Z',
+					  'timeMax' => $endOpen,
+					  'timeMin' => $startOpen,
 					);
 					$results = $service->events->listEvents($calendarId, $optParams);
 					foreach ($results->getItems() as $event) {
