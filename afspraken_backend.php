@@ -70,7 +70,6 @@
 			if (!($results->getItems())) {
 				print "No upcoming events found.\n";
 			} else {
-				print "Upcoming events:\n";
 				foreach ($results->getItems() as $event) {
 					if($event->getSummary() == "Open"){
 						$open=true;
@@ -78,13 +77,25 @@
 					}
 				}
 				if($open){
+					//Query the events during the opening times
+					$optParams = array(
+					  'orderBy' => 'startTime',
+					  'singleEvents' => true,
+					  'timeMax' => $nextdate->format('Y-m-d') . 'T00:00:00Z',
+					  'timeMin' => $strdate . 'T00:00:00Z',
+					);
+					$results = $service->events->listEvents($calendarId, $optParams);
 					foreach ($results->getItems() as $event) {
 						$start = $event->start->dateTime;
 						if (!($start)) {
 							$start = $event->start->date;
+							$end = $event->getEnd();
 						}
-						printf("%s (%s)\n", $event->getSummary(), $start);
+						printf("%s (%s) (%s)\n", $event->getSummary(), $start,$end);
 					}
+				}
+				else{
+					print "Geen tijdstippen vrij op deze datum.\n";
 				}
 			}
 		}
