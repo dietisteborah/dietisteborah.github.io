@@ -91,8 +91,8 @@
 					);
 					$results = $service->events->listEvents($calendarId, $optParams);
 					$match_date = DateTime::createFromFormat( "Y-m-dTH:i:sZ", $strdate );
-					$startTime=$startOpen;
-					for($startTime<$endOpen
+					//$startTime=$startOpen;
+					//for($startTime<$endOpen
 					foreach ($results->getItems() as $event) {
 						$start = $event->start->dateTime;
 						$end = $event->getEnd()->dateTime;
