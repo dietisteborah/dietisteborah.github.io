@@ -110,7 +110,7 @@
 						if (!($start)) {
 							$start = $event->start->date;							
 						}
-						printf("%s (%s) \n", $event->getSummary(), $startHour);
+						printf("%s (%s) \n", $event->getSummary(), $start);
 					}
 				}
 				else{
