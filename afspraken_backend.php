@@ -90,17 +90,27 @@
 					  'timeMin' => $startOpen,
 					);
 					$results = $service->events->listEvents($calendarId, $optParams);
-					$match_date = DateTime::createFromFormat( "Y-m-dTH:i:sZ", $strdate );
-					$startHour=substr($startOpen, 10, 8);
-					$endHour=substr($endOpen, 10, 8);
-					//for($startTime<$endOpen
+					
+					//$endHour=substr($endOpen, 11, 5);
+					//if ($currentTime > strtotime('16:00:00')) {
+					
+					/*for($startHour=substr($startOpen, 11, 5);strtotime($startHour)<$endHour;$startHour = date("H:i", strtotime('+30 minutes', $startHour))){
+						
+					}*/
+
+					$length = count($results) - 1;
+					for($i = 0; $i < $length; ++$i) {
+						if (current($results) === next($results)) {
+							// they match
+						}
+					}
 					foreach ($results->getItems() as $event) {
 						$start = $event->start->dateTime;
 						$end = $event->getEnd()->dateTime;
 						if (!($start)) {
 							$start = $event->start->date;							
 						}
-						printf("%s (%s) (%s) \n", $event->getSummary(), $startHour,$endHour);
+						printf("%s (%s) \n", $event->getSummary(), $startHour);
 					}
 				}
 				else{
