@@ -90,15 +90,16 @@
 					  'timeMin' => $startOpen,
 					);
 					$results = $service->events->listEvents($calendarId, $optParams);
-					//$startTime=$startOpen;
-					//for($startTime<$endOpen
+					$match_date = DateTime::createFromFormat( "Y-m-dTH:i:sZ", $strdate );
+					$startTime=$startOpen;
+					for($startTime<$endOpen
 					foreach ($results->getItems() as $event) {
 						$start = $event->start->dateTime;
 						$end = $event->getEnd()->dateTime;
 						if (!($start)) {
 							$start = $event->start->date;							
 						}
-						printf("%s (%s) (%s)\n", $event->getSummary(), $start->format(h-m-s),$end->format(h-m));
+						printf("%s (%s) (%s) (%s)\n", $event->getSummary(), $start,$end,$match_date->format("H:i:s");
 					}
 				}
 				else{
