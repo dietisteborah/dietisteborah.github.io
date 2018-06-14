@@ -100,7 +100,7 @@
 						if (!($start)) {
 							$start = $event->start->date;							
 						}
-						printf("%s (%s) (%s) (%s)\n", $event->getSummary(), $startHour,$endHour);
+						printf("%s (%s) (%s) \n", $event->getSummary(), $startHour,$endHour);
 					}
 				}
 				else{
