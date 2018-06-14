@@ -99,7 +99,7 @@
 						if (!($start)) {
 							$start = $event->start->date;							
 						}
-						printf("%s (%s) (%s) (%s)\n", $event->getSummary(), $start,$end,$match_date->format("H:i:s");
+						printf("%s (%s) (%s) (%s)\n", $event->getSummary(), $start,$end,$match_date->format("H:i:s"));
 					}
 				}
 				else{
