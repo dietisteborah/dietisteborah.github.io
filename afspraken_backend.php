@@ -52,6 +52,7 @@
 			$open = false;
 			$startOpen = "";
 			$endOpen = "";
+			$timeslots = array();
 			$client = getClient();
 			$service = new Google_Service_Calendar($client);
 			// Print the next 10 events on the user's calendar.
@@ -89,13 +90,15 @@
 					  'timeMin' => $startOpen,
 					);
 					$results = $service->events->listEvents($calendarId, $optParams);
+					//$startTime=$startOpen;
+					//for($startTime<$endOpen
 					foreach ($results->getItems() as $event) {
 						$start = $event->start->dateTime;
 						$end = $event->getEnd()->dateTime;
 						if (!($start)) {
 							$start = $event->start->date;							
 						}
-						printf("%s (%s) (%s)\n", $event->getSummary(), $start,$end);
+						printf("%s (%s) (%s)\n", $event->getSummary(), $start->format(h-m-s),$end->format(h-m));
 					}
 				}
 				else{
