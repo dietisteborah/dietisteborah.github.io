@@ -91,7 +91,8 @@
 					);
 					$results = $service->events->listEvents($calendarId, $optParams);
 					$match_date = DateTime::createFromFormat( "Y-m-dTH:i:sZ", $strdate );
-					//$startTime=$startOpen;
+					$startHour=substr($startOpen, 10, 8);
+					$endHour=substr($endOpen, 10, 8);
 					//for($startTime<$endOpen
 					foreach ($results->getItems() as $event) {
 						$start = $event->start->dateTime;
@@ -99,7 +100,7 @@
 						if (!($start)) {
 							$start = $event->start->date;							
 						}
-						printf("%s (%s) (%s) (%s)\n", $event->getSummary(), $start,$end,$match_date->format("H:i:s"));
+						printf("%s (%s) (%s) (%s)\n", $event->getSummary(), $startHour,$endHour);
 					}
 				}
 				else{
