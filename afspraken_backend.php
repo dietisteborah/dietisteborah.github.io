@@ -105,7 +105,7 @@
 							}
 						}
 						else{
-							printf("niet Open");
+							printf("%s \n", $event->getSummary());
 						}
 					}
 					//$endHour=substr($endOpen, 11, 5);
