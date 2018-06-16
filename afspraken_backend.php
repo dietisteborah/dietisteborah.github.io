@@ -70,7 +70,8 @@
 			$results = $service->events->listEvents($calendarId, $optParams);
 			if (!($results->getItems())) {
 				print "No upcoming events found.\n";
-			} else {
+			} else 
+			{
 				foreach ($results->getItems() as $event) {
 					if($event->getSummary() == "Open"){
 						$open=true;
@@ -94,6 +95,7 @@
 					foreach ($results->getItems() as $event) {
 						if(($event->getSummary() == "Open"){
 							//Do nothing
+							printf("Open so do nothing.");
 						}
 						else{							
 							//Check begintijd met eind tijd vorige afspraak. Daarna "eindtijd" op eigen eindtijd zetten. 
