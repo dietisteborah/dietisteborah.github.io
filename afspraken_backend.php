@@ -55,8 +55,6 @@
 			$timeslots = array();
 			$client = getClient();
 			$service = new Google_Service_Calendar($client);
-			// Print the next 10 events on the user's calendar.
-			//$calendarId = 'calendar-service-php@dietiste-calendar-site.iam.gserviceaccount.com';
 			$calendarId = 'dietiste.borah@gmail.com';
 			
 			//time max -> selected day + 1
@@ -91,27 +89,48 @@
 					);
 					$results = $service->events->listEvents($calendarId, $optParams);
 					
+					$endOpen=substr($endOpen, 11, 5);
+					$previousEndTime = $endOpen;
+					foreach ($results->getItems() as $event) {
+						if(($event->getSummary() == "Open"){
+							//Do nothing
+						}
+						else{							
+							//Check begintijd met eind tijd vorige afspraak. Daarna "eindtijd" op eigen eindtijd zetten. 
+							//Op basis daarvan vrije momenten toevoegen aan de lijst met vrije uren (aantal minuten delen door 30 of 90)	
+							$start = substr($event->start->dateTime,11,5);
+							$end = $event->getEnd()->dateTime;
+							if(strtotime($start) > strtotime($previousEndTime){
+								$timeDifferenceInMinutes = (strtotime($start) - strtotime($previousEndTime))/60;
+						}
+						printf("%s (%s) \n", $event->getSummary(), $timeDifferenceInMinutes);
+					}
 					//$endHour=substr($endOpen, 11, 5);
 					//if ($currentTime > strtotime('16:00:00')) {
 					
 					/*for($startHour=substr($startOpen, 11, 5);strtotime($startHour)<$endHour;$startHour = date("H:i", strtotime('+30 minutes', $startHour))){
 						
 					}*/
-
-					$length = count($results) - 1;
+					
+					/*
+						eerst start uren nemen van de "open" taak,
+						daarna checken of de taak de "open" taak is, "open" taak negeren en verder gaan
+					*/
+					/*$length = count($results) - 1;
 					for($i = 0; $i < $length; ++$i) {
-						if (current($results) === next($results)) {
+						if(current($results)->getSummary() == "Open"){
+							$stringStartOpen = substr(current($results)->start->dateTime, 11, 5);
+							$stringStartFirst = 
+							;	
+						}
+						else {
+						
+						}
+						/*if (current($results) === next($results)) {
 							// they match
-						}
-					}
-					foreach ($results->getItems() as $event) {
-						$start = $event->start->dateTime;
-						$end = $event->getEnd()->dateTime;
-						if (!($start)) {
-							$start = $event->start->date;							
-						}
-						printf("%s (%s) \n", $event->getSummary(), $start);
-					}
+						}*/
+					}*/
+
 				}
 				else{
 					print "Geen tijdstippen vrij op deze datum.\n";
