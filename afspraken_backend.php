@@ -95,8 +95,9 @@
 					foreach ($results->getItems() as $event) {
 						if(!($event->getSummary() == "Open"){
 							//Check begintijd met eind tijd vorige afspraak. Daarna "eindtijd" op eigen eindtijd zetten. 
-							//Op basis daarvan vrije momenten toevoegen aan de lijst met vrije uren (aantal minuten delen door 30 of 90)	
-							$start = substr($event->start->dateTime,11,5);
+							//Op basis daarvan vrije momenten toevoegen aan de lijst met vrije uren (aantal minuten delen door 30 of 90)
+							$startDateTime = $event->start->dateTime;
+							$start = substr($startDateTime, 11, 5);
 							$end = $event->getEnd()->dateTime;
 							if(strtotime($start) > strtotime($previousEndTime){
 								$timeDifferenceInMinutes = (strtotime($start) - strtotime($previousEndTime))/60;
