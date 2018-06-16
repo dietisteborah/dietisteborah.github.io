@@ -130,8 +130,6 @@
 						/*if (current($results) === next($results)) {
 							// they match
 						}*/
-					}*/
-
 				}
 				else{
 					print "Geen tijdstippen vrij op deze datum.\n";
