@@ -100,13 +100,9 @@
 							$start = substr($startDateTime, 11, 5);						
 							if(strtotime($start) > strtotime($previousEndTime)){
 								$timeDifferenceInMinutes = (strtotime($start) - strtotime($previousEndTime))/60;
-								printf("%s (%s) \n", $event->getSummary(), $timeDifferenceInMinutes);
+								printf("%s diff: (%s) \n start: %s - end %s \n", $event->getSummary(), $timeDifferenceInMinutes, $start, $previousEndTime);
 							}
 							$previousEndTime = substr($event->getEnd()->dateTime,11,5);
-							printf("%s (%s) (%s)\n", $event->getSummary(), $start ,$previousEndTime);
-						}
-						else{
-							printf("%s \n", $event->getSummary());
 						}
 					}
 					//$endHour=substr($endOpen, 11, 5);
