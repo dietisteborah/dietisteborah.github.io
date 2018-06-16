@@ -90,20 +90,20 @@
 					);
 					$results = $service->events->listEvents($calendarId, $optParams);
 					
-					$endOpen=substr($endOpen, 11, 5);
-					$previousEndTime = $endOpen;
+					$startOpen=substr($startOpen, 11, 5);
+					$previousEndTime = $startOpen; //First time, difference between Open "openingtime" and first appointment has to be found
 					foreach ($results->getItems() as $event) {
 						if(!($event->getSummary() == "Open")){
 							//Check begintijd met eind tijd vorige afspraak. Daarna "eindtijd" op eigen eindtijd zetten. 
 							//Op basis daarvan vrije momenten toevoegen aan de lijst met vrije uren (aantal minuten delen door 30 of 90)
 							$startDateTime = $event->start->dateTime;
-							$start = substr($startDateTime, 11, 5);
-							$end = $event->getEnd()->dateTime;
+							$start = substr($startDateTime, 11, 5);						
 							if(strtotime($start) > strtotime($previousEndTime)){
 								$timeDifferenceInMinutes = (strtotime($start) - strtotime($previousEndTime))/60;
 								printf("%s (%s) \n", $event->getSummary(), $timeDifferenceInMinutes);
 							}
-							printf("%s (%s) (%s)\n", $event->getSummary(), $start ,$end);
+							$previousEndTime = substr($event->getEnd()->dateTime,11,5);
+							printf("%s (%s) (%s)\n", $event->getSummary(), $start ,$previousEndTime);
 						}
 						else{
 							printf("%s \n", $event->getSummary());
