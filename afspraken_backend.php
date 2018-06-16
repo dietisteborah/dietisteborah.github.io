@@ -93,11 +93,7 @@
 					$endOpen=substr($endOpen, 11, 5);
 					$previousEndTime = $endOpen;
 					foreach ($results->getItems() as $event) {
-						if(($event->getSummary() == "Open"){
-							//Do nothing
-							printf("Open so do nothing.");
-						}
-						else{							
+						if(!($event->getSummary() == "Open"){
 							//Check begintijd met eind tijd vorige afspraak. Daarna "eindtijd" op eigen eindtijd zetten. 
 							//Op basis daarvan vrije momenten toevoegen aan de lijst met vrije uren (aantal minuten delen door 30 of 90)	
 							$start = substr($event->start->dateTime,11,5);
