@@ -103,6 +103,7 @@
 								$timeDifferenceInMinutes = (strtotime($start) - strtotime($previousEndTime))/60;
 								printf("%s (%s) \n", $event->getSummary(), $timeDifferenceInMinutes);
 							}
+							printf("%s (%s) (%s)\n", $event->getSummary(), $start ,$end);
 						}
 						else{
 							printf("%s \n", $event->getSummary());
