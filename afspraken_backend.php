@@ -105,30 +105,12 @@
 							$previousEndTime = substr($event->getEnd()->dateTime,11,5);
 						}
 					}
-					//$endHour=substr($endOpen, 11, 5);
-					//if ($currentTime > strtotime('16:00:00')) {
-					
-					/*for($startHour=substr($startOpen, 11, 5);strtotime($startHour)<$endHour;$startHour = date("H:i", strtotime('+30 minutes', $startHour))){
-						
-					}*/
-					
-					/*
-						eerst start uren nemen van de "open" taak,
-						daarna checken of de taak de "open" taak is, "open" taak negeren en verder gaan
-					*/
-					/*$length = count($results) - 1;
-					for($i = 0; $i < $length; ++$i) {
-						if(current($results)->getSummary() == "Open"){
-							$stringStartOpen = substr(current($results)->start->dateTime, 11, 5);
-							$stringStartFirst = 
-							;	
-						}
-						else {
-						
-						}
-						/*if (current($results) === next($results)) {
-							// they match
-						}*/
+					//do the check for the last appointment & closing time
+					$endOpen=substr($endOpen, 11, 5);
+					if(strtotime($endOpen) > strtotime($previousEndTime)){
+						$timeDifferenceInMinutes = (strtotime($endOpen) - strtotime($previousEndTime))/60;
+						printf("Last: %s diff: (%s) \n start: %s - end %s \n", $event->getSummary(), $timeDifferenceInMinutes, $endOpen, $previousEndTime);
+					}					
 				}
 				else{
 					print "Geen tijdstippen vrij op deze datum.\n";
