@@ -101,9 +101,12 @@
 							$end = $event->getEnd()->dateTime;
 							if(strtotime($start) > strtotime($previousEndTime)){
 								$timeDifferenceInMinutes = (strtotime($start) - strtotime($previousEndTime))/60;
+								printf("%s (%s) \n", $event->getSummary(), $timeDifferenceInMinutes);
 							}
 						}
-						printf("%s (%s) \n", $event->getSummary(), $timeDifferenceInMinutes);
+						else{
+							printf("niet Open");
+						}
 					}
 					//$endHour=substr($endOpen, 11, 5);
 					//if ($currentTime > strtotime('16:00:00')) {
