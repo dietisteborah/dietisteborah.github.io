@@ -92,7 +92,43 @@
 					
 					$endOpen=substr($endOpen, 11, 5);
 					$previousEndTime = $endOpen;
-
+					foreach ($results->getItems() as $event) {
+						if(!($event->getSummary() == "Open")){
+							//Check begintijd met eind tijd vorige afspraak. Daarna "eindtijd" op eigen eindtijd zetten. 
+							//Op basis daarvan vrije momenten toevoegen aan de lijst met vrije uren (aantal minuten delen door 30 of 90)
+							$startDateTime = $event->start->dateTime;
+							$start = substr($startDateTime, 11, 5);
+							$end = $event->getEnd()->dateTime;
+							if(strtotime($start) > strtotime($previousEndTime){
+								$timeDifferenceInMinutes = (strtotime($start) - strtotime($previousEndTime))/60;
+							}
+						}
+						printf("%s (%s) \n", $event->getSummary(), $timeDifferenceInMinutes);
+					}
+					//$endHour=substr($endOpen, 11, 5);
+					//if ($currentTime > strtotime('16:00:00')) {
+					
+					/*for($startHour=substr($startOpen, 11, 5);strtotime($startHour)<$endHour;$startHour = date("H:i", strtotime('+30 minutes', $startHour))){
+						
+					}*/
+					
+					/*
+						eerst start uren nemen van de "open" taak,
+						daarna checken of de taak de "open" taak is, "open" taak negeren en verder gaan
+					*/
+					/*$length = count($results) - 1;
+					for($i = 0; $i < $length; ++$i) {
+						if(current($results)->getSummary() == "Open"){
+							$stringStartOpen = substr(current($results)->start->dateTime, 11, 5);
+							$stringStartFirst = 
+							;	
+						}
+						else {
+						
+						}
+						/*if (current($results) === next($results)) {
+							// they match
+						}*/
 				}
 				else{
 					print "Geen tijdstippen vrij op deze datum.\n";
