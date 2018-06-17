@@ -107,7 +107,6 @@
 									$amountOfAppointments = $timeDifferenceInMinutes/30;
 									for($i=0;$i<$amountOfAppointments;$i++){
 										$add = 30 + (30*$i);
-										var_dump($add,$i,$previousEndTime);
 										//$newStartTime = date("H:i", strtotime('+30 minutes', strtotime($previousEndTime)));
 										//$newStartTime = date("H:i", $previousEndTime.' +30 minutes');
 										$newStartTime = strtotime($previousEndTime) + (30*60*$i); 
