@@ -101,7 +101,7 @@
 							$start = substr($startDateTime, 11, 5);						
 							if(strtotime($start) > strtotime($previousEndTime)){
 								$timeDifferenceInMinutes = (strtotime($start) - strtotime($previousEndTime))/60;
-								if($opvolg && ($timeDifferenceInMinutes/30) > 1){ //afspraak 30 min
+								if($opvolg && ($timeDifferenceInMinutes/30) >= 1){ //afspraak 30 min
 									$noTime = false;
 									//printf("%s diff: (%s) \n start: %s - end %s \n", $event->getSummary(), $timeDifferenceInMinutes, $start, $previousEndTime);
 									$amountOfAppointments = $timeDifferenceInMinutes/30;
@@ -110,6 +110,7 @@
 										var_dump($add,$i,$previousEndTime);
 										//$newStartTime = date("H:i", strtotime('+30 minutes', strtotime($previousEndTime)));
 										$newStartTime = date("H:i", $previousEndTime.' +30 minutes');
+										var_dump($newStartTime);
 										printf("Appointment %s \n", $newStartTime);
 									}
 								}
@@ -127,7 +128,7 @@
 					$endOpen=substr($endOpen, 11, 5);
 					if(strtotime($endOpen) > strtotime($previousEndTime)){
 						$timeDifferenceInMinutes = (strtotime($endOpen) - strtotime($previousEndTime))/60;
-						if($opvolg && ($timeDifferenceInMinutes/30) > 1){ //afspraak 30 min
+						if($opvolg && ($timeDifferenceInMinutes/30) >= 1){ //afspraak 30 min
 							$noTime = false;
 							//printf("Last: %s diff: (%s) \n start: %s - end %s \n", $event->getSummary(), $timeDifferenceInMinutes, $endOpen, $previousEndTime);
 							$amountOfAppointments = $timeDifferenceInMinutes/30;
