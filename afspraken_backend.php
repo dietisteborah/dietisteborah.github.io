@@ -105,7 +105,7 @@
 									$noTime = false;
 									printf("%s diff: (%s) \n start: %s - end %s \n", $event->getSummary(), $timeDifferenceInMinutes, $start, $previousEndTime);
 									$amountOfAppointments = $timeDifferenceInMinutes/30;
-									for($i=0;$i<$amountOfAppointments;i++){
+									for($i=0;$i<$amountOfAppointments;$i++){
 										$newStartTime = date("H:i", strtotime('+30 minutes', $previousEndTime));
 										printf("Appointment %s \n", $newStartTime);
 									}
