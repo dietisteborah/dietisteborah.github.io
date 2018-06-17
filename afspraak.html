@@ -64,7 +64,8 @@
 				</div>	
 				<div class="custom-hello-week col-md-3">
 					<h2 class="custom_header" align="left">Kies een tijdstip:</h2> 
-                    <ul class="selected-day"><li>n/a</li></ul>
+                    <!--<ul class="selected-day"><li>n/a</li></ul> -->
+					<ul class="available-time" id="timeList"><li>n/a</li></ul> 
 				</div>	
 				<div class="custom-hello-week col-md-4">
 					<h2 class="custom_header" align="left">Persoonlijke gegevens:</h2> 
@@ -104,14 +105,14 @@
 			$.post(phpfile, data, function (response) {
 				// Response div goes here.
 				//alert("response updateInfo: " + response);
-				var list = response.split(";");
-				
+				var list = response.split(";");		
 				list.forEach(function(entry){
-					alert("entry: " + entry);
-					last.innerHTML = '';
-					var li = document.createElement('li');				
-					li.innerHTML = entry;
-					last.appendChild(li);					
+					if(entry!=""){					
+						var node = document.createElement("LI");  // Create a <li> node
+						var textnode = document.createTextNode("available-".concat(entry)); // Create a text node
+						node.appendChild(textnode); 
+						document.getElementById("timeList").appendChild(node); ///append Item
+					}					
 				});
 
 			});
