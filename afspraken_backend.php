@@ -110,7 +110,7 @@
 										printf("%s;", date("H:i",$newStartTime));
 									}
 								}
-								elseif(($opvolg && ($timeDifferenceInMinutes/90) >= 1)){ //afspraak van 90 min
+								elseif((!$opvolg && ($timeDifferenceInMinutes/90) >= 1)){ //afspraak van 90 min
 									$noTime = false;
 									$amountOfAppointments = $timeDifferenceInMinutes/90;
 									for($i=0;$i<$amountOfAppointments;$i++){
@@ -140,7 +140,7 @@
 								printf("%s;", date("H:i",$newStartTime));
 							}
 						}
-						elseif(($opvolg && ($timeDifferenceInMinutes/90) >= 1)){ //afspraak van 90 min
+						elseif((!$opvolg && ($timeDifferenceInMinutes/90) >= 1)){ //afspraak van 90 min
 							$noTime = false;
 							$noTime = false;
 							$amountOfAppointments = $timeDifferenceInMinutes/90;
