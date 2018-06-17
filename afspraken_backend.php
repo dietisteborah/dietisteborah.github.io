@@ -108,7 +108,7 @@
 									for($i=0;$i<$amountOfAppointments;$i++){
 										$add = 30 + 30*$i;
 										$newStartTime = date("H:i", strtotime('+'.$add. ' minutes', $previousEndTime));
-										printf("Appointment %s \n", $newStartTime);
+										printf("Appointment %s \n", $newStartTime->format('H:i'));
 									}
 								}
 								else{ //afspraak van 90 min
@@ -132,7 +132,7 @@
 							for($i=0;$i<$amountOfAppointments;$i++){
 								$add = 30 + 30*$i;
 								$newStartTime = date("H:i", strtotime('+'.$add. ' minutes', $previousEndTime));
-								printf("Appointment %s \n", $newStartTime);
+								printf("Appointment %s \n", $newStartTime->format('H:i'));
 							}
 						}
 						else{ //afspraak van 90 min
