@@ -47,7 +47,11 @@
 		$match_date->setTime( 0, 0, 0 ); // reset time part, to prevent partial comparison
 		$diff = $today->diff( $match_date );
 		$diffDays = (integer)$diff->format( "%R%a" ); // Extract days count in interval
-
+		$appType = false;
+		//check appointment type
+		if($opvolg=="opvolg"){
+			$appType=true;
+		}
 		if($diffDays > 0){
 			$open = false;
 			$startOpen = "";

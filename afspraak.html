@@ -95,7 +95,7 @@
 			var selectedday = this.lastSelectedDay;				
 			data =  {'action': 'getAvailable',
 					  'date' : selectedday,
-					  'opvolg' : false};  //TODO - add button value		
+					  'opvolg' : 'eerste'};  //TODO - add button value		
 			$.post(phpfile, data, function (response) {
 				// Response div goes here.
 				alert("response updateInfo: " + response);
