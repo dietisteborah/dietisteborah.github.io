@@ -7,7 +7,7 @@
 	if (isset($_POST['action'])) {
 		switch ($_POST['action']) {
 			case 'getAvailable':
-				getAvailable($_POST['date']);
+				getAvailable($_POST['date'],$_POST['opvolg']);
 				break;
 			case 'loadToday':
 				loadToday($_POST['date']);
@@ -40,7 +40,7 @@
 		return $client;
 	}
 	
-	function getAvailable($strdate){
+	function getAvailable($strdate,$opvolg){
 		$today = new DateTime(); // This object represents current date/time
 		$today->setTime( 0, 0, 0 ); // reset time part, to prevent partial comparison
 		$match_date = DateTime::createFromFormat( "Y-m-d", $strdate );
@@ -53,6 +53,7 @@
 			$startOpen = "";
 			$endOpen = "";
 			$timeslots = array();
+			$notime = true;
 			$client = getClient();
 			$service = new Google_Service_Calendar($client);
 			$calendarId = 'dietiste.borah@gmail.com';
@@ -100,7 +101,21 @@
 							$start = substr($startDateTime, 11, 5);						
 							if(strtotime($start) > strtotime($previousEndTime)){
 								$timeDifferenceInMinutes = (strtotime($start) - strtotime($previousEndTime))/60;
-								printf("%s diff: (%s) \n start: %s - end %s \n", $event->getSummary(), $timeDifferenceInMinutes, $start, $previousEndTime);
+								if($opvolg && ($timeDifferenceInMinutes/30) > 1){ //afspraak 30 min
+									$noTime = false;
+									printf("%s diff: (%s) \n start: %s - end %s \n", $event->getSummary(), $timeDifferenceInMinutes, $start, $previousEndTime);
+									$amountOfAppointments = $timeDifferenceInMinutes/30;
+									for($i=0;$i<$amountOfAppointments;i++){
+										$newStartTime = date("H:i", strtotime('+30 minutes', $previousEndTime));
+										printf("Appointment %s \n", $newStartTime);
+									}
+								}
+								else{ //afspraak van 90 min
+									$noTime = false;
+								}
+							}
+							else{
+								//Do nothing, no time left
 							}
 							$previousEndTime = substr($event->getEnd()->dateTime,11,5);
 						}
@@ -109,8 +124,17 @@
 					$endOpen=substr($endOpen, 11, 5);
 					if(strtotime($endOpen) > strtotime($previousEndTime)){
 						$timeDifferenceInMinutes = (strtotime($endOpen) - strtotime($previousEndTime))/60;
-						printf("Last: %s diff: (%s) \n start: %s - end %s \n", $event->getSummary(), $timeDifferenceInMinutes, $endOpen, $previousEndTime);
-					}					
+						if($opvolg && ($timeDifferenceInMinutes/30) > 1){ //afspraak 30 min
+							$noTime = false;
+							printf("Last: %s diff: (%s) \n start: %s - end %s \n", $event->getSummary(), $timeDifferenceInMinutes, $endOpen, $previousEndTime);
+						}
+						else{ //afspraak van 90 min
+							$noTime = false;
+						}
+					}		
+					if($noTime){
+						print "Geen tijdstippen vrij op deze datum.\n";
+					}
 				}
 				else{
 					print "Geen tijdstippen vrij op deze datum.\n";

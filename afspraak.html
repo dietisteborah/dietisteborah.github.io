@@ -94,7 +94,8 @@
 			var phpfile = 'afspraken_backend.php';
 			var selectedday = this.lastSelectedDay;				
 			data =  {'action': 'getAvailable',
-					  'date' : selectedday};
+					  'date' : selectedday,
+					  'opvolg' : true};  //TODO - add button value		
 			$.post(phpfile, data, function (response) {
 				// Response div goes here.
 				alert("response updateInfo: " + response);
@@ -103,7 +104,7 @@
 	};
 	function loadToday() {
 			var phpfile = 'afspraken_backend.php';
-			var today = this.getToday('YYYY-MM-DD');				
+			var today = this.getToday('YYYY-MM-DD');		
 			data =  {'action': 'loadToday',
 					  'date' : today};
 			$.post(phpfile, data, function (response) {
