@@ -115,9 +115,9 @@
 									printf("!opvolg");
 									$noTime = false;
 									$amountOfAppointments = $timeDifferenceInMinutes/90;
-									for($i=0;$i<$amountOfAppointments;$i++){
-										$add = 90 + (90*$i);
-										$newStartTime = strtotime($previousEndTime) + (90*60*$i); 
+									for($i=0;$i<($amountOfAppointments*3);$i++){
+										$add = 30 + (30*$i);
+										$newStartTime = strtotime($previousEndTime) + (30*60*$i); 
 										printf("%s;", date("H:i",$newStartTime));
 									}
 								}
