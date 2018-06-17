@@ -74,7 +74,7 @@
 			);
 			$results = $service->events->listEvents($calendarId, $optParams);
 			if (!($results->getItems())) {
-				print "No upcoming events found.\n";
+				print "Geen tijdstippen vrij op deze datum.\n";
 			} else 
 			{
 				foreach ($results->getItems() as $event) {

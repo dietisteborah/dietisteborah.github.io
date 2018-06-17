@@ -105,9 +105,11 @@
 				// Response div goes here.
 				//alert("response updateInfo: " + response);
 				var list = response.split(";");
+				
 				list.forEach(function(entry){
+					alert("entry: " + entry);
 					last.innerHTML = '';
-					var li = document.createElement('li');
+					var li = document.createElement('li');				
 					li.innerHTML = entry;
 					last.appendChild(li);					
 				});
