@@ -108,7 +108,8 @@
 									for($i=0;$i<$amountOfAppointments;$i++){
 										$add = 30 + (30*$i);
 										var_dump($add,$i);
-										$newStartTime = date("H:i", strtotime('+30 minutes', strtotime($previousEndTime)));
+										//$newStartTime = date("H:i", strtotime('+30 minutes', strtotime($previousEndTime)));
+										$newStartTime = date("H:i", $previousEndTime.' +30 minutes');
 										printf("Appointment %s \n", $newStartTime);
 									}
 								}
