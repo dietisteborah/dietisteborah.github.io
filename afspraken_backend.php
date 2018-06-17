@@ -111,8 +111,8 @@
 										//$newStartTime = date("H:i", strtotime('+30 minutes', strtotime($previousEndTime)));
 										//$newStartTime = date("H:i", $previousEndTime.' +30 minutes');
 										$newStartTime = strtotime($previousEndTime) + (30*60*$i); 
-										var_dump($newStartTime);
-										printf("Appointment %s \n", $newStartTime->format("H:i"));
+										
+										printf("Appointment %s \n", date("H:i",$newStartTime));
 									}
 								}
 								else{ //afspraak van 90 min
