@@ -46,7 +46,12 @@
 	<div class="container">
 		<!-- Terugbetaling -->
 		<h2 class="brown_text custom_header top-buffer-35" align="left">Online afspraak maken - under construction</h2>
-		<div class="row brown_text">
+		<div class="radio" style="white-space:nowrap overflow:hidden">
+		    <a class="brown_text font_Khula top-buffer-35" align="left">Afspraak type: </a>
+		    <label class="radio-inline brown_text font_Khula"><input type="radio" name="optradio"> Start consultatie</label>
+		    <label class="radio-inline brown_text font_Khula"><input type="radio" name="optradio"> Opvolgconsultatie</label>
+		</div>
+		<div class="row brown_text top-buffer-10">
 				<div class="hello-week col-md-5">
 					<h2 class="custom_header" align="left">Kies een datum:</h2>
 					<div class="hello-week__header">
@@ -98,7 +103,15 @@
 					  'opvolg' : 'eerste'};  //TODO - add button value		
 			$.post(phpfile, data, function (response) {
 				// Response div goes here.
-				alert("response updateInfo: " + response);
+				//alert("response updateInfo: " + response);
+				var list = response.split(";");
+				list.forEach(function(entry){
+					last.innerHTML = '';
+					var li = document.createElement('li');
+					li.innerHTML = entry;
+					last.appendChild(li);					
+				});
+
 			});
 		}
 	};

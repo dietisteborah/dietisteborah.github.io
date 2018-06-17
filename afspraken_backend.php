@@ -116,7 +116,6 @@
 									}
 								}
 								elseif((!$opvolg && ($timeDifferenceInMinutes/90) >= 1)){ //afspraak van 90 min
-									printf("!opvolg");
 									$noTime = false;
 									$amountOfAppointments = $timeDifferenceInMinutes/30; //elke 30 min een afspraak
 									for($i=0;$i<($amountOfAppointments-2);$i++){
