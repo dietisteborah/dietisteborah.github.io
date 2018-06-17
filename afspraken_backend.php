@@ -106,9 +106,10 @@
 									//printf("%s diff: (%s) \n start: %s - end %s \n", $event->getSummary(), $timeDifferenceInMinutes, $start, $previousEndTime);
 									$amountOfAppointments = $timeDifferenceInMinutes/30;
 									for($i=0;$i<$amountOfAppointments;$i++){
-										$add = 30 + 30*$i;
-										$newStartTime = date("H:i", strtotime('+'.$add. ' minutes', $previousEndTime));
-										printf("Appointment %s \n", $newStartTime->format('H:i'));
+										$add = 30 + (30*$i);
+										var_dump($add,$i);
+										$newStartTime = date("H:i", strtotime('+'.$add.' minutes', $previousEndTime));
+										printf("Appointment %s \n", $newStartTime);
 									}
 								}
 								else{ //afspraak van 90 min
@@ -132,7 +133,7 @@
 							for($i=0;$i<$amountOfAppointments;$i++){
 								$add = 30 + 30*$i;
 								$newStartTime = date("H:i", strtotime('+'.$add. ' minutes', $previousEndTime));
-								printf("Appointment %s \n", $newStartTime->format('H:i'));
+								printf("Appointment %s \n", $newStartTime);
 							}
 						}
 						else{ //afspraak van 90 min
