@@ -93,6 +93,7 @@
 					
 					$startOpen=substr($startOpen, 11, 5);
 					$previousEndTime = $startOpen; //First time, difference between Open "openingtime" and first appointment has to be found
+					$opvolg=false;
 					foreach ($results->getItems() as $event) {
 						if(!($event->getSummary() == "Open")){
 							//Check begintijd met eind tijd vorige afspraak. Daarna "eindtijd" op eigen eindtijd zetten. 
@@ -101,7 +102,7 @@
 							$start = substr($startDateTime, 11, 5);						
 							if(strtotime($start) > strtotime($previousEndTime)){
 								$timeDifferenceInMinutes = (strtotime($start) - strtotime($previousEndTime))/60;
-								if($opvolg && ($timeDifferenceInMinutes/30) >= 1){ //afspraak 30 min
+								if($opvolg && (($timeDifferenceInMinutes/30) >= 1)){ //afspraak 30 min
 									$noTime = false;
 									$amountOfAppointments = $timeDifferenceInMinutes/30;
 									for($i=0;$i<$amountOfAppointments;$i++){
@@ -133,7 +134,6 @@
 						$timeDifferenceInMinutes = (strtotime($endOpen) - strtotime($previousEndTime))/60;
 						if($opvolg && ($timeDifferenceInMinutes/30) >= 1){ //afspraak 30 min
 							$noTime = false;
-							//printf("Last: %s diff: (%s) \n start: %s - end %s \n", $event->getSummary(), $timeDifferenceInMinutes, $endOpen, $previousEndTime);
 							$amountOfAppointments = $timeDifferenceInMinutes/30;
 							for($i=0;$i<$amountOfAppointments;$i++){
 								$add = 30 + (30*$i);
