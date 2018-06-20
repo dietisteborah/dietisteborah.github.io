@@ -36,6 +36,7 @@
 	<!-- hello week -->
 	<script src="/node_modules/hello-week/dist/helloweek.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/node_modules/hello-week/dist/helloweek.min.css">
+
     <title>Dietiste Borah Van Doorslaer</title>
 	
   </head>
@@ -112,13 +113,16 @@
 				var list = response.split(";");		
 				list.forEach(function(entry){
 					if(entry!=""){					
-						var node = document.createElement("LI");  // Create a <li> node
+						var node = document.createElement("LI");  // Create a <li> nodes
 						var textnode = document.createTextNode(entry); // Create a text node
 						node.appendChild(textnode); 
 						document.getElementById("timeList").appendChild(node); ///append Item
 					}					
 				});
 
+			});
+			$('#timeList').on('click', 'li', function () {
+				alert("geklikt");
 			});
 		}
 	};
