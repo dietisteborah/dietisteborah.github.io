@@ -127,7 +127,8 @@
 				var node = '';		
 				list.forEach(function(entry){
 					if(entry!=""){					
-						node = node + '<li class=\'brown_text hourslist\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</li>';
+						//node = node + '<li class=\'brown_text hourslist\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</li>';
+						node = node + '<li><button class=\'brown_text\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</button></li>';
 					}					
 				});
 				$('#timeList').html(node);
