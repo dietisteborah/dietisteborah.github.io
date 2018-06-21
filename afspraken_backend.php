@@ -214,6 +214,7 @@
 		$client->setAccessType('offline');
 		
 		// Load previously authorized credentials from a file.
+		$credentialsPath = '/home/borahv1q/public_html/credentials_gmail.json';
 		if (file_exists($credentialsPath)) {
 			$accessToken = json_decode(file_get_contents($credentialsPath), true);
 		} else {
