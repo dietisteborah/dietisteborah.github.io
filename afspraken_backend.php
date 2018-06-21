@@ -220,7 +220,7 @@
 		  'summary' => $name . ' '. $type,
 		  'description' => $name . ' - '.$remark.' - '.$email.' '.$phone.' '.$type,
 		  'start' => array(
-			'dateTime' => $date.'T'.date("H:i",$time),
+			'dateTime' => $date.'T'.$time,
 			'timeZone' => 'Europe/Brussels',
 		  ),
 		  'end' => array(
