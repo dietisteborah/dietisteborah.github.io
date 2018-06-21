@@ -48,7 +48,7 @@
 		<!-- Terugbetaling -->
 		<h2 class="brown_text custom_header top-buffer-35" align="left">Online afspraak maken - under construction</h2>
 		<div class="radio" style="white-space:nowrap overflow:hidden">
-		    <a class="brown_text font_Khula top-buffer-35" align="left">Afspraak type: </a>
+		    <a class="custom_header brown_text top-buffer-35" align="left">Kies een afspraak type: </a>
 		    <label class="radio-inline brown_text font_Khula"><input type="radio" name="optradio" checked="checked" value="start"> Start consultatie</label>
 		    <label class="radio-inline brown_text font_Khula"><input type="radio" name="optradio" value="opvolg"> Opvolgconsultatie</label>
 		</div>
@@ -73,7 +73,7 @@
 						<input id="name" type="text" name="naam">
 						<br>
 						<a>E-mail: *</a><br>
-						<input id="email" type="email" name="email" autocomplete="email">
+						<input id="email" type="email" name="email" autocomplete="on">
 						<br>
 						<a>Telefoon: *</a><br>
 						<input id="phone" type="text" name="phone">
@@ -107,7 +107,6 @@
 	$("input[name='optradio']").on("change", function () {
 	   appointment_Type = this.value;
 	   updateInfo();
-	   alert("it did change..");
 	});
 	
 	function updateInfo() {
@@ -117,7 +116,6 @@
 				selected_Day = this.lastSelectedDay;
 			}
 			selected_Time = "";
-			alert(appointment_Type);
 			data =  {'action': 'getAvailable',
 					  'date' : selected_Day,
 					  'opvolg' : appointment_Type};	
