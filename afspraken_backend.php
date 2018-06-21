@@ -252,7 +252,7 @@
 		$strSubject = 'Test mail using GMail API -';
 
 		$strRawMessage .= 'To: ' . encodeRecipients($strToMailName . " <" . $strToMail . ">") . "\r\n";
-		$strRawMessage .= 'Bcc: '. encodeRecipients($strSesFromNameBcc . " <" . $strSesFromEmailBcc . ">") . "\r\n";
+		$strRawMessage .= 'Bcc: '. encodeRecipients($strToMailNameBcc . " <" . $strToMailBcc . ">") . "\r\n";
 		$strRawMessage .= 'From: '. encodeRecipients($strSesFromName . " <" . $strSesFromEmail . ">") . "\r\n";
 		
 		$strRawMessage .= 'Subject: =?' . $subjectCharset . '?B?' . base64_encode($strSubject) . "?=\r\n";
