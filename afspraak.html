@@ -106,7 +106,7 @@
 	
 	$("input[name='optradio']").on("change", function () {
 	   appointment_Type = this.value;
-	   updateInfo();
+	   updateInfo.call();
 	   alert("it did change..");
 	});
 	
