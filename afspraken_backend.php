@@ -198,7 +198,7 @@
 			
 			if($complete){
 				//send mail
-				send_email();
+				send_email($date,$time,$name,$email,$phone,$remark);
 			}
 			print $bericht;
 	}
@@ -215,9 +215,8 @@
 	function send_email(){
 		$client = new Google_Client();
 		$client->setApplicationName('Gmail API PHP Quickstart');
-		// Permissions
+		// All Permissions
 		$client->addScope("https://mail.google.com/");
-		
 		$client->setAuthConfig('client_secret_gmail.json');
 		$client->setAccessType('offline');
 		
@@ -246,13 +245,16 @@
 		$subjectCharset = $charset = 'utf-8';
 		$strToMailName = 'Dries Goossens';
 		$strToMail = 'driesgoossens93@gmail.com';
+		$strToMailNameBcc = 'Diëtiste Borah';
+		$strToMailBcc = 'dietiste.borah@gmail.com';
 		$strSesFromName = 'Diëtiste Borah';
 		$strSesFromEmail = 'dietiste.borah@gmail.com';
 		$strSubject = 'Test mail using GMail API -';
 
 		$strRawMessage .= 'To: ' . encodeRecipients($strToMailName . " <" . $strToMail . ">") . "\r\n";
+		$strRawMessage .= 'Bcc: '. encodeRecipients($strSesFromNameBcc . " <" . $strSesFromEmailBcc . ">") . "\r\n";
 		$strRawMessage .= 'From: '. encodeRecipients($strSesFromName . " <" . $strSesFromEmail . ">") . "\r\n";
-
+		
 		$strRawMessage .= 'Subject: =?' . $subjectCharset . '?B?' . base64_encode($strSubject) . "?=\r\n";
 		$strRawMessage .= 'MIME-Version: 1.0' . "\r\n";
 		$strRawMessage .= 'Content-type: Multipart/Alternative; boundary="' . $boundary . '"' . "\r\n";
@@ -278,7 +280,6 @@
 			$objSentMsg = $service->users_messages->send("me", $msg);
 
 			print('Message sent object');
-			print($objSentMsg);
 
 		} catch (Exception $e) {
 			print($e->getMessage());
