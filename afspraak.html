@@ -143,8 +143,7 @@
 			var remark = document.getElementById("remark").value;
 
 			//call php function
-			var phpfile = 'afspraken_backend.php';
-			selected_Day = this.getToday('YYYY-MM-DD');		
+			var phpfile = 'afspraken_backend.php';	
 			data =  {'action': 'createAppointment',
 					  'date' : selected_Day,
 					  'time' : selected_Time,
