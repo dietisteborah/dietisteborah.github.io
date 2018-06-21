@@ -127,7 +127,7 @@
 				var node = '';		
 				list.forEach(function(entry){
 					if(entry!=""){					
-						node = node + '<li class=\'custom_heading_small_mobile\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</li>';
+						node = node + '<li class=\'hourslist\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</li>';
 					}					
 				});
 				$('#timeList').html(node);
