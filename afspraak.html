@@ -143,23 +143,19 @@
 			var remark = document.getElementById("remark").value;
 
 			//call php function
-			if(complete){
-				var phpfile = 'afspraken_backend.php';
-				selected_Day = this.getToday('YYYY-MM-DD');		
-				data =  {'action': 'createAppointment',
-						  'date' : selected_Day,
-						  'time' : selected_Time,
-						  'name' : name,
-						  'email' : email,
-						  'phone' : phone,
-						  'remark' : remark};
-				$.post(phpfile, data, function (response) {
-					alert(reponse);
-				});		
-			}
-			else{
-				alert(bericht);
-			}
+			var phpfile = 'afspraken_backend.php';
+			selected_Day = this.getToday('YYYY-MM-DD');		
+			data =  {'action': 'createAppointment',
+					  'date' : selected_Day,
+					  'time' : selected_Time,
+					  'name' : name,
+					  'email' : email,
+					  'phone' : phone,
+					  'remark' : remark};
+			$.post(phpfile, data, function (response) {
+				alert(reponse);
+			});		
+
 	}
 	function select_hour(clicked_id){
 		if(clicked_id != "geen"){
