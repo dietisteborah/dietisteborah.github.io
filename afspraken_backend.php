@@ -191,10 +191,10 @@
 				$complete = false;
 				$bericht = $bericht + "Gelieve jouw telefoonnummer in te vullen.\n";
 			}
-			if($time == ""){
+			/*if($time == ""){
 				$bericht = $bericht + "Gelieve een tijdstip te kiezen.";
 				$complete = false;
-			}
+			}*/
 			
 			if($complete){
 				//send mail
