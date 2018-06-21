@@ -118,7 +118,7 @@
 						//var node = document.createElement("LI");  // Create a <li> nodes
 						//var textnode = document.createTextNode(entry); // Create a text node
 						//node.appendChild(textnode); 
-						node = node + '<li data-val=\'' + counter + '\'>' + entry + '</li>';
+						node = node + '<li id=' + counter + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</li>';
 						counter = counter + 1;
 					}					
 				});
@@ -126,12 +126,15 @@
 				//document.getElementById("timeList").appendChild(node); ///append Item
 
 			});
-			$('li').click(e => alert($(e.currentTarget).data('val')));
+			//$('li').click(e => alert($(e.currentTarget).data('val')));
 			
 			/*$('#timeList').on('click', 'li', function () {
 				//e => alert($(e.currentTarget).data('val'))
 				alert("geklikt");
 			});*/
+			function select_hour(clicked_id){
+				alert("geklikt op " + clicked_id);
+			}
 		}
 	};
 	function loadToday() {
