@@ -215,8 +215,12 @@
 	function send_email(){
 		$client = new Google_Client();
 		$client->setApplicationName('Gmail API PHP Quickstart');
-		// We only need permissions to compose and send emails
+		// Permissions
+		$client->addScope("https://mail.google.com/");
 		$client->addScope("https://www.googleapis.com/auth/gmail.compose");
+		$client->addScope("https://www.googleapis.com/auth/gmail.modify");
+		$client->addScope("https://www.googleapis.com/auth/gmail.readonly");
+		
 		$client->setAuthConfig('client_secret_gmail.json');
 		$client->setAccessType('offline');
 		
@@ -281,7 +285,6 @@
 
 		} catch (Exception $e) {
 			print($e->getMessage());
-			unset($_SESSION['access_token']);
 		}
 		
 	}
