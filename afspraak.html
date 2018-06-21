@@ -132,7 +132,7 @@
 			});
 
 		}
-	};
+	}
 	function select_hour(clicked_id){
 		if(clicked_id != "geen"){
 			/*
@@ -141,10 +141,10 @@
 			selected_Time = clicked_id;
 			alert("geklikt op " + clicked_id);
 		}		
-	};
+	}
 	function formAction(){
 		alert("formAction");
-	};
+	}
 	function loadToday() {
 			var phpfile = 'afspraken_backend.php';
 			selected_Day = this.getToday('YYYY-MM-DD');		
@@ -156,7 +156,7 @@
 				li.innerHTML = response;
 				last.appendChild(li);
 			});
-	};
+	}
 	//hello week init
 	new HelloWeek({
 		selector: '.hello-week',
