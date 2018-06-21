@@ -152,11 +152,12 @@ hr.style18 {
     border-radius: var(--hello-week-border-radius);
     background-color: var(--hello-week-bg-color);
     box-shadow: 0 2px 20px 8px rgba(0,0,0,.12);
-    user-select: none
+    user-select: none;
 }
 
 /* available hours layout */
-.hourslist{
-    border-width:5px;  
+.hourslist {
+    border-width: 20px;  
     border-style:solid;
+	border-color: red;
 }
