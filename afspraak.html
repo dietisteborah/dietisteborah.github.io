@@ -106,12 +106,12 @@
 	
 	$("input[name='optradio']").on("change", function () {
 	   appointment_Type = this.value;
-	   updateInfo.call();
+	   updateInfo();
 	   alert("it did change..");
 	});
 	
 	function updateInfo() {
-		if (this.lastSelectedDay) {
+		if (this.lastSelectedDay || selected_Day !="") {
 			var phpfile = 'afspraken_backend.php';
 			selected_Day = this.lastSelectedDay;
 			selected_Time = "";
