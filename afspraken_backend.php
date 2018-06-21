@@ -224,7 +224,7 @@
 			'timeZone' => 'Europe/Brussels',
 		  ),
 		  'end' => array(
-			'dateTime' => $date.'T'.'BLA',
+			'dateTime' => $date.'T'.date("H:i:s",$endTime),
 			'timeZone' => 'Europe/Brussels',
 		  ),
 		));
