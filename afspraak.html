@@ -115,6 +115,7 @@
 			var phpfile = 'afspraken_backend.php';
 			selected_Day = this.lastSelectedDay;
 			selected_Time = "";
+			alert(appointment_Type);
 			data =  {'action': 'getAvailable',
 					  'date' : selected_Day,
 					  'opvolg' : appointment_Type};	
