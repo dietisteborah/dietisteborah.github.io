@@ -114,7 +114,8 @@
 	function updateInfo() {
 		if (this.lastSelectedDay) {
 			var phpfile = 'afspraken_backend.php';
-			selected_Day = this.lastSelectedDay;				
+			selected_Day = this.lastSelectedDay;
+			selected_Time = "";
 			data =  {'action': 'getAvailable',
 					  'date' : selected_Day,
 					  'opvolg' : 'eerste'};  //TODO - add button value		
@@ -140,28 +141,7 @@
 			var email = document.getElementById("email").value;
 			var phone = document.getElementById("phone").value;
 			var remark = document.getElementById("remark").value;
-			var complete = true;
-			var bericht = "";
-			if(name == ""){
-				complete = false;
-				bericht = "Gelieve jouw naam in te vullen. \n";
-			} 
-			if(email == ""){
-				complete = false;
-				bericht = bericht + "Gelieve jouw e-mailadres in te vullen. \n";
-			}
-			else{
-				if(validateEmail(email)){
-				}
-				else{
-					bericht = bericht + "Gelieve een geldig e-mailadres in te vullen. \n";
-					complete = false;
-				}
-			}
-			if(phone == ""){
-				complete = false;
-				bericht = bericht + "Gelieve jouw telefoonnummer in te vullen.";
-			}
+
 			//call php function
 			if(complete){
 				var phpfile = 'afspraken_backend.php';
@@ -174,16 +154,12 @@
 						  'phone' : phone,
 						  'remark' : remark};
 				$.post(phpfile, data, function (response) {
-
+					alert(reponse);
 				});		
 			}
 			else{
 				alert(bericht);
 			}
-	}
-	function validateEmail(email) {
-		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		return re.test(email);
 	}
 	function select_hour(clicked_id){
 		if(clicked_id != "geen"){
@@ -196,7 +172,8 @@
 	}
 	function loadToday() {
 			var phpfile = 'afspraken_backend.php';
-			selected_Day = this.getToday('YYYY-MM-DD');		
+			selected_Day = this.getToday('YYYY-MM-DD');
+			selected_Time = "";
 			data =  {'action': 'loadToday',
 					  'date' : selected_Day};
 			$.post(phpfile, data, function (response) {

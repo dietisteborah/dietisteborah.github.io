@@ -9,12 +9,15 @@
 			case 'getAvailable':
 				getAvailable($_POST['date'],$_POST['opvolg']);
 				break;
+			case 'createAppointment':
+				createAppointment($_POST['date'],$_POST['time'],$_POST['name'],$_POST['email'],$_POST['phone'],$_POST['remark']);
+				break;
 			case 'loadToday':
 				loadToday($_POST['date']);
 				break;
 				}
 	}	
-
+	
 	function getClient()
 	{
 		$client = new Google_Client();
@@ -28,7 +31,7 @@
 		if (file_exists($credentialsPath)) {
 			$accessToken = json_decode(file_get_contents($credentialsPath), true);
 		} else {
-			printf("Er is een probleem met de kalendar. \n Gelieve een mail te sturen naar dietiste.borah@gmail.com");
+			printf("Er is een probleem met de kalender. \n Gelieve een mail te sturen naar dietiste.borah@gmail.com");
 		}
 		$client->setAccessToken($accessToken);
 
@@ -167,7 +170,113 @@
 			print "Geen tijdstippen vrij op deze datum.\n";
 		}
 	}
+	function createAppointment($date,$time,$name,$email,$phone,$remark){
+			$complete = true;
+			$bericht = "";
+			if($name == ""){
+				$complete = false;
+				$bericht = "Gelieve jouw naam in te vullen.\n";
+			} 
+			if($email == ""){
+				$complete = false;
+				$bericht = $bericht + "Gelieve jouw e-mailadres in te vullen.\n";
+			}
+			else{
+				if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+					$bericht = $bericht + "Gelieve een geldig e-mailadres in te vullen.\n";
+					$complete = false;
+				}
+			}
+			if($phone == ""){
+				$complete = false;
+				$bericht = $bericht + "Gelieve jouw telefoonnummer in te vullen.\n";
+			}
+			if($time == ""){
+				$bericht = $bericht + "Gelieve een tijdstip te kiezen.";
+				$complete = false;
+			}
+			
+			if($complete){
+				//send mail
+				send_email();
+			}
+			print $bericht;
+	}
 	function loadToday($strdate){
 		print "Geen tijdstippen vrij vandaag.\n";
+	}
+	function send_email(){
+		$client = new Google_Client();
+		$client->setApplicationName('Gmail API PHP Quickstart');
+		// We only need permissions to compose and send emails
+		$client->addScope("https://www.googleapis.com/auth/gmail.compose");
+		$client->setAuthConfig('client_secret_gmail.json');
+		$client->setAccessType('offline');
+
+		$client->setAccessToken($accessToken);
+		
+		// Load previously authorized credentials from a file.
+		if (file_exists($credentialsPath)) {
+			$accessToken = json_decode(file_get_contents($credentialsPath), true);
+		} else {
+			printf("Er is een probleem met de mailing functionaliteit. \n Gelieve een mail te sturen naar dietiste.borah@gmail.com");
+		}
+		$client->setAccessToken($accessToken);
+
+		// Refresh the token if it's expired.
+		if ($client->isAccessTokenExpired()) {
+			$client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+			file_put_contents($credentialsPath, json_encode($client->getAccessToken()));
+		}
+		
+		$service = new Google_Service_Gmail($client);
+
+		$strMailContent = 'This is a test mail which is sent via using Gmail API client library.<br/><br/><br/>Thanks,<br/>GMail API Team.';
+		$strMailTextVersion = strip_tags($strMailContent, '');
+
+		$strRawMessage = "";
+		$boundary = uniqid(rand(), true);
+		$subjectCharset = $charset = 'utf-8';
+		$strToMailName = 'Dries Goossens';
+		$strToMail = 'driesgoossens93@gmail.com';
+		$strSesFromName = 'Diëtiste Borah';
+		$strSesFromEmail = 'dietiste.borah@gmail.com';
+		$strSubject = 'Test mail using GMail API -';
+
+		$strRawMessage .= 'To: ' . encodeRecipients($strToMailName . " <" . $strToMail . ">") . "\r\n";
+		$strRawMessage .= 'From: '. encodeRecipients($strSesFromName . " <" . $strSesFromEmail . ">") . "\r\n";
+
+		$strRawMessage .= 'Subject: =?' . $subjectCharset . '?B?' . base64_encode($strSubject) . "?=\r\n";
+		$strRawMessage .= 'MIME-Version: 1.0' . "\r\n";
+		$strRawMessage .= 'Content-type: Multipart/Alternative; boundary="' . $boundary . '"' . "\r\n";
+ 
+ 
+		$strRawMessage .= "\r\n--{$boundary}\r\n";
+		$strRawMessage .= 'Content-Type: text/plain; charset=' . $charset . "\r\n";
+		$strRawMessage .= 'Content-Transfer-Encoding: 7bit' . "\r\n\r\n";
+		$strRawMessage .= $strMailTextVersion . "\r\n";
+
+		$strRawMessage .= "--{$boundary}\r\n";
+		$strRawMessage .= 'Content-Type: text/html; charset=' . $charset . "\r\n";
+		$strRawMessage .= 'Content-Transfer-Encoding: quoted-printable' . "\r\n\r\n";
+		$strRawMessage .= $strMailContent . "\r\n";
+		
+		//Send Mails
+		//Prepare the message in message/rfc822
+		try {
+			// The message needs to be encoded in Base64URL
+			$mime = rtrim(strtr(base64_encode($strRawMessage), '+/', '-_'), '=');
+			$msg = new Google_Service_Gmail_Message();
+			$msg->setRaw($mime);
+			$objSentMsg = $service->users_messages->send("me", $msg);
+
+			print('Message sent object');
+			print($objSentMsg);
+
+		} catch (Exception $e) {
+			print($e->getMessage());
+			unset($_SESSION['access_token']);
+		}
+		
 	}
 ?>
