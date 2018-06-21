@@ -111,7 +111,7 @@
 					document.getElementById("timeList").removeChild(document.getElementById("timeList").firstChild);
 				}
 				var list = response.split(";");	
-				var node = '<ul>';		
+				var node = '';		
 				var counter = 0;
 				list.forEach(function(entry){
 					if(entry!=""){					
@@ -122,7 +122,6 @@
 						counter = counter + 1;
 					}					
 				});
-				node = node + '</ul>';
 				$('#timeList').html(node);
 				//document.getElementById("timeList").appendChild(node); ///append Item
 
