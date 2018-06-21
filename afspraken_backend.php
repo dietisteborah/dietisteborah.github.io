@@ -229,7 +229,6 @@
 
 		$calendarId = 'primary';
 		$event = $service->events->insert($calendarId, $event);
-		echo 'created';
 	}
 	function encodeRecipients($recipient){
 		$recipientsCharset = 'utf-8';
@@ -264,10 +263,10 @@
 		$service = new Google_Service_Gmail($client);
 
 		if($type=="opvolg"){
-			$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw opvolgconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';			
+			$strMailContent = 'Beste '. $name .'<br/><br/>hierbij bevestig ik jouw opvolgconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';			
 		}
 		else{
-			$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw startconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';		
+			$strMailContent = 'Beste '. $name .'<br/><br/>hierbij bevestig ik jouw startconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';		
 		}
 		$strMailTextVersion = strip_tags($strMailContent, '');
 
@@ -310,7 +309,7 @@
 			$msg->setRaw($mime);
 			$objSentMsg = $service->users_messages->send("me", $msg);
 
-			print('Hartelijk dank voor het maken van een afspraak op'.$date.' om '.$time);
+			print('Hartelijk dank voor het maken van een afspraak op '.$date.' om '.$time);
 
 		} catch (Exception $e) {
 			print($e->getMessage());

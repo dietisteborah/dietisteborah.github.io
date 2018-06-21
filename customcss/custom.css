@@ -160,3 +160,7 @@ hr.style18 {
 	list-style-position:inside;
     border: 1px solid black;
 }
+/* buttons */
+.clicked_button {
+	color: rgb(244, 166, 63);
+}
