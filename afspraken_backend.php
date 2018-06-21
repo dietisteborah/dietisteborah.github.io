@@ -194,7 +194,7 @@
 			//time is checked in javascript code
 			if($complete){
 					//create appointment in calendar
-					create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type) == "created");
+					create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type);
 					//send mail
 					send_email($date,$time,$name,$email,$phone,$remark,$type);
 				}
