@@ -132,11 +132,12 @@
 				//e => alert($(e.currentTarget).data('val'))
 				alert("geklikt");
 			});*/
-			function select_hour(clicked_id){
-				alert("geklikt op " + clicked_id);
-			}
+
 		}
 	};
+	function select_hour(clicked_id){
+		alert("geklikt op " + clicked_id);
+	}
 	function loadToday() {
 			var phpfile = 'afspraken_backend.php';
 			var today = this.getToday('YYYY-MM-DD');		
