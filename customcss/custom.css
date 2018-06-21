@@ -157,7 +157,6 @@ hr.style18 {
 
 /* available hours layout */
 .hourslist {
-    border-width: 20px;  
-    border-style:solid;
-	border-color: red;
+	list-style-position:inside;
+    border: 3px solid black;
 }
