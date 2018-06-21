@@ -212,8 +212,6 @@
 		$client->addScope("https://www.googleapis.com/auth/gmail.compose");
 		$client->setAuthConfig('client_secret_gmail.json');
 		$client->setAccessType('offline');
-
-		$client->setAccessToken($accessToken);
 		
 		// Load previously authorized credentials from a file.
 		if (file_exists($credentialsPath)) {
