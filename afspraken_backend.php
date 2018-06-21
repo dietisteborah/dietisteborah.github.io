@@ -234,7 +234,7 @@
 		$service = new Google_Service_Gmail($client);
 
 		//$strMailContent = 'This is a test mail which is sent via using Gmail API client library.<br/><br/><br/>Thanks,<br/>GMail API Team.';
-		$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw afspraak op '.$date.' om '.$time. '.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
+		$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw afspraak op '.$date. ' om '.$time. '.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
 		$strMailTextVersion = strip_tags($strMailContent, '');
 
 		$strRawMessage = "";
@@ -242,14 +242,14 @@
 		$subjectCharset = $charset = 'utf-8';
 		$strToMailName = $name;
 		$strToMail = $email;
-		$strToMailNameBcc = 'Diëtiste Borah';
-		$strToMailBcc = 'dietiste.borah@gmail.com';
+		//$strToMailNameBcc = 'Diëtiste Borah';
+		//$strToMailBcc = 'dietiste.borah@gmail.com';
 		$strSesFromName = 'Diëtiste Borah';
 		$strSesFromEmail = 'dietiste.borah@gmail.com';
 		$strSubject = 'Afspraak Dïetiste Borah op '. $date .'om '. $time;
 
 		$strRawMessage .= 'To: ' . encodeRecipients($strToMailName . " <" . $strToMail . ">") . "\r\n";
-		$strRawMessage .= 'Bcc: '. encodeRecipients($strToMailNameBcc . " <" . $strToMailBcc . ">") . "\r\n";
+		//$strRawMessage .= 'Bcc: '. encodeRecipients($strToMailNameBcc . " <" . $strToMailBcc . ">") . "\r\n";
 		$strRawMessage .= 'From: '. encodeRecipients($strSesFromName . " <" . $strSesFromEmail . ">") . "\r\n";
 		
 		$strRawMessage .= 'Subject: =?' . $subjectCharset . '?B?' . base64_encode($strSubject) . "?=\r\n";
