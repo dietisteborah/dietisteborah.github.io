@@ -205,6 +205,13 @@
 	function loadToday($strdate){
 		print "Geen tijdstippen vrij vandaag.\n";
 	}
+	function encodeRecipients($recipient){
+		$recipientsCharset = 'utf-8';
+		if (preg_match("/(.*)<(.*)>/", $recipient, $regs)) {
+			$recipient = '=?' . $recipientsCharset . '?B?'.base64_encode($regs[1]).'?= <'.$regs[2].'>';
+		}
+		return $recipient;
+	}
 	function send_email(){
 		$client = new Google_Client();
 		$client->setApplicationName('Gmail API PHP Quickstart');
