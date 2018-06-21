@@ -136,7 +136,7 @@
 						}
 						if(entry!=""){					
 							//node = node + '<li class=\'brown_text hourslist\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</li>';
-							node = node + '<td><button class=\'brown_text\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</button></td>';
+							node = node + '<td><button class=\'brown_text not_clicked\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</button></td>';
 						}	
 						//layout of the list
 						if(rowcounter==2){
@@ -188,7 +188,7 @@
 			selected_Time = clicked_id;
 			document.getElementById(clicked_id).setAttribute("class","clicked_button");
 			if(previousId != ""){
-				document.getElementById(clicked_id).setAttribute("class","");
+				document.getElementById(clicked_id).setAttribute("class","brown_text not_clicked");
 			}
 		}		
 	}
