@@ -155,15 +155,18 @@ hr.style18 {
     user-select: none;
 }
 
-/* available hours layout */
-.hourslist {
-	list-style-position:inside;
-    border: 1px solid black;
-}
 /* buttons */
 .clicked_button {
 	background-color: rgb(244, 166, 63) !important;
+	padding: 15px 15px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border: none;
 }
 .not_clicked {
 	background-color: rgb(230, 230, 230) !important;
+	padding: 15px 15px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border: none;
 }
