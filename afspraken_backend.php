@@ -214,7 +214,7 @@
 		else{
 			$endTime = strtotime($time) + 90;
 		}
-		$startTime = date("H:i",strtotime($time));
+		$startTime = $time;
 		$startTime = $startTime.':00';
 		$event = new Google_Service_Calendar_Event(array(
 		  'summary' => $name . ' '. $type,
