@@ -193,8 +193,8 @@
 			}
 			//time is checked in javascript code
 			if($complete){
-				//create appointment in calendar
-				if(create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type) == "created"){
+					//create appointment in calendar
+					create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type) == "created");
 					//send mail
 					send_email($date,$time,$name,$email,$phone,$remark,$type);
 				}
@@ -215,8 +215,6 @@
 		else{
 			$endTime = strtotime($time) + (90*60);
 		}
-		//$startTime = date("H:i",strtotime($time));
-		//$startTime = $startTime.':00';
 		$event = new Google_Service_Calendar_Event(array(
 		  'summary' => $name . ' '. $type,
 		  'description' => $name . ' - '.$remark.' - '.$email.' '.$phone.' '.$type,
@@ -267,10 +265,10 @@
 		$service = new Google_Service_Gmail($client);
 
 		if($type=="opvolg"){
-			$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw opvolgconsultatie op '.$date. ' om '.$time. '.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';			
+			$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw opvolgconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';			
 		}
 		else{
-			$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw startconsultatie op '.$date. ' om '.$time. '.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';		
+			$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw startconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';		
 		}
 		$strMailTextVersion = strip_tags($strMailContent, '');
 
@@ -313,7 +311,7 @@
 			$msg->setRaw($mime);
 			$objSentMsg = $service->users_messages->send("me", $msg);
 
-			print('Message sent object');
+			print('Hartelijk dank voor het maken van een afspraak op'.$date.' om '.$time);
 
 		} catch (Exception $e) {
 			print($e->getMessage());
