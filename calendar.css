@@ -119,3 +119,9 @@ div#calendar ul.dates li{
 div.clear{
     clear:both;
 }     
+
+/* available hours layout */
+.hourslist{
+    border-width:5px;  
+    border-style:solid;
+}
