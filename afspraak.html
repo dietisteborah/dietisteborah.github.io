@@ -113,7 +113,9 @@
 	function updateInfo() {
 		if (this.lastSelectedDay || selected_Day !="") {
 			var phpfile = 'afspraken_backend.php';
-			selected_Day = this.lastSelectedDay;
+			if(this.lastSelectedDay){ //only change the date if someone clicked other date (and not just changed type)
+				selected_Day = this.lastSelectedDay;
+			}
 			selected_Time = "";
 			alert(appointment_Type);
 			data =  {'action': 'getAvailable',
