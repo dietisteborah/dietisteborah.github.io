@@ -74,14 +74,14 @@
 						<br>
 						<a>E-mail: *</a><br>
 						<input id="email" type="email" name="email" autocomplete="email">
-						<br><br>
+						<br>
 						<a>Telefoon: *</a><br>
 						<input id="phone" type="text" name="phone">
 						<br><br>
 						<a>Opmerkingen of vragen:</a><br>
 						<input id="remark" type="text" name="opmerkingen">
 						<br><br>
-						<a>Velden met een * zijn verplicht. </a>
+						<a>Velden met een * zijn verplicht. </a><br>
 						<button onclick="bevestig()">Bevestig</button>
 				</div>	
 			</div>
@@ -137,18 +137,41 @@
 	function bevestig(){
 			//get all values 
 			var name = document.getElementById("name").value;
-			alert(document.getElementById("name").value)
+			var email = document.getElementById("email").value;
+			var phone = document.getElementById("phone").value;
+			var remark = document.getElementById("remark").value;
+			var complete = true;
+			var bericht = "";
+			if(name == ""){
+				complete = false;
+				bericht = "Gelieve jouw naam in te vullen \n";
+			} 
+			if(email == ""){
+				complete = false;
+				bericht = bericht + "Gelieve jouw e-mailadres in te vullen \n";
+			}
+			if(phone == ""){
+				complete = false;
+				bericht = bericht + "Gelieve jouw telefoonnummer in te geven";
+			}
 			//call php function
-			/*var phpfile = 'afspraken_backend.php';
-			selected_Day = this.getToday('YYYY-MM-DD');		
-			data =  {'action': 'loadToday',
-					  'date' : selected_Day};
-			$.post(phpfile, data, function (response) {
-				last.innerHTML = '';
-				var li = document.createElement('li');
-				li.innerHTML = response;
-				last.appendChild(li);
-			});		*/	
+			if(complete){
+				var phpfile = 'afspraken_backend.php';
+				selected_Day = this.getToday('YYYY-MM-DD');		
+				data =  {'action': 'createAppointment',
+						  'date' : selected_Day,
+						  'time' : selected_Time,
+						  'name' : name,
+						  'email' : email,
+						  'phone' : phone,
+						  'remark' : remark};
+				$.post(phpfile, data, function (response) {
+
+				});		
+			}
+			else{
+				alert(bericht);
+			}
 	}
 	function select_hour(clicked_id){
 		if(clicked_id != "geen"){
