@@ -110,19 +110,26 @@
 				while (document.getElementById("timeList").firstChild) {
 					document.getElementById("timeList").removeChild(document.getElementById("timeList").firstChild);
 				}
-				var list = response.split(";");		
+				var list = response.split(";");	
+				var node = '';		
+				var counter = 0;
 				list.forEach(function(entry){
 					if(entry!=""){					
-						var node = document.createElement("LI");  // Create a <li> nodes
-						var textnode = document.createTextNode(entry); // Create a text node
-						node.appendChild(textnode); 
-						document.getElementById("timeList").appendChild(node); ///append Item
+						//var node = document.createElement("LI");  // Create a <li> nodes
+						//var textnode = document.createTextNode(entry); // Create a text node
+						//node.appendChild(textnode); 
+						node = node + '<li data-val=\'' + counter + '\'>' + entry + '</li>';
+						counter = counter + 1;
 					}					
 				});
+				document.getElementById("timeList").appendChild(node); ///append Item
 
 			});
+			//$('li').click(e => alert($(e.currentTarget).data('val')));
+			
 			$('#timeList').on('click', 'li', function () {
-				alert("geklikt");
+				e => alert($(e.currentTarget).data('val'))
+				//alert("geklikt");
 			});
 		}
 	};
