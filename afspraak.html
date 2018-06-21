@@ -126,23 +126,28 @@
 				var list = response.split(";");	
 				var node = '';		
 				var rowcounter = 0;
-				list.forEach(function(entry){
-					if(rowcounter==0){
-						node = node + '<tr>';
-					}
-					if(entry!=""){					
-						//node = node + '<li class=\'brown_text hourslist\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</li>';
-						node = node + '<td><button class=\'brown_text\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</button></td>';
-					}	
-					//layout of the list
-					if(rowcounter==2){
-						rowcounter=0;
-						node = node + '</tr>'; 
-					}
-					else{
-						rowcounter = rowcounter + 1;
-					}					
-				});
+				if(list.length==1){
+					node = node + '<td><a class=\'brown_text\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</a></td>';
+				}
+				else{
+					list.forEach(function(entry){
+						if(rowcounter==0){
+							node = node + '<tr>';
+						}
+						if(entry!=""){					
+							//node = node + '<li class=\'brown_text hourslist\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</li>';
+							node = node + '<td><button class=\'brown_text\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</button></td>';
+						}	
+						//layout of the list
+						if(rowcounter==2){
+							rowcounter=0;
+							node = node + '</tr>'; 
+						}
+						else{
+							rowcounter = rowcounter + 1;
+						}					
+					});
+				}
 				$('#timeList').html(node);
 			});
 
