@@ -214,12 +214,13 @@
 		else{
 			$endTime = strtotime($time) + 90;
 		}
-		$time = date("H:i",$time);
+		$startTime = date("H:i",$time);
+		$startTime = $startTime.'.00';
 		$event = new Google_Service_Calendar_Event(array(
 		  'summary' => $name . ' '. $type,
 		  'description' => $name . ' - '.$remark.' - '.$email.' '.$phone.' '.$type,
 		  'start' => array(
-			'dateTime' => $date.'T'.$time,
+			'dateTime' => $date.'T'.$startTime,
 			'timeZone' => 'Europe/Brussels',
 		  ),
 		  'end' => array(
