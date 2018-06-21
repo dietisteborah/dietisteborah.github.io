@@ -141,20 +141,23 @@
 			var email = document.getElementById("email").value;
 			var phone = document.getElementById("phone").value;
 			var remark = document.getElementById("remark").value;
-
-			//call php function
-			var phpfile = 'afspraken_backend.php';	
-			data =  {'action': 'createAppointment',
-					  'date' : selected_Day,
-					  'time' : selected_Time,
-					  'name' : name,
-					  'email' : email,
-					  'phone' : phone,
-					  'remark' : remark};
-			$.post(phpfile, data, function (response) {
-				alert(response);
-			});		
-
+			if(selected_Time=="){
+				alert("Gelieve een tijdstip te selecteren.");
+			}
+			else{
+				//call php function
+				var phpfile = 'afspraken_backend.php';	
+				data =  {'action': 'createAppointment',
+						  'date' : selected_Day,
+						  'time' : selected_Time,
+						  'name' : name,
+						  'email' : email,
+						  'phone' : phone,
+						  'remark' : remark};
+				$.post(phpfile, data, function (response) {
+					alert(response);
+				});		
+			}
 	}
 	function select_hour(clicked_id){
 		if(clicked_id != "geen"){

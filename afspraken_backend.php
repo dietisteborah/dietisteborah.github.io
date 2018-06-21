@@ -191,11 +191,7 @@
 				$complete = false;
 				$bericht = $bericht + "Gelieve jouw telefoonnummer in te vullen.\n";
 			}
-			/*if($time == ""){
-				$bericht = $bericht + "Gelieve een tijdstip te kiezen.";
-				$complete = false;
-			}*/
-			
+			//time is checked in javascript code
 			if($complete){
 				//send mail
 				send_email($date,$time,$name,$email,$phone,$remark);
@@ -212,7 +208,7 @@
 		}
 		return $recipient;
 	}
-	function send_email(){
+	function send_email($date,$time,$name,$email,$phone,$remark){
 		$client = new Google_Client();
 		$client->setApplicationName('Gmail API PHP Quickstart');
 		// All Permissions
@@ -237,19 +233,20 @@
 		
 		$service = new Google_Service_Gmail($client);
 
-		$strMailContent = 'This is a test mail which is sent via using Gmail API client library.<br/><br/><br/>Thanks,<br/>GMail API Team.';
+		//$strMailContent = 'This is a test mail which is sent via using Gmail API client library.<br/><br/><br/>Thanks,<br/>GMail API Team.';
+		$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw afspraak op '.$date.' om '.$time. '.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
 		$strMailTextVersion = strip_tags($strMailContent, '');
 
 		$strRawMessage = "";
 		$boundary = uniqid(rand(), true);
 		$subjectCharset = $charset = 'utf-8';
-		$strToMailName = 'Dries Goossens';
-		$strToMail = 'driesgoossens93@gmail.com';
+		$strToMailName = $name;
+		$strToMail = $email;
 		$strToMailNameBcc = 'Diëtiste Borah';
 		$strToMailBcc = 'dietiste.borah@gmail.com';
 		$strSesFromName = 'Diëtiste Borah';
 		$strSesFromEmail = 'dietiste.borah@gmail.com';
-		$strSubject = 'Test mail using GMail API -';
+		$strSubject = 'Afspraak Dïetiste Borah op '. $date .'om '. $time;
 
 		$strRawMessage .= 'To: ' . encodeRecipients($strToMailName . " <" . $strToMail . ">") . "\r\n";
 		$strRawMessage .= 'Bcc: '. encodeRecipients($strToMailNameBcc . " <" . $strToMailBcc . ">") . "\r\n";
