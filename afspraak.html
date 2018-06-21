@@ -103,7 +103,7 @@
 	var selected_Time = 'Geen';
 	var selected_Day = '';
 	var appointment_Type = "start";
-	
+	var previousId = "";
 	$("input[name='optradio']").on("change", function () {
 	   appointment_Type = this.value;
 	   updateInfo();
@@ -187,6 +187,9 @@
 			*/
 			selected_Time = clicked_id;
 			document.getElementById(clicked_id).setAttribute("class","clicked_button");
+			if(previousId != ""){
+				document.getElementById(clicked_id).setAttribute("class","");
+			}
 		}		
 	}
 	function loadToday() {
