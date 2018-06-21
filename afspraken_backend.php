@@ -194,9 +194,10 @@
 			//time is checked in javascript code
 			if($complete){
 				//create appointment in calendar
-				create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type);
-				//send mail
-				send_email($date,$time,$name,$email,$phone,$remark,$type);
+				if(create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type) == "created"){
+					//send mail
+					send_email($date,$time,$name,$email,$phone,$remark,$type);
+				}
 			}
 			print $bericht;
 	}
@@ -209,10 +210,10 @@
 		$calendarId = 'dietiste.borah@gmail.com';		
 		
 		if($type=="opvolg"){
-			$endTime = strtotime($time) + 30;
+			$endTime = strtotime($time) + (30*60);
 		}
 		else{
-			$endTime = strtotime($time) + 90;
+			$endTime = strtotime($time) + (90*60);
 		}
 		//$startTime = date("H:i",strtotime($time));
 		//$startTime = $startTime.':00';
@@ -231,7 +232,7 @@
 
 		$calendarId = 'primary';
 		$event = $service->events->insert($calendarId, $event);
-		printf('Event created: %s\n', $event->htmlLink);
+		echo 'created';
 	}
 	function encodeRecipients($recipient){
 		$recipientsCharset = 'utf-8';
