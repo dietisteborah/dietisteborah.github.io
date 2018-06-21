@@ -81,7 +81,7 @@
 						Opmerkingen of vragen:<br>
 						<input type="text" name="opmerkingen">
 						<br><br>
-						<button onclick="formAction()">Bevestig</button>
+						<button onclick="bevestig()">Bevestig</button>
 				</div>	
 			</div>
 	</div>
@@ -133,6 +133,9 @@
 
 		}
 	}
+	function bevestig(){
+			alert("NIKS");	
+	}
 	function select_hour(clicked_id){
 		if(clicked_id != "geen"){
 			/*
@@ -141,9 +144,6 @@
 			selected_Time = clicked_id;
 			alert("geklikt op " + clicked_id);
 		}		
-	}
-	function formAction(){
-		alert("formAction");
 	}
 	function loadToday() {
 			var phpfile = 'afspraken_backend.php';
