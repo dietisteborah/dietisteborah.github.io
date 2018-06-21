@@ -217,9 +217,6 @@
 		$client->setApplicationName('Gmail API PHP Quickstart');
 		// Permissions
 		$client->addScope("https://mail.google.com/");
-		$client->addScope("https://www.googleapis.com/auth/gmail.compose");
-		$client->addScope("https://www.googleapis.com/auth/gmail.modify");
-		$client->addScope("https://www.googleapis.com/auth/gmail.readonly");
 		
 		$client->setAuthConfig('client_secret_gmail.json');
 		$client->setAccessType('offline');
