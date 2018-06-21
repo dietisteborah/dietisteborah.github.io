@@ -69,18 +69,19 @@
 				</div>	
 				<div class="custom-hello-week col-md-4">
 					<h2 class="custom_header" align="left">Persoonlijke gegevens:</h2> 
-						Voor & achternaam:<br>
-						<input type="text" name="naam">
+						<a>Voor & achternaam: *</a><br>
+						<input id="name" type="text" name="naam">
 						<br>
-						E-mail:<br>
-						<input type="email" name="email" autocomplete="email">
+						<a>E-mail: *</a><br>
+						<input id="email" type="email" name="email" autocomplete="email">
 						<br><br>
-						Telefoon:<br>
-						<input type="text" name="phone">
+						<a>Telefoon: *</a><br>
+						<input id="phone" type="text" name="phone">
 						<br><br>
-						Opmerkingen of vragen:<br>
-						<input type="text" name="opmerkingen">
+						<a>Opmerkingen of vragen:</a><br>
+						<input id="remark" type="text" name="opmerkingen">
 						<br><br>
+						<a>Velden met een * zijn verplicht. </a>
 						<button onclick="bevestig()">Bevestig</button>
 				</div>	
 			</div>
@@ -134,7 +135,20 @@
 		}
 	}
 	function bevestig(){
-			alert("NIKS");	
+			//get all values 
+			var name = document.getElementById("name").value;
+			alert(document.getElementById("name").value)
+			//call php function
+			/*var phpfile = 'afspraken_backend.php';
+			selected_Day = this.getToday('YYYY-MM-DD');		
+			data =  {'action': 'loadToday',
+					  'date' : selected_Day};
+			$.post(phpfile, data, function (response) {
+				last.innerHTML = '';
+				var li = document.createElement('li');
+				li.innerHTML = response;
+				last.appendChild(li);
+			});		*/	
 	}
 	function select_hour(clicked_id){
 		if(clicked_id != "geen"){
