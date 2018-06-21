@@ -144,15 +144,22 @@
 			var bericht = "";
 			if(name == ""){
 				complete = false;
-				bericht = "Gelieve jouw naam in te vullen \n";
+				bericht = "Gelieve jouw naam in te vullen. \n";
 			} 
 			if(email == ""){
 				complete = false;
-				bericht = bericht + "Gelieve jouw e-mailadres in te vullen \n";
+				bericht = bericht + "Gelieve jouw e-mailadres in te vullen. \n";
+			}
+			else{
+				if(validateEmail(email)){
+				}
+				else{
+					bericht = bericht + "Gelieve een geldig e-mailadres in te vullen. \n";
+				}
 			}
 			if(phone == ""){
 				complete = false;
-				bericht = bericht + "Gelieve jouw telefoonnummer in te geven";
+				bericht = bericht + "Gelieve jouw telefoonnummer in te vullen.";
 			}
 			//call php function
 			if(complete){
@@ -172,6 +179,10 @@
 			else{
 				alert(bericht);
 			}
+	}
+	function validateEmail(email) {
+		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(email);
 	}
 	function select_hour(clicked_id){
 		if(clicked_id != "geen"){
