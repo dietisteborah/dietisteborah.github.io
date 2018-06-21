@@ -10,7 +10,7 @@
 				getAvailable($_POST['date'],$_POST['opvolg']);
 				break;
 			case 'createAppointment':
-				createAppointment($_POST['date'],$_POST['time'],$_POST['name'],$_POST['email'],$_POST['phone'],$_POST['remark']);
+				createAppointment($_POST['date'],$_POST['time'],$_POST['name'],$_POST['email'],$_POST['phone'],$_POST['remark'],$_POST['type']);
 				break;
 			case 'loadToday':
 				loadToday($_POST['date']);
@@ -170,7 +170,7 @@
 			print "Geen tijdstippen vrij op deze datum.\n";
 		}
 	}
-	function createAppointment($date,$time,$name,$email,$phone,$remark){
+	function createAppointment($date,$time,$name,$email,$phone,$remark,$type){
 			$complete = true;
 			$bericht = "";
 			if($name == ""){
@@ -193,13 +193,44 @@
 			}
 			//time is checked in javascript code
 			if($complete){
+				//create appointment in calendar
+				create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type);
 				//send mail
-				send_email($date,$time,$name,$email,$phone,$remark);
+				send_email($date,$time,$name,$email,$phone,$remark,$type);
 			}
 			print $bericht;
 	}
 	function loadToday($strdate){
 		print "Geen tijdstippen vrij vandaag.\n";
+	}
+	function create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type){
+		$client = getClient();
+		$service = new Google_Service_Calendar($client);
+		$calendarId = 'dietiste.borah@gmail.com';		
+		
+		if($type=="opvolg"){
+			$endTime = strtotime($time) + 30;
+		}
+		else{
+			$endTime = strtotime($time) + 90;
+		}
+		$time = $time.':00';
+		$event = new Google_Service_Calendar_Event(array(
+		  'summary' => $name . ' '. $type,
+		  'description' => $name . ' - '.$remark.' - '.$email.' '.$phone.' '.$type,
+		  'start' => array(
+			'dateTime' => $date.'T'.$time,
+			'timeZone' => 'Europe/Brussels',
+		  ),
+		  'end' => array(
+			'dateTime' => $date.'T'.$endTime,
+			'timeZone' => 'Europe/Brussels',
+		  ),
+		));
+
+		$calendarId = 'primary';
+		$event = $service->events->insert($calendarId, $event);
+		printf('Event created: %s\n', $event->htmlLink);
 	}
 	function encodeRecipients($recipient){
 		$recipientsCharset = 'utf-8';
@@ -208,7 +239,7 @@
 		}
 		return $recipient;
 	}
-	function send_email($date,$time,$name,$email,$phone,$remark){
+	function send_email($date,$time,$name,$email,$phone,$remark,$type){
 		$client = new Google_Client();
 		$client->setApplicationName('Gmail API PHP Quickstart');
 		// All Permissions
@@ -233,8 +264,12 @@
 		
 		$service = new Google_Service_Gmail($client);
 
-		//$strMailContent = 'This is a test mail which is sent via using Gmail API client library.<br/><br/><br/>Thanks,<br/>GMail API Team.';
-		$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw afspraak op '.$date. ' om '.$time. '.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
+		if($type=="opvolg"){
+			$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw opvolgconsultatie op '.$date. ' om '.$time. '.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';			
+		}
+		else{
+			$strMailContent = 'Beste '. $name .'<br/><br/>ik bevestig hierbij jouw startconsultatie op '.$date. ' om '.$time. '.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';		
+		}
 		$strMailTextVersion = strip_tags($strMailContent, '');
 
 		$strRawMessage = "";
