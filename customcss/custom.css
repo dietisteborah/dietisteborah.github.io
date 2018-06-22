@@ -52,7 +52,7 @@ ul {
 	color: rgb(128, 66, 42) !important;
 }
 .orange_text{
-	color: rgb(244, 166, 63);
+	color: rgb(244, 166, 63) !important;
 }
 
 /*lettertype */
@@ -177,9 +177,9 @@ hr.style18 {
 .controle_button{
 	cursor: pointer;
 	background-color: rgb(230, 230, 230) !important;
-	color: rgb(255, 160, 122) !important;
 	border: none;
 	border-radius: 6px;
+	font-weight: bold;
 }
 /* input boxes */
 .input_box { 
@@ -187,4 +187,15 @@ hr.style18 {
 }
 .input_box_large { 
 	width: 80%;
+}
+
+/* small note for input */
+.small_note {
+    position: absolute;
+    bottom: 5px;
+}
+
+/* general bold text */
+.bold_text {
+	font-weight: bold;
 }
