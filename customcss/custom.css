@@ -184,15 +184,18 @@ hr.style18 {
 /* input boxes */
 .input_box { 
 	width: 80%;
+	margin-bottom: 8px;
 }
 .input_box_large { 
 	width: 80%;
+	margin-bottom: 8px;
 }
 
 /* small note for input */
 .small_note {
     position: absolute;
     bottom: 5px;
+	font-size: 13px !important;
 }
 
 /* general bold text */
