@@ -155,13 +155,14 @@ hr.style18 {
     user-select: none;
 }
 
-/* buttons */
+/* timing buttons */
 .clicked_button {
 	background-color: rgb(244, 166, 63) !important;
 	padding: 15px 15px;
 	margin: 4px 2px;
 	cursor: pointer;
 	border: none;
+	border-radius: 8px;
 }
 .not_clicked {
 	background-color: rgb(230, 230, 230) !important;
@@ -169,8 +170,17 @@ hr.style18 {
 	margin: 4px 2px;
 	cursor: pointer;
 	border: none;
+	border-radius: 8px;
 }
 
+/* controle buttons */
+.controle_button{
+	cursor: pointer;
+	background-color: rgb(230, 230, 230) !important;
+	color: rgb(255, 160, 122) !important;
+	border: none;
+	border-radius: 6px;
+}
 /* input boxes */
 .input_box { 
 	width: 80%;
