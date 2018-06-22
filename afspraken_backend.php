@@ -1,8 +1,6 @@
 <?php
- ini_set('display_errors', 'On');
- error_reporting(E_ALL);
 	require_once '../vendor/autoload.php';
-	putenv('GOOGLE_APPLICATION_CREDENTIALS=/home/borahv1q/public_html/client_secret.json');
+	putenv('GOOGLE_APPLICATION_CREDENTIALS=/home/borahv1q/borah-secrets/client_secret.json');
 	
 	if (isset($_POST['action'])) {
 		switch ($_POST['action']) {
@@ -23,11 +21,11 @@
 		$client = new Google_Client();
 		$client->setApplicationName('Dietiste Borah');
 		$client->setScopes(Google_Service_Calendar::CALENDAR_READONLY);
-		$client->setAuthConfig('client_secret.json');
+		$client->setAuthConfig('/home/borahv1q/borah-secrets/client_secret.json');
 		$client->setAccessType('offline');
 
 		// Load previously authorized credentials from a file.
-		$credentialsPath = '/home/borahv1q/public_html/credentials.json';
+		$credentialsPath = '/home/borahv1q/borah-secrets/credentials.json';
 		if (file_exists($credentialsPath)) {
 			$accessToken = json_decode(file_get_contents($credentialsPath), true);
 		} else {
@@ -242,11 +240,11 @@
 		$client->setApplicationName('Gmail API PHP Quickstart');
 		// All Permissions
 		$client->addScope("https://mail.google.com/");
-		$client->setAuthConfig('client_secret_gmail.json');
+		$client->setAuthConfig('/home/borahv1q/borah-secrets/client_secret_gmail.json');
 		$client->setAccessType('offline');
 		
 		// Load previously authorized credentials from a file.
-		$credentialsPath = '/home/borahv1q/public_html/credentials_gmail.json';
+		$credentialsPath = '/home/borahv1q/borah-secrets/credentials_gmail.json';
 		if (file_exists($credentialsPath)) {
 			$accessToken = json_decode(file_get_contents($credentialsPath), true);
 		} else {
