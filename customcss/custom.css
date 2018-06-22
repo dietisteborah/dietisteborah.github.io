@@ -170,3 +170,11 @@ hr.style18 {
 	cursor: pointer;
 	border: none;
 }
+
+/* input boxes */
+.input_box { 
+	width: 80%;
+}
+.input_box_large { 
+	width: 80%;
+}

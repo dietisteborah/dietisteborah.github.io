@@ -36,26 +36,6 @@
 	<!-- hello week -->
 	<script src="/node_modules/hello-week/dist/helloweek.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/node_modules/hello-week/dist/helloweek.min.css">
-
-	<script type="application/ld+json">
-	{
-	  "@context" : "http://schema.org",
-	  "@type" : "LocalBusiness",
-	  "name" : "BORAH VAN DOORSLAER DIËTISTE & DIABETESEDUCATOR",
-	  "image" : "http://borahvandoorslaer.be/assets/brand/400dpiLogoCropped.png",
-	  "telephone" : "+32 485 36 04 09",
-	  "email" : "dietiste.borah@gmail.com",
-	  "address" : {
-		"@type" : "PostalAddress",
-		"streetAddress" : "Stuiverstraat 17/1",
-		"addressLocality" : "Londerzeel",
-		"addressRegion" : "Vlaams-brabant",
-		"addressCountry" : "België",
-		"postalCode" : "1840"
-	  },
-	  "url" : "http://borahvandoorslaer.be/"
-	}
-	</script>
 	
     <title>Afspraak - Dietiste Borah Van Doorslaer</title>
 	
@@ -90,16 +70,16 @@
 				<div class="custom-hello-week col-md-4">
 					<h2 class="custom_header" align="left">Persoonlijke gegevens:</h2> 
 						<a>Voor & achternaam: *</a><br>
-						<input id="name" type="text" name="naam">
+						<input id="name" type="text" name="naam" class="input_box">
 						<br>
 						<a>E-mail: *</a><br>
-						<input id="email" type="email" name="email" autocomplete="on">
+						<input id="email" type="email" name="email" autocomplete="on" class="input_box">
 						<br>
 						<a>Telefoon: *</a><br>
-						<input id="phone" type="text" name="phone">
+						<input id="phone" type="text" name="phone" class="input_box">
 						<br><br>
 						<a>Opmerkingen of vragen:</a><br>
-						<input id="remark" type="text" name="opmerkingen">
+						<TEXTAREA id="remark" name="opmerkingen" rows="3" class="input_box_large"></TEXTAREA>
 						<br><br>
 						<a>Velden met een * zijn verplicht. </a><br>
 						<button onclick="bevestig()">Bevestig</button>
