@@ -273,14 +273,14 @@
 		$subjectCharset = $charset = 'utf-8';
 		$strToMailName = $name;
 		$strToMail = $email;
-		//$strToMailNameBcc = 'Diëtiste Borah';
-		//$strToMailBcc = 'dietiste.borah@gmail.com';
+		$strToMailNameBcc = 'Diëtiste Borah';
+		$strToMailBcc = 'dietiste.borah@gmail.com';
 		$strSesFromName = 'Diëtiste Borah';
 		$strSesFromEmail = 'dietiste.borah@gmail.com';
 		$strSubject = 'Afspraak Dïetiste Borah op '. $date .'om '. $time;
 
 		$strRawMessage .= 'To: ' . encodeRecipients($strToMailName . " <" . $strToMail . ">") . "\r\n";
-		//$strRawMessage .= 'Bcc: '. encodeRecipients($strToMailNameBcc . " <" . $strToMailBcc . ">") . "\r\n";
+		$strRawMessage .= 'Bcc: '. encodeRecipients($strToMailNameBcc . " <" . $strToMailBcc . ">") . "\r\n";
 		$strRawMessage .= 'From: '. encodeRecipients($strSesFromName . " <" . $strSesFromEmail . ">") . "\r\n";
 		
 		$strRawMessage .= 'Subject: =?' . $subjectCharset . '?B?' . base64_encode($strSubject) . "?=\r\n";
