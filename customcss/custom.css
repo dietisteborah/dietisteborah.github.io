@@ -202,3 +202,8 @@ hr.style18 {
 .bold_text {
 	font-weight: bold;
 }
+
+/* bevestig knop */
+.left{
+	padding-left: 0px;
+}
