@@ -53,6 +53,7 @@
 		if($opvolg=="opvolg"){
 			$appType=1;
 		}
+		//Check to make sure the day is different from today (no appointments to be made on the same day)
 		if($diffDays > 0){
 			$notime = true;
 			//Create database connection
@@ -82,6 +83,9 @@
 			print "Geen tijdstippen vrij op deze datum.\n";
 		}
 	}
+	function loadToday($strdate){
+		print "Geen tijdstippen vrij vandaag.\n";
+	}
 	function createAppointment($date,$time,$name,$email,$phone,$remark,$type){
 			$complete = true;
 			$bericht = "";
@@ -107,13 +111,13 @@
 			if($complete){
 					//create appointment in calendar
 					create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type);
+					//remove options from calendar
+					remove_database_records($date,$time,$type);
 					//send mail
 					send_email($date,$time,$name,$email,$phone,$remark,$type);
+					
 			}
 			print $bericht;
-	}
-	function loadToday($strdate){
-		print "Geen tijdstippen vrij vandaag.\n";
 	}
 	function create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type){
 		$client = getClient();
@@ -121,7 +125,7 @@
 		$calendarId = 'dietiste.borah@gmail.com';
 
 		if($type=="opvolg"){
-			$endTime = strtotime($time) + (30*60);
+			$endTime = strtotime($time) + (30*60);			
 		}
 		else{
 			$endTime = strtotime($time) + (90*60);
@@ -148,6 +152,51 @@
 			$recipient = '=?' . $recipientsCharset . '?B?'.base64_encode($regs[1]).'?= <'.$regs[2].'>';
 		}
 		return $recipient;
+	}
+	function remove_database_records($date,$time,$type){
+		//Create database connection
+		$string = file_get_contents("/home/borahv1q/borah-secrets/pw.txt");
+		$string = str_replace(array("\r", "\n"), '', $string);
+		$link = mysqli_connect("localhost", "borahv1q", $string , "borahv1q_Agenda");
+		if (!$link) {
+			echo "Error: Unable to connect to MySQL." . PHP_EOL;
+			echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+			echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+			exit;
+		}
+		//echo "Connect to mysql.\n" . PHP_EOL;		
+		if($type=="opvolg"){
+			//verwijder opvolg consultatie
+			$sql = "DELETE FROM afspraken WHERE date = \"".$date." && opvolg = 1 && startTime = \"".date("H:i:s",$time)."\"";
+			if (mysqli_query($conn, $sql)) {
+				echo "Record deleted successfully";
+			} else {
+				echo "Error 1 deleting record: " . mysqli_error($conn);
+			}
+			//verwijder startconsultatie
+			$sql = "DELETE FROM afspraken WHERE date = \"".$date." && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(60*60))."\" && startTime <= \"".date("H:i:s",strtotime($time)+(30*60))."\""; 
+			if (mysqli_query($conn, $sql)) {
+				echo "Record deleted successfully";
+			} else {
+				echo "Error 2 deleting record: " . mysqli_error($conn);
+			}
+		}
+		else{
+			//verwijder opvolg consultatie
+			$sql = "DELETE FROM afspraken WHERE date = \"".$date." && opvolg = 1 && startTime >= \"".date("H:i:s",$time)."\" && startTime <=\"".date("H:i:s",strtotime($time)+(90*60))."\"";
+			if (mysqli_query($conn, $sql)) {
+				echo "Record deleted successfully";
+			} else {
+				echo "Error 1 deleting record: " . mysqli_error($conn);
+			}
+			//verwijder startconsultatie
+			$sql = "DELETE FROM afspraken WHERE date = \"".$date." && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime <= \"".date("H:i:s",strtotime($time)+(90*60))."\"";
+			if (mysqli_query($conn, $sql)) {
+				echo "Record deleted successfully";
+			} else {
+				echo "Error 2 deleting record: " . mysqli_error($conn);
+			}
+		}		
 	}
 	function send_email($date,$time,$name,$email,$phone,$remark,$type){
 		$client = new Google_Client();
