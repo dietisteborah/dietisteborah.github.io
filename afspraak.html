@@ -249,6 +249,9 @@
 				  $(".hello-week__day[data-timestamp='1533160800']").hide();
 				  window.alert(".hello-week__day[data-timestamp='" + dateString.substr(0,10) + "']");
 			}	*/
+			for(var i=0;i<monthDifference;i++){
+				myCalendar.next();
+			}
 			var x = document.getElementsByClassName("hello-week__day");
 			var i;
 			for (i = 0; i < x.length; i++) {
