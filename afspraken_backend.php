@@ -67,7 +67,20 @@
 			}
 			echo "Connect to mysql.\n" . PHP_EOL;
 
-			$sql = "SELECT * FROM afspraken where date =".$strdate." and opvolg =".$appType;
+			//$sql = "SELECT * FROM afspraken where date =".$strdate." and opvolg =".$appType;
+			$sql = "SELECT * FROM afspraken where date =\"".$strdate."\" and opvolg =".$appType;
+			$result = mysqli_query($link, $sql);
+			if (mysqli_num_rows($result) > 0) {
+				// output data of each row
+				while($row = mysqli_fetch_assoc($result)) {
+					//echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+					printf("%s;", $row["startTime"]);
+				}
+			} else {
+				print "Geen tijdstippen vrij op deze datum.\n";
+			}
+			//$sql = "SELECT * FROM afspraken where date =".$strdate." and opvolg =".$appType;
+			$sql = "SELECT * FROM afspraken where date =\"2018-06-25\" and opvolg =".$appType;
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
 				// output data of each row
