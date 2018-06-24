@@ -240,6 +240,7 @@
 		var freeMonth = parseInt(firstfreeday.substr(5,2));
 		var currentMonth = parseInt(selected_Day.substr(5,2));
 		var monthDifference = freeMonth-currentMonth;
+		window.alert("current month:" + currentMonth);
 		window.alert("month difference:" + monthDifference);
 		if(monthDifference > 0){
 			//go to next month
