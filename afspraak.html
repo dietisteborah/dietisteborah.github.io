@@ -243,7 +243,7 @@
 		if(monthDifference > 0){
 			for(var i=0;i<monthDifference;i++){
 				myCalendar.next();
-				
+				$(".hello-week__day[data-timestamp='1533168000']").hide();
 			}
 			var dateInt = new Date(firstfreeday).getTime();
 			var dateString = dateInt.toString();		
