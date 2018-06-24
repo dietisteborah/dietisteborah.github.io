@@ -67,7 +67,7 @@
 			}
 			echo "Connect to mysql.\n" . PHP_EOL;
 
-			$sql = "SELECT * FROM afspraken where date =".$today->fomrat("Y-m-d")." and opvolg =".$appType;
+			$sql = "SELECT * FROM afspraken where date =".$strdate." and opvolg =".$appType;
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
 				// output data of each row
