@@ -56,7 +56,7 @@
 		if($diffDays > 0){
 			$notime = true;
 			//Create database connection
-			$string = file_get_contents("pw.txt");
+			$string = file_get_contents("/home/borahv1q/borah-secrets/pw.txt");
 			$string = str_replace(array("\r", "\n"), '', $string);
 			$link = mysqli_connect("localhost", "borahv1q", $string , "borahv1q_Agenda");
 			if (!$link) {
