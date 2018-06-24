@@ -236,6 +236,10 @@
 		onClear: () => { /** callback function */ }
 	});
 	function vrijeAfspraak() {
+	
+		myCalendar.today();
+		selected_Day = this.getToday('YYYY-MM-DD');
+		
 		var firstfreeday = "2018-06-26";//functie die vrije dag geeft vanuit PHP database
 		var freeMonth = parseInt(firstfreeday.substr(5,2));
 		var currentMonth = parseInt(selected_Day.substr(5,2));
@@ -263,11 +267,9 @@
 			var i;
 			for (i = 0; i < x.length; i++) {
 				if(i==parseInt(selected_Day.substr(8,2))){
-					window.alert("substr is:" + selected_Day.substr(8,2));
 					x[i-1].classList.remove('is-selected');
 				}
 				if(i==parseInt(firstfreeday.substr(8,2))){
-					window.alert("substr is:" + firstfreeday.substr(8,2));
 					x[i-1].classList.add('is-selected');
 				}
 			}	
