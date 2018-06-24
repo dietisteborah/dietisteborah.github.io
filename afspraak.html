@@ -253,8 +253,7 @@
 			//turn of current selected day
 			var x = document.getElementsByClassName("hello-week__day");
 			var i;
-			for (i = 0; i < x.length; i++) {
-				x[i].style.backgroundColor = "red";
+			for (i = 1; i <= x.length; i++) {
 				if(i==parseInt(selected_Day.substr(8,2))){
 					window.alert("substr is:" + selected_Day.substr(8,2));
 					x[i].classList.remove('is-selected');
@@ -267,8 +266,7 @@
 			//set new day active
 			var x = document.getElementsByClassName("hello-week__day");
 			var i;
-			for (i = 0; i < x.length; i++) {
-				x[i].style.backgroundColor = "red";
+			for (i = 1; i <= x.length; i++) {
 				if(i==parseInt(firstfreeday.substr(8,2))){
 					window.alert("substr is:" + firstfreeday.substr(8,2));
 					x[i].classList.add('is-selected');
