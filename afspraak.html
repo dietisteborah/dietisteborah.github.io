@@ -243,10 +243,13 @@
 		if(monthDifference > 0){
 			for(var i=0;i<monthDifference;i++){
 				myCalendar.next();
-				var day = ".hello.hello-week__day[value='" + firstfreeday.substr(7,2) + "']";
 				var dateInt = new Date(firstfreeday).getTime();
-				window.alert(dateInt);
-				$(".hello-week__day[data-timestamp='1533160800']").hide();
+				var dateString = dateInt.toString(dateInt);
+				var day = ".hello.hello-week__day[value='" + dateString.substr(0,10) + "']";
+				
+				//window.alert(dateString.substr(0,10));
+				$(day).hide();								
+				//$(".hello-week__day[data-timestamp='1533160800']").hide();
 			}
 		}
 		else if(monthDifference == 0){
