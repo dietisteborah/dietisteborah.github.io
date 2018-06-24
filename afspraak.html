@@ -293,6 +293,9 @@
 			var x = document.getElementsByClassName("hello-week__day");
 			var i;
 			for (i = 0; i < x.length; i++) {
+				if(i==parseInt(previous_selected_Day.substr(8,2))){
+					x[i-1].classList.remove('is-selected');
+				}
 				if(i==parseInt(firstfreeday.substr(8,2))){
 					x[i-1].classList.add('is-selected');
 				}
