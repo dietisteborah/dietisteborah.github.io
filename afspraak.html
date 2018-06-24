@@ -236,9 +236,9 @@
 		onClear: () => { /** callback function */ }
 	});
 	function vrijeAfspraak() {
-	
+		window.alert("diff: " + monthDifference);
 		myCalendar.today();
-		selected_Day = this.getToday('YYYY-MM-DD');
+		selected_Day = myCalendar.getToday('YYYY-MM-DD');
 		
 		var firstfreeday = "2018-06-26";//functie die vrije dag geeft vanuit PHP database
 		var freeMonth = parseInt(firstfreeday.substr(5,2));
