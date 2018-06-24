@@ -158,6 +158,43 @@
 
 		}
 	}
+	function updateInfoSelectedDayKnown() {
+		selected_Time = "";
+		data =  {'action': 'getAvailable',
+				  'date' : selected_Day,
+				  'opvolg' : appointment_Type};	
+		$.post(phpfile, data, function (response) {	
+			//remove all previous found hours from previous selected day
+			while (document.getElementById("timeList").firstChild) {
+				document.getElementById("timeList").removeChild(document.getElementById("timeList").firstChild);
+			}
+			var list = response.split(";");	
+			var node = '';		
+			var rowcounter = 0;
+			if(list.length==1){
+				node = node + '<td><a class=\'brown_text\'>' + "Geen tijdstippen vrij op deze datum." + '</a></td>';
+			}
+			else{
+				list.forEach(function(entry){
+					if(rowcounter==0){
+						node = node + '<tr>';
+					}
+					if(entry!=""){					
+						node = node + '<td><button class=\'brown_text not_clicked\' id=' + entry + ' onClick=\"select_hour(this.id)\"' + '>' + entry + '</button></td>';
+					}	
+					//layout of the list
+					if(rowcounter==2){
+						rowcounter=0;
+						node = node + '</tr>'; 
+					}
+					else{
+						rowcounter = rowcounter + 1;
+					}					
+				});
+			}
+			$('#timeList').html(node);
+		});
+	}
 	function bevestig(){
 			//get all values 
 			var name = document.getElementById("name").value;
@@ -245,7 +282,6 @@
 		var currentMonth = parseInt(selected_Day.substr(5,2));
 		var monthDifference = freeMonth-currentMonth;
 		
-		window.alert("diff: " + monthDifference);
 		if(monthDifference > 0){
 			window.alert("monthDifference > 0");
 			//go to next month
@@ -276,14 +312,7 @@
 			}	
 			selected_Day = firstfreeday;			
 		}
-		else{
-			window.alert("else");
-			//monthDifference is negative - go back
-			myCalendar.today();
-			//selected_Day = this.getToday('YYYY-MM-DD');
-			//vrijeAfspraak();		
-		}
-		updateInfo();
+		updateInfoSelectedDayKnown();
 	}
 </script>
 </html>
