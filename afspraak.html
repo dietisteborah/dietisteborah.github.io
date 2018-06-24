@@ -262,7 +262,7 @@
 			for (i = 0; i < x.length; i++) {
 				if(i==parseInt(selected_Day.substr(8,2))){
 					window.alert("substr is:" + selected_Day.substr(8,2));
-					x[i-1].classList.add('is-selected');
+					x[i-1].classList.remove('is-selected');
 				}
 				if(i==parseInt(firstfreeday.substr(8,2))){
 					window.alert("substr is:" + firstfreeday.substr(8,2));
