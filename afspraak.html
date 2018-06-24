@@ -236,16 +236,7 @@
 		onClear: () => { /** callback function */ }
 	});
 	function vrijeAfspraak() {
-		//desactivate the active day
-		var x = document.getElementsByClassName("hello-week__day");
-		var i;
-		for (i = 0; i < x.length; i++) {
-			if(i==parseInt(selected_Day.substr(8,2))){
-				x[i-1].classList.remove('is-selected');
-			}
-		}		
-		
-		//back to today
+		var previous_selected_Day = selected_Day;
 		myCalendar.today();
 		selected_Day = myCalendar.getToday('YYYY-MM-DD');
 		
@@ -276,11 +267,21 @@
 			var x = document.getElementsByClassName("hello-week__day");
 			var i;
 			for (i = 0; i < x.length; i++) {
+				if(i==parseInt(previous_selected_Day.substr(8,2))){
+					x[i-1].classList.remove('is-selected');
+				}
 				if(i==parseInt(firstfreeday.substr(8,2))){
 					x[i-1].classList.add('is-selected');
 				}
 			}	
 			selected_Day = firstfreeday;			
+		}
+		else{
+			window.alert("else");
+			//monthDifference is negative - go back
+			myCalendar.today();
+			//selected_Day = this.getToday('YYYY-MM-DD');
+			//vrijeAfspraak();		
 		}
 		updateInfo();
 	}
