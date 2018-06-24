@@ -211,11 +211,8 @@
 			last.appendChild(li);
 		});
 	}
-	function vrijeAfspraak() {
-		next();
-	}
 	//hello week init
-	new HelloWeek({
+	const myCalendar = new HelloWeek({
 		selector: '.hello-week',
 		lang: 'nl',
 		langFolder: './node_modules/hello-week/dist/langs/',
@@ -238,5 +235,8 @@
         onSelect: updateInfo,
 		onClear: () => { /** callback function */ }
 	});
+	function vrijeAfspraak() {
+		myCalendar.next();
+	}
 </script>
 </html>
