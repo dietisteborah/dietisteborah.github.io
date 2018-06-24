@@ -244,10 +244,10 @@
 			for(var i=0;i<monthDifference;i++){
 				myCalendar.next();
 				var dateInt = new Date(firstfreeday).getTime();
-				var dateString = dateInt.toString(dateInt);
+				var dateString = dateInt.toString();
 				var day = ".hello.hello-week__day[value='" + dateString.substr(0,10) + "']";
 				
-				//window.alert(dateString.substr(0,10));
+				window.alert(dateString.substr(0,10));
 				$(day).hide();								
 				//$(".hello-week__day[data-timestamp='1533160800']").hide();
 			}
