@@ -212,7 +212,7 @@
 		});
 	}
 	//hello week init
-	var myCalendar = new HelloWeek({
+	const myCalendar = new HelloWeek({
 		selector: '.hello-week',
 		lang: 'nl',
 		langFolder: './node_modules/hello-week/dist/langs/',
@@ -274,44 +274,8 @@
 		}
 		else{
 			//monthDifference is negative - go back
-			/*
-			for(var i=0;i>monthDifference;i--){
-				myCalendar.prev();
-			}
-			//set new day active
-			var x = document.getElementsByClassName("hello-week__day");
-			var i;
-			for (i = 0; i < x.length; i++) {
-				if(i==parseInt(firstfreeday.substr(8,2))){
-					window.alert("substr is:" + firstfreeday.substr(8,2));
-					x[i-1].classList.add('is-selected');
-				}
-			}
-			selected_Day = firstfreeday;
-			*/
-			myCalendar = new HelloWeek({
-					selector: '.hello-week',
-					lang: 'nl',
-					langFolder: './node_modules/hello-week/dist/langs/',
-					format: 'YYYY-MM-DD',
-					weekShort: true,
-					monthShort: false,
-					multiplePick: false,
-					defaultDate: false,
-					todayHighlight: true,
-					disablePastDays: true,
-					disabledDaysOfWeek: false,
-					disableDates: false,
-					weekStart: 1,
-					daysHighlight: false,
-					range: false,
-					minDate: false,
-					maxDate: false,
-					onLoad: loadToday,
-					onChange: updateInfo,
-					onSelect: updateInfo,
-					onClear: () => { /** callback function */ }
-				});
+			myCalendar.today();
+			vrijeAfspraak();		
 		}
 		updateInfo();
 	}
