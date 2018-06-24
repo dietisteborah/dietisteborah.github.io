@@ -249,15 +249,28 @@
 				  $(".hello-week__day[data-timestamp='1533160800']").hide();
 				  window.alert(".hello-week__day[data-timestamp='" + dateString.substr(0,10) + "']");
 			}	*/
-			for(var i=0;i<monthDifference;i++){
-				myCalendar.next();
-			}
+			
+			//turn of current selected day
 			var x = document.getElementsByClassName("hello-week__day");
 			var i;
 			for (i = 0; i < x.length; i++) {
 				x[i].style.backgroundColor = "red";
 				if(i==parseInt(selected_Day.substr(8,2))){
 					window.alert("substr is:" + selected_Day.substr(8,2));
+					x[i].classList.remove('is-selected');
+				}
+			}
+			//go to next month
+			for(var i=0;i<monthDifference;i++){
+				myCalendar.next();
+			}
+			//set new day active
+			var x = document.getElementsByClassName("hello-week__day");
+			var i;
+			for (i = 0; i < x.length; i++) {
+				x[i].style.backgroundColor = "red";
+				if(i==parseInt(firstfreeday.substr(8,2))){
+					window.alert("substr is:" + firstfreeday.substr(8,2));
 					x[i].classList.add('is-selected');
 				}
 			}
