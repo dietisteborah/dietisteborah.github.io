@@ -174,7 +174,7 @@
 				echo "Error 1 deleting record: " . mysqli_error($link);
 			}
 			//verwijder startconsultatie
-			$sql = "DELETE FROM afspraken WHERE date = \"".$date."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(60*60))."\" && startTime <= \"".date("H:i:s",strtotime($time)+(30*60))."\""; 
+			$sql = "DELETE FROM afspraken WHERE date = \"".$date."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime < \"".date("H:i:s",strtotime($time)+(30*60))."\""; 
 			if (mysqli_query($link, $sql)) {
 				echo "Record deleted successfully";
 			} else {
@@ -183,14 +183,14 @@
 		}
 		else{
 			//verwijder opvolg consultatie
-			$sql = "DELETE FROM afspraken WHERE date = \"".$date."\" && opvolg = 1 && startTime >= \"".date("H:i:s",strtotime($time))."\" && startTime <=\"".date("H:i:s",strtotime($time)+(90*60))."\"";
+			$sql = "DELETE FROM afspraken WHERE date = \"".$date."\" && opvolg = 1 && startTime >= \"".date("H:i:s",strtotime($time))."\" && startTime < \"".date("H:i:s",strtotime($time)+(90*60))."\"";
 			if (mysqli_query($link, $sql)) {
 				echo "Record deleted successfully";
 			} else {
 				echo "Error 3 deleting record: " . mysqli_error($link);
 			}
 			//verwijder startconsultatie
-			$sql = "DELETE FROM afspraken WHERE date = \"".$date."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime <= \"".date("H:i:s",strtotime($time)+(90*60))."\"";
+			$sql = "DELETE FROM afspraken WHERE date = \"".$date."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime < \"".date("H:i:s",strtotime($time)+(90*60))."\"";
 			if (mysqli_query($link, $sql)) {
 				echo "Record deleted successfully";
 			} else {
