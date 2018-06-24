@@ -241,13 +241,13 @@
 		var currentMonth = parseInt(selected_Day.substr(5,2));
 		var monthDifference = freeMonth-currentMonth;
 		if(monthDifference > 0){
+			var dateInt = new Date(firstfreeday).getTime();
+			var dateString = dateInt.toString();	
 			for(var i=0;i<monthDifference;i++){
 				myCalendar.next();
 				$(".hello-week__day[data-timestamp='" + dateString.substr(0,10) + "']").hide();
 				//$(".hello-week__day[data-timestamp='1533160800']").hide();
-			}
-			var dateInt = new Date(firstfreeday).getTime();
-			var dateString = dateInt.toString();		
+			}	
 			//$(".hello.hello-week__day[data-timestamp='" + dateString.substr(0,10) + "']").hide();
 			//$(".hello-week__day[data-timestamp='1533168000']").hide();
 			
