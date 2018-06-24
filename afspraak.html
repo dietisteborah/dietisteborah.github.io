@@ -236,29 +236,11 @@
 		onClear: () => { /** callback function */ }
 	});
 	function vrijeAfspraak() {
-		var firstfreeday = "2018-08-02";//functie die vrije dag geeft vanuit PHP database
+		var firstfreeday = "2018-06-26";//functie die vrije dag geeft vanuit PHP database
 		var freeMonth = parseInt(firstfreeday.substr(5,2));
 		var currentMonth = parseInt(selected_Day.substr(5,2));
 		var monthDifference = freeMonth-currentMonth;
 		if(monthDifference > 0){
-			/*var dateInt = new Date(firstfreeday).getTime();
-			var dateString = dateInt.toString();	
-			for(var i=0;i<monthDifference;i++){
-				myCalendar.next();
-				//$(".hello-week__day[data-timestamp='" + dateString.substr(0,10) + "']").hide();
-				  $(".hello-week__day[data-timestamp='1533160800']").hide();
-				  window.alert(".hello-week__day[data-timestamp='" + dateString.substr(0,10) + "']");
-			}	*/
-			
-			//turn of current selected day
-			var x = document.getElementsByClassName("hello-week__day");
-			var i;
-			for (i = 0; i < x.length; i++) {
-				if(i==parseInt(selected_Day.substr(8,2))){
-					window.alert("substr is:" + selected_Day.substr(8,2));
-					x[i-1].classList.remove('is-selected');
-				}
-			}
 			//go to next month
 			for(var i=0;i<monthDifference;i++){
 				myCalendar.next();
@@ -272,11 +254,21 @@
 					x[i-1].classList.add('is-selected');
 				}
 			}
-			
-			
+			selected_Day = firstfreeday;
 		}
 		else if(monthDifference == 0){
-		
+			var x = document.getElementsByClassName("hello-week__day");
+			var i;
+			for (i = 0; i < x.length; i++) {
+				if(i==parseInt(selected_Day.substr(8,2))){
+					window.alert("substr is:" + selected_Day.substr(8,2));
+					x[i-1].classList.add('is-selected');
+				}
+				if(i==parseInt(firstfreeday.substr(8,2))){
+					window.alert("substr is:" + firstfreeday.substr(8,2));
+					x[i-1].classList.add('is-selected');
+				}
+			}		
 		}
 		else{
 			//monthDifference is negative - do nothing
