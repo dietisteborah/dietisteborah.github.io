@@ -242,6 +242,7 @@
 		var monthDifference = freeMonth-currentMonth;
 		
 		if(monthDifference > 0){
+			window.alert("monthDifference > 0");
 			//go to next month
 			for(var i=0;i<monthDifference;i++){
 				myCalendar.next();
@@ -251,13 +252,13 @@
 			var i;
 			for (i = 0; i < x.length; i++) {
 				if(i==parseInt(firstfreeday.substr(8,2))){
-					window.alert("substr is:" + firstfreeday.substr(8,2));
 					x[i-1].classList.add('is-selected');
 				}
 			}
 			selected_Day = firstfreeday;
 		}
 		else if(monthDifference == 0){
+			window.alert("monthDifference == 0");
 			var x = document.getElementsByClassName("hello-week__day");
 			var i;
 			for (i = 0; i < x.length; i++) {
@@ -273,6 +274,7 @@
 			selected_Day = firstfreeday;			
 		}
 		else{
+			window.alert("else");
 			//monthDifference is negative - go back
 			myCalendar.today();
 			//selected_Day = this.getToday('YYYY-MM-DD');
