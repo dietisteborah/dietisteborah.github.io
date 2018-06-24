@@ -236,7 +236,22 @@
 		onClear: () => { /** callback function */ }
 	});
 	function vrijeAfspraak() {
-		myCalendar.next();
+		var firstfreeday = "2018-08-02";//functie die vrije dag geeft vanuit PHP database
+		var freeMonth = parseInt(firstfreeday.substr(5,2));
+		var currentMonth = parseInt(selected_Day.substr(5,2));
+		var monthDifference = freeMonth-currentMonth;
+		if(monthDifference > 0){
+			for(var i=0;i<monthDifference;i++){
+				myCalendar.next();
+			}
+		}
+		else if(monthDifference == 0){
+		
+		}
+		else{
+			//monthDifference is negative - do nothing
+		}
+		
 	}
 </script>
 </html>
