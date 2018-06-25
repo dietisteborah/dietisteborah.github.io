@@ -68,7 +68,7 @@
 						<label class="radio-inline orange_text font_Khula bold_text"><input type="radio" name="optradio" value="opvolg"> Opvolgconsultatie</label>
 					</div>
 					<h2 class="custom_header" align="left">Kies een tijdstip:</h2> 
-					<ul class="selected-day" id="timeList" style="padding-left: 20px !important"><table>*zoeken*</tr></table> 
+					<ul class="available-hours" id="timeList" style="padding-left: 20px !important"><table>*zoeken*</tr></table> 
 				</div>	
 				<div class="custom-hello-week col-md-4">
 					<h2 class="custom_header" align="left">Persoonlijke gegevens:</h2> 
@@ -103,7 +103,7 @@
 	});
 	
 	//update functie
-	const last = document.querySelector('.selected-day');
+	const available-hours = document.querySelector('.available-hours');
 	//global variables
 	var selected_Time = 'Geen';
 	var selected_Day = '';
@@ -243,10 +243,10 @@
 		data =  {'action': 'loadToday',
 				  'date' : selected_Day};
 		$.post(phpfile, data, function (response) {
-			last.innerHTML = '';
+			available-hours.innerHTML = '';
 			var li = document.createElement('li');
 			li.innerHTML = response;
-			last.appendChild(li);
+			available-hours.appendChild(li);
 		});
 	}
 	//hello week init
@@ -278,46 +278,62 @@
 		myCalendar.today();
 		selected_Day = myCalendar.getToday('YYYY-MM-DD');
 		
-		var firstfreeday = "2018-07-01";//functie die vrije dag geeft vanuit PHP database
-		var freeMonth = parseInt(firstfreeday.substr(5,2));
-		var currentMonth = parseInt(selected_Day.substr(5,2));
-		var monthDifference = freeMonth-currentMonth;
-		
-		if(monthDifference > 0){
-			window.alert("monthDifference > 0");
-			//go to next month
-			for(var i=0;i<monthDifference;i++){
-				myCalendar.next();
-			}
-			//set new day active
-			var x = document.getElementsByClassName("hello-week__day");
-			var i;
-			//remove all "is-selected"
-			for (i = 0; i < x.length; i++) {
-				x[i].classList.remove('is-selected');
-			}
-			for (i = 0; i < x.length; i++) {
-				if(i==parseInt(firstfreeday.substr(8,2))){
-					x[i-1].classList.add('is-selected');
+		//var firstfreeday = "2018-07-01";//functie die vrije dag geeft vanuit PHP database
+		var firstfreeday = "Error";
+		//call php function
+		var phpfile = 'afspraken_backend.php';	
+		data =  {'action': 'freeAppointment',
+				  'type' : appointment_Type};
+		$.post(phpfile, data, function (response) {
+			firstfreeday = response;
+		});		
+		if(firstfreeday==""){
+			var freeMonth = parseInt(firstfreeday.substr(5,2));
+			var currentMonth = parseInt(selected_Day.substr(5,2));
+			var monthDifference = freeMonth-currentMonth;
+			
+			if(monthDifference > 0){
+				window.alert("monthDifference > 0");
+				//go to next month
+				for(var i=0;i<monthDifference;i++){
+					myCalendar.next();
 				}
+				//set new day active
+				var x = document.getElementsByClassName("hello-week__day");
+				var i;
+				//remove all "is-selected"
+				for (i = 0; i < x.length; i++) {
+					x[i].classList.remove('is-selected');
+				}
+				for (i = 0; i < x.length; i++) {
+					if(i==parseInt(firstfreeday.substr(8,2))){
+						x[i-1].classList.add('is-selected');
+					}
+				}
+				selected_Day = firstfreeday;
 			}
-			selected_Day = firstfreeday;
+			else if(monthDifference == 0){
+				window.alert("monthDifference == 0");
+				var x = document.getElementsByClassName("hello-week__day");
+				var i;
+				for (i = 0; i < x.length; i++) {
+					if(i==parseInt(previous_selected_Day.substr(8,2))){
+						x[i-1].classList.remove('is-selected');
+					}
+					if(i==parseInt(firstfreeday.substr(8,2))){
+						x[i-1].classList.add('is-selected');
+					}
+				}	
+				selected_Day = firstfreeday;			
+			}
+			updateInfoSelectedDayKnown();
 		}
-		else if(monthDifference == 0){
-			window.alert("monthDifference == 0");
-			var x = document.getElementsByClassName("hello-week__day");
-			var i;
-			for (i = 0; i < x.length; i++) {
-				if(i==parseInt(previous_selected_Day.substr(8,2))){
-					x[i-1].classList.remove('is-selected');
-				}
-				if(i==parseInt(firstfreeday.substr(8,2))){
-					x[i-1].classList.add('is-selected');
-				}
-			}	
-			selected_Day = firstfreeday;			
+		else{
+			available-hours.innerHTML = '';
+			var li = document.createElement('li');
+			li.innerHTML = "Geen vrije afspraak. Gelieve me te contacteren op +32 485 36 04 09 of dietiste.borah@gmail.com.";
+			available-hours.appendChild(li);
 		}
-		updateInfoSelectedDayKnown();
 	}
 </script>
 </html>

@@ -13,6 +13,9 @@
 			case 'loadToday':
 				loadToday($_POST['date']);
 				break;
+			case 'freeAppointment':
+				freeAppointment($_POST['type']);
+				break;
 				}
 	}
 
@@ -197,6 +200,42 @@
 				echo "Error 4 deleting record: " . mysqli_error($link);
 			}
 		}		
+	}
+	function freeAppointment($_POST['type']) {
+		//Create database connection
+		$string = file_get_contents("/home/borahv1q/borah-secrets/pw.txt");
+		$string = str_replace(array("\r", "\n"), '', $string);
+		$link = mysqli_connect("localhost", "borahv1q", $string , "borahv1q_Agenda");
+		if (!$link) {
+			echo "Error: Unable to connect to MySQL." . PHP_EOL;
+			echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+			echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+			exit;
+		}
+		//echo "Connect to mysql.\n" . PHP_EOL;	
+		
+		$today = new DateTime(); // This object represents current date/time
+
+		if($type=="opvolg"){
+			//find the first day with an "opvolg" appointment free
+			$sql = "SELECT date FROM afspraken WHERE date > \"".$today->format('Y-m-d')."\" && opvolg = 1 LIMIT 1";
+			if (mysqli_query($link, $sql)) {
+				echo $sql;
+			} else {
+				//echo "Error 1 deleting record: " . mysqli_error($link);
+				echo "Error";
+			}
+		}
+		else{
+			//find the first day with a "start" appointment free
+			$sql = "SELECT date FROM afspraken WHERE date > \"".$today->format('Y-m-d')."\" && opvolg = 0 LIMIT 1";
+			if (mysqli_query($link, $sql)) {
+				echo $sql;
+			} else {
+				//echo "Error 1 deleting record: " . mysqli_error($link);
+				echo "Error";
+			}
+		}			
 	}
 	function send_email($date,$time,$name,$email,$phone,$remark,$type){
 		$client = new Google_Client();
