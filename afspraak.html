@@ -103,7 +103,7 @@
 	});
 	
 	//update functie
-	const available-hours = document.querySelector('.available-hours');
+	const availablehours = document.querySelector('.available-hours');
 	//global variables
 	var selected_Time = 'Geen';
 	var selected_Day = '';
@@ -243,10 +243,10 @@
 		data =  {'action': 'loadToday',
 				  'date' : selected_Day};
 		$.post(phpfile, data, function (response) {
-			available-hours.innerHTML = '';
+			availablehours.innerHTML = '';
 			var li = document.createElement('li');
 			li.innerHTML = response;
-			available-hours.appendChild(li);
+			availablehours.appendChild(li);
 		});
 	}
 	//hello week init
@@ -329,10 +329,10 @@
 			updateInfoSelectedDayKnown();
 		}
 		else{
-			available-hours.innerHTML = '';
+			availablehours.innerHTML = '';
 			var li = document.createElement('li');
 			li.innerHTML = "Geen vrije afspraak. Gelieve me te contacteren op +32 485 36 04 09 of dietiste.borah@gmail.com.";
-			available-hours.appendChild(li);
+			availablehours.appendChild(li);
 		}
 	}
 </script>
