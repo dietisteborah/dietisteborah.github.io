@@ -201,7 +201,7 @@
 			}
 		}		
 	}
-	function freeAppointment($_POST['type']) {
+	function freeAppointment($type) {
 		//Create database connection
 		$string = file_get_contents("/home/borahv1q/borah-secrets/pw.txt");
 		$string = str_replace(array("\r", "\n"), '', $string);
