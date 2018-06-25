@@ -219,7 +219,8 @@
 		if($type=="opvolg"){
 			//find the first day with an "opvolg" appointment free
 			$sql = "SELECT date FROM afspraken WHERE date > \"".$today->format('Y-m-d')."\" && opvolg = 1 LIMIT 1";
-			if (mysqli_query($link, $sql)) {
+			$result = mysqli_query($link, $sql);
+			if (mysqli_num_rows($result) > 0) {
 				echo $sql;
 			} else {
 				//echo "Error 1 deleting record: " . mysqli_error($link);
@@ -229,7 +230,8 @@
 		else{
 			//find the first day with a "start" appointment free
 			$sql = "SELECT date FROM afspraken WHERE date > \"".$today->format('Y-m-d')."\" && opvolg = 0 LIMIT 1";
-			if (mysqli_query($link, $sql)) {
+			$result = mysqli_query($link, $sql);
+			if (mysqli_num_rows($result) > 0) {
 				echo $sql;
 			} else {
 				//echo "Error 1 deleting record: " . mysqli_error($link);
