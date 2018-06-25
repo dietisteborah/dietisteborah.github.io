@@ -287,55 +287,55 @@
 		$.post(phpfile, data, function (response) {
 			firstfreeday = response;
 			window.alert("response is: " + response);
+			if(firstfreeday != ""){
+				window.alert("firstfreeday check");
+				var freeMonth = parseInt(firstfreeday.substr(5,2));
+				var currentMonth = parseInt(selected_Day.substr(5,2));
+				var monthDifference = freeMonth-currentMonth;
+				
+				if(monthDifference > 0){
+					window.alert("monthDifference > 0");
+					//go to next month
+					for(var i=0;i<monthDifference;i++){
+						myCalendar.next();
+					}
+					//set new day active
+					var x = document.getElementsByClassName("hello-week__day");
+					var i;
+					//remove all "is-selected"
+					for (i = 0; i < x.length; i++) {
+						x[i].classList.remove('is-selected');
+					}
+					for (i = 0; i < x.length; i++) {
+						if(i==parseInt(firstfreeday.substr(8,2))){
+							x[i-1].classList.add('is-selected');
+						}
+					}
+					selected_Day = firstfreeday;
+				}
+				else if(monthDifference == 0){
+					window.alert("monthDifference == 0");
+					var x = document.getElementsByClassName("hello-week__day");
+					var i;
+					for (i = 0; i < x.length; i++) {
+						if(i==parseInt(previous_selected_Day.substr(8,2))){
+							x[i-1].classList.remove('is-selected');
+						}
+						if(i==parseInt(firstfreeday.substr(8,2))){
+							x[i-1].classList.add('is-selected');
+						}
+					}	
+					selected_Day = firstfreeday;			
+				}
+				updateInfoSelectedDayKnown();
+			}
+			else{
+				availablehours.innerHTML = '';
+				var li = document.createElement('li');
+				li.innerHTML = "Geen vrije afspraak. Gelieve me te contacteren op: <br>  +32 485 36 04 09 <br>  of <br> dietiste.borah@gmail.com.";
+				availablehours.appendChild(li);
+			}
 		});		
-		if(firstfreeday != ""){
-			window.alert("firstfreeday check");
-			var freeMonth = parseInt(firstfreeday.substr(5,2));
-			var currentMonth = parseInt(selected_Day.substr(5,2));
-			var monthDifference = freeMonth-currentMonth;
-			
-			if(monthDifference > 0){
-				window.alert("monthDifference > 0");
-				//go to next month
-				for(var i=0;i<monthDifference;i++){
-					myCalendar.next();
-				}
-				//set new day active
-				var x = document.getElementsByClassName("hello-week__day");
-				var i;
-				//remove all "is-selected"
-				for (i = 0; i < x.length; i++) {
-					x[i].classList.remove('is-selected');
-				}
-				for (i = 0; i < x.length; i++) {
-					if(i==parseInt(firstfreeday.substr(8,2))){
-						x[i-1].classList.add('is-selected');
-					}
-				}
-				selected_Day = firstfreeday;
-			}
-			else if(monthDifference == 0){
-				window.alert("monthDifference == 0");
-				var x = document.getElementsByClassName("hello-week__day");
-				var i;
-				for (i = 0; i < x.length; i++) {
-					if(i==parseInt(previous_selected_Day.substr(8,2))){
-						x[i-1].classList.remove('is-selected');
-					}
-					if(i==parseInt(firstfreeday.substr(8,2))){
-						x[i-1].classList.add('is-selected');
-					}
-				}	
-				selected_Day = firstfreeday;			
-			}
-			updateInfoSelectedDayKnown();
-		}
-		else{
-			availablehours.innerHTML = '';
-			var li = document.createElement('li');
-			li.innerHTML = "Geen vrije afspraak. Gelieve me te contacteren op: <br>  +32 485 36 04 09 <br>  of <br> dietiste.borah@gmail.com.";
-			availablehours.appendChild(li);
-		}
 	}
 </script>
 </html>
