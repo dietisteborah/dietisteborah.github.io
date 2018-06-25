@@ -221,7 +221,7 @@
 			$sql = "SELECT date FROM afspraken WHERE date > \"".$today->format('Y-m-d')."\" && opvolg = 1 LIMIT 1";
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
-				echo $sql;
+				echo $result;
 			} else {
 				//echo "Error 1 deleting record: " . mysqli_error($link);
 				echo "Error";
@@ -232,7 +232,7 @@
 			$sql = "SELECT date FROM afspraken WHERE date > \"".$today->format('Y-m-d')."\" && opvolg = 0 LIMIT 1";
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
-				echo $sql;
+				echo $result;
 			} else {
 				//echo "Error 1 deleting record: " . mysqli_error($link);
 				echo "Error";
