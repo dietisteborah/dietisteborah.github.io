@@ -130,7 +130,7 @@
 							."<img src=\"/assets/bord.jpg\"style=\"width:100%\">"
 						."</div><div class=\"col-md-6\">"
 						."<h1 class=\"custom_header\" brown_text\" align=\"left\">Bedankt voor het maken van de afspraak!</h1>"
-					."</div>"
+					."</div>";
 			}
 			print $bericht;
 	}
