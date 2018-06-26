@@ -129,7 +129,7 @@
 						."<div class=\"col-md-6\">"
 							."<img src=\"/assets/bord.jpg\"style=\"width:100%\">"
 						."</div><div class=\"col-md-6\">"
-						."<h1 class=\"custom_header\" brown_text\" align=\"left\">Bedankt voor het maken van de afspraak!</h1>"
+						."<h1 class=\"custom_header\" brown_text\" align=\"left\">Bedankt voor het maken van een afspraak op ".$date." om ".$time."!</h1>"
 					."</div>";
 			}
 			print $bericht;
@@ -345,7 +345,7 @@
 			$msg->setRaw($mime);
 			$objSentMsg = $service->users_messages->send("me", $msg);
 
-			print('Hartelijk dank voor het maken van een afspraak op '.$date.' om '.$time);
+			//print('Hartelijk dank voor het maken van een afspraak op '.$date.' om '.$time);
 
 		} catch (Exception $e) {
 			$errordate = date('d.m.Y h:i:s'); 
