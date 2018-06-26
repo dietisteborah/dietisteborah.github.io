@@ -220,8 +220,8 @@
 						  'type' : appointment_Type};
 				$.post(phpfile, data, function (response) {
 					//window.location = "http://www.borahvandoorslaer.be/bevestiging.html";
-					while (document.getElementById("timeList").firstChild) {
-						document.getElementById("timeList").removeChild(document.getElementById("timeList").firstChild);
+					while (document.getElementById("afspraken_container").firstChild) {
+						document.getElementById("afspraken_container").removeChild(document.getElementById("afspraken_container").firstChild);
 					}
 					$('afspraken_container').html("<div class=\"row top-buffer brown_text\"><div class=\"col-md-6\"><img src=\"/assets/bord.jpg\"style=\"width:100%\"></div><div class=\"col-md-6\"><h1 class=\"custom_header\" brown_text\" align=\"left\">Bedankt voor het maken van de afspraak!</h1></div></div>");
 					
