@@ -85,11 +85,11 @@
 					printf("%s;", substr($row["startTime"], 0, 5));
 				}
 			} else {
-				print "Geen tijdstippen vrij op deze datum.\n";
+				print "Geen afspraken beschikbaar op deze datum.\n";
 			}
 		}
 		else{
-			print "Geen tijdstippen vrij op deze datum.\n";
+			print "Geen afspraken beschikbaar op deze datum.\n";
 		}
 	}
 	function loadToday($strdate){

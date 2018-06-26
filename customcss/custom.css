@@ -23,6 +23,9 @@
 .top-buffer-small { 
 	margin-top:10px; 
 }
+.no-bottom-buffer {
+	margin-bottom:0px; 
+}
 .appelList {
     list-style-image: url('appellogo_small2.png');
 }
@@ -64,6 +67,9 @@ ul {
 }
 .custom_header {
 	font-family: 'Sofia';font-size: 33px;
+}
+.custom_header_small {
+	font-family: 'Sofia';font-size: 27px;
 }
 .custom_heading {
 	/*font-family: 'Alegreya Sans SC';font-size: 50px;*/

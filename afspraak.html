@@ -46,11 +46,11 @@
 	</div>	
 	<div class="container" id="afspraken_container">
 		<!-- Terugbetaling -->
-		<h1 class="brown_text custom_header top-buffer" align="left">Een afspraak maken</h1>
+		<h1 class="brown_text custom_header top-buffer no-bottom-buffer" align="left">Een afspraak maken</h1>
 		<br>
 		<div class="row brown_text top-buffer-10" id="kalender">
 				<div class="hello-week col-md-5">
-					<h2 class="custom_header" align="left" style="white-space:nowrap;">Kies een datum:
+					<h2 class="custom_header_small" align="left" style="white-space:nowrap;">Kies een datum:
 					<button class="controle_button orange_text font_Khula bold_text" style="white-space:nowrap; margin-left:10px" onclick="vrijeAfspraak()">Eerst mogelijke afspraak</button></h2>
 					
 					<div class="hello-week__header">
@@ -64,15 +64,15 @@
 				<div class="custom-hello-week col-md-3">
 					<div class="radio" style="white-space:nowrap overflow:hidden">
 						<ul style="padding-left: 0px !important">
-						<li><a class="custom_header brown_text top-buffer-35" align="left">Consultatie: </a></li>
+						<li><a class="custom_header_small brown_text top-buffer-35" align="left">Consultatie: </a></li>
 						<li><label class="radio-inline orange_text font_Khula bold_text"><input type="radio" name="optradio" checked="checked" value="start"> Eerste consultatie</label></li>
 						<li><label class="radio-inline orange_text font_Khula bold_text"><input type="radio" name="optradio" value="opvolg"> Opvolgconsultatie</label></li>
 					</div>
-					<h2 class="custom_header" align="left">Kies een tijdstip:</h2> 
+					<h2 class="custom_header_small" align="left">Kies een tijdstip:</h2> 
 					<ul class="available-hours" id="timeList" style="padding-left: 20px !important"><table>*zoeken*</tr></table> 
 				</div>	
 				<div class="custom-hello-week col-md-4" style="padding-left: 20px !important">
-					<h2 class="custom_header" align="left">Persoonlijke gegevens:</h2> 
+					<h2 class="custom_header_small" align="left">Persoonlijke gegevens:</h2> 
 					<a class="orange_text font_Khula bold_text">Voor & achternaam: </a>*<br>
 					<input id="name" type="text" name="naam" class="input_box">
 					<br>
@@ -83,7 +83,7 @@
 					<input id="phone" type="text" name="phone" class="input_box">
 					<br>
 					<a class="orange_text font_Khula bold_text">Opmerkingen of vragen:</a><br>
-					<TEXTAREA id="remark" name="opmerkingen" rows="5" class="input_box_large "></TEXTAREA>
+					<TEXTAREA id="remark" name="opmerkingen" rows="5" class="input_box_large " placeholder="Gelieve kort te vermelden welk voedingsadvies je wenst"></TEXTAREA>
 					<br>
 					<ul class="left">
 					<li><button class="controle_button orange_text font_Khula" onclick="bevestig()">Bevestig</button><br></li>
