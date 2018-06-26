@@ -124,7 +124,13 @@
 					remove_database_records($date,$time,$type);
 					//send mail
 					send_email($date,$time,$name,$email,$phone,$remark,$type);
-					
+					$bericht = 
+					"<div class=\"row top-buffer brown_text\">"
+						."<div class=\"col-md-6\">"
+							."<img src=\"/assets/bord.jpg\"style=\"width:100%\">"
+						."</div><div class=\"col-md-6\">"
+						."<h1 class=\"custom_header\" brown_text\" align=\"left\">Bedankt voor het maken van de afspraak!</h1>"
+					."</div>"
 			}
 			print $bericht;
 	}
