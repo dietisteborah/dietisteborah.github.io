@@ -212,7 +212,7 @@
 			$sql = "DELETE FROM afspraken WHERE date = \"".$date."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime < \"".date("H:i:s",strtotime($time)+(90*60))."\"";
 			if (mysqli_query($link, $sql)) {
 				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."else-start-Record deleted successfully".$sql.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				error_log($date."--"."else-start-Record deleted successfully".$sql."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			} else {
 				$date = date('d.m.Y h:i:s'); 
 				error_log($date."--"."else-start".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
