@@ -46,12 +46,12 @@
 	</div>	
 	<div class="container" id="afspraken_container">
 		<!-- Terugbetaling -->
-		<h1 class="brown_text custom_header top-buffer-35" align="left">Online afspraak maken</h1>
+		<h1 class="brown_text custom_header top-buffer" align="left">Een afspraak maken</h1>
 		<br>
 		<div class="row brown_text top-buffer-10" id="kalender">
 				<div class="hello-week col-md-5">
 					<h2 class="custom_header" align="left" style="white-space:nowrap;">Kies een datum:
-					<button class="controle_button orange_text font_Khula bold_text" style="white-space:nowrap; margin-left:10px" onclick="vrijeAfspraak()">Eerste vrije dag.</button></h2>
+					<button class="controle_button orange_text font_Khula bold_text" style="white-space:nowrap; margin-left:10px" onclick="vrijeAfspraak()">Eerst mogelijke afspraak</button></h2>
 					
 					<div class="hello-week__header">
 						<button class="hello-week__prev controle_button orange_text font_Khula bold_text">Vorige</button>
@@ -134,7 +134,7 @@
 				var node = '';		
 				var rowcounter = 0;
 				if(list.length==1){
-					node = node + '<td><a class=\'brown_text\'>' + "Geen tijdstippen vrij op deze datum." + '</a></td>';
+					node = node + '<td><a class=\'brown_text\'>' + "Geen vrije afspraken op deze datum." + '</a></td>';
 				}
 				else{
 					list.forEach(function(entry){
@@ -174,7 +174,7 @@
 			var node = '';		
 			var rowcounter = 0;
 			if(list.length==1){
-				node = node + '<td><a class=\'brown_text\'>' + "Geen tijdstippen vrij op deze datum." + '</a></td>';
+				node = node + '<td><a class=\'brown_text\'>' + "Geen afspraken beschikbaar op deze datum." + '</a></td>';
 			}
 			else{
 				list.forEach(function(entry){
@@ -337,7 +337,7 @@
 			else{
 				availablehours.innerHTML = '';
 				var li = document.createElement('li');
-				li.innerHTML = "Geen vrije afspraak. Gelieve me te contacteren op: <br>  +32 485 36 04 09 <br>  of <br> dietiste.borah@gmail.com.";
+				li.innerHTML = "Momenteel geen afspraken beschikbaar. Gelieve me te contacteren op: <br>  +32 485 36 04 09 <br>  of <br> dietiste.borah@gmail.com.";
 				availablehours.appendChild(li);
 			}
 		});		
