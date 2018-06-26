@@ -216,6 +216,6 @@ hr.style18 {
 }
 /* padding small */
 .padding_small {
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
 }
