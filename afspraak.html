@@ -48,7 +48,7 @@
 		<!-- Terugbetaling -->
 		<h1 class="brown_text custom_header top-buffer-35" align="left">Online afspraak maken</h1>
 		<br>
-		<div class="row brown_text top-buffer-10">
+		<div class="row brown_text top-buffer-10" id="kalender">
 				<div class="hello-week col-md-5">
 					<h2 class="custom_header" align="left" style="white-space:nowrap;">Kies een datum:
 					<button class="controle_button orange_text font_Khula bold_text" style="white-space:nowrap; margin-left:10px" onclick="vrijeAfspraak()">Eerste vrije dag.</button></h2>
@@ -220,8 +220,8 @@
 						  'type' : appointment_Type};
 				$.post(phpfile, data, function (response) {
 					//window.location = "http://www.borahvandoorslaer.be/bevestiging.html";
-					while (document.getElementById("afspraken_container").firstChild) {
-						document.getElementById("afspraken_container").removeChild(document.getElementById("afspraken_container").firstChild);
+					while (document.getElementById("kalender").firstChild) {
+						document.getElementById("kalender").removeChild(document.getElementById("kalender").firstChild);
 					}
 					$('afspraken_container').html("<div class=\"row top-buffer brown_text\"><div class=\"col-md-6\"><img src=\"/assets/bord.jpg\"style=\"width:100%\"></div><div class=\"col-md-6\"><h1 class=\"custom_header\" brown_text\" align=\"left\">Bedankt voor het maken van de afspraak!</h1></div></div>");
 					
