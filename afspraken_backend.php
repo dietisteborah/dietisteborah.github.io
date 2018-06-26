@@ -126,10 +126,7 @@
 					send_email($date,$time,$name,$email,$phone,$remark,$type);
 					$bericht = 
 					"<div class=\"row top-buffer brown_text\">"
-						."<div class=\"col-md-6\">"
-							."<img src=\"/assets/bord.jpg\"style=\"width:100%\">"
-						."</div><div class=\"col-md-6\">"
-						."<h1 class=\"custom_header\" brown_text\" align=\"left\">Bedankt voor het maken van een afspraak op ".$date." om ".$time."!</h1>"
+						."<h1 class=\"font_Khula\" brown_text\" align=\"left\">Bedankt voor het maken van een afspraak op <a class=\"orange_text bold_text\">".$date."</a> om <a class=\"orange_text bold_text\">".$time."</a>!</h1>"
 					."</div>";
 			}
 			print $bericht;
@@ -231,9 +228,6 @@
 		$string = str_replace(array("\r", "\n"), '', $string);
 		$link = mysqli_connect("localhost", "borahv1q", $string , "borahv1q_Agenda");
 		if (!$link) {
-			echo "Error: Unable to connect to MySQL." . PHP_EOL;
-			echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-			echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
 			$errordate = date('d.m.Y h:i:s'); 
 			error_log($errordate."--"."Error: Unable to connect to MySQL." . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			error_log($errordate."--"."Debugging errno: " . mysqli_connect_errno() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
@@ -252,7 +246,6 @@
 				$row = mysqli_fetch_assoc($result);
 				echo $row["date"];
 			} else {
-				echo "Error";
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."freeAppointment-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
@@ -265,7 +258,6 @@
 				$row = mysqli_fetch_assoc($result);
 				echo $row["date"];
 			} else {
-				echo "Error";
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."freeAppointment-else".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
@@ -299,10 +291,10 @@
 		$service = new Google_Service_Gmail($client);
 
 		if($type=="opvolg"){
-			$strMailContent = 'Beste '. $name .'<br/><br/>hierbij bevestig ik jouw opvolgconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
+			$strMailContent = 'Beste '. $name .'<br/><br/>hierbij bevestig ik jouw opvolgconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/>Graag een seintje indien u niet aanwezig kan zijn op deze afspraak.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
 		}
 		else{
-			$strMailContent = 'Beste '. $name .'<br/><br/>hierbij bevestig ik jouw startconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
+			$strMailContent = 'Beste '. $name .',<br/><br/>hierbij bevestig ik jouw startconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/>Graag een seintje indien u niet aanwezig kan zijn op deze afspraak.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
 		}
 		$strMailTextVersion = strip_tags($strMailContent, '');
 
