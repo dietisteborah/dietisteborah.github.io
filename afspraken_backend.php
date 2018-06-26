@@ -104,17 +104,17 @@
 			}
 			if($email == ""){
 				$complete = false;
-				$bericht = $bericht + "Gelieve jouw e-mailadres in te vullen.\n";
+				$bericht = $bericht . "Gelieve jouw e-mailadres in te vullen.\n";
 			}
 			else{
 				if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-					$bericht = $bericht + "Gelieve een geldig e-mailadres in te vullen.\n";
+					$bericht = $bericht . "Gelieve een geldig e-mailadres in te vullen.\n";
 					$complete = false;
 				}
 			}
 			if($phone == ""){
 				$complete = false;
-				$bericht = $bericht + "Gelieve jouw telefoonnummer in te vullen.\n";
+				$bericht = $bericht . "Gelieve jouw telefoonnummer in te vullen.\n";
 			}
 			//time is checked in javascript code
 			if($complete){
