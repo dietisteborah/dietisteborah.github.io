@@ -125,8 +125,8 @@
 					//send mail
 					send_email($date,$time,$name,$email,$phone,$remark,$type);
 					$bericht = 
-					"<div class=\"row top-buffer brown_text\">"
-						."<h1 class=\"font_Khula\" brown_text\" align=\"left\">Bedankt voor het maken van een afspraak op <a class=\"orange_text bold_text\">".$date."</a> om <a class=\"orange_text bold_text\">".$time."</a>!</h1>"
+					"<div class=\"col-md-12 top-buffer brown_text\">"
+						."<h1 class=\"font_Khula\" brown_text\" align=\"left\">Bedankt voor het maken van een afspraak op <a class=\"orange_text bold_text\">".$date."</a> om <a class=\"orange_text bold_text\">".$time."</a>.</h1>"
 					."</div>";
 			}
 			print $bericht;
@@ -291,10 +291,10 @@
 		$service = new Google_Service_Gmail($client);
 
 		if($type=="opvolg"){
-			$strMailContent = 'Beste '. $name .'<br/><br/>hierbij bevestig ik jouw opvolgconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/>Graag een seintje indien u niet aanwezig kan zijn op deze afspraak.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
+			$strMailContent = 'Beste '. $name .'<br/><br/>hierbij bevestig ik jouw opvolgconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/>Gelieve een seintje te geven indien u niet aanwezig kan zijn op deze afspraak.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
 		}
 		else{
-			$strMailContent = 'Beste '. $name .',<br/><br/>hierbij bevestig ik jouw startconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/>Graag een seintje indien u niet aanwezig kan zijn op deze afspraak.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
+			$strMailContent = 'Beste '. $name .',<br/><br/>hierbij bevestig ik jouw startconsultatie op '.$date. ' om '.$time. '.<br/><br/>Volgende opmerkingen waren toegevoegd:<br/>'.$remark.'<br/>GGelieve een seintje te geven indien u niet aanwezig kan zijn op deze afspraak.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
 		}
 		$strMailTextVersion = strip_tags($strMailContent, '');
 
