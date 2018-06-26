@@ -69,7 +69,7 @@ ul {
 	font-family: 'Sofia';font-size: 33px;
 }
 .custom_header_small {
-	font-family: 'Sofia';font-size: 27px;
+	font-family: 'Sofia';font-size: 29px;
 }
 .custom_heading {
 	/*font-family: 'Alegreya Sans SC';font-size: 50px;*/
@@ -213,4 +213,9 @@ hr.style18 {
 /* bevestig knop */
 .left{
 	padding-left: 0px;
+}
+/* padding small */
+.padding_small {
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
