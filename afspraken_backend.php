@@ -33,8 +33,8 @@
 			$accessToken = json_decode(file_get_contents($credentialsPath), true);
 		} else {
 			printf("Er is een probleem met de kalender. \n Gelieve een mail te sturen naar dietiste.borah@gmail.com");
-			$date = date('d.m.Y h:i:s'); 
-			error_log($date."--"."getClient - Issue with credentialspath.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");	
+			$errordate = date('d.m.Y h:i:s'); 
+			error_log($errordate."--"."getClient - Issue with credentialspath.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");	
 		}
 		$client->setAccessToken($accessToken);
 
@@ -69,10 +69,10 @@
 				echo "Error: Unable to connect to MySQL." . PHP_EOL;
 				echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
 				echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."Error: Unable to connect to MySQL." . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
-				error_log($date."--"."Debugging errno: " . mysqli_connect_errno() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
-				error_log($date."--"."Debugging error: " . mysqli_connect_error() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."Error: Unable to connect to MySQL." . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				error_log($errordate."--"."Debugging errno: " . mysqli_connect_errno() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				error_log($errordate."--"."Debugging error: " . mysqli_connect_error() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 				exit;
 			}
 			//echo "Connect to mysql.\n" . PHP_EOL;
@@ -162,7 +162,7 @@
 		}
 		return $recipient;
 	}
-	function remove_database_records($date,$time,$type){
+	function remove_database_records($appdate,$time,$type){
 		//Create database connection
 		$string = file_get_contents("/home/borahv1q/borah-secrets/pw.txt");
 		$string = str_replace(array("\r", "\n"), '', $string);
@@ -171,51 +171,51 @@
 			echo "Error: Unable to connect to MySQL." . PHP_EOL;
 			echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
 			echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-			$date = date('d.m.Y h:i:s'); 
-			error_log($date."--"."Error: Unable to connect to MySQL." . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
-			error_log($date."--"."Debugging errno: " . mysqli_connect_errno() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
-			error_log($date."--"."Debugging error: " . mysqli_connect_error() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			$errordate = date('d.m.Y h:i:s'); 
+			error_log($errordate."--"."Error: Unable to connect to MySQL." . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			error_log($errordate."--"."Debugging errno: " . mysqli_connect_errno() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			error_log($errordate."--"."Debugging error: " . mysqli_connect_error() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			exit;
 		}
 		//echo "Connect to mysql.\n" . PHP_EOL;		
 		if($type=="opvolg"){ //consultatie 30min
 			//verwijder opvolg consultatie
-			$sql = "DELETE FROM afspraken WHERE date = \"".$date."\" && opvolg = 1 && startTime = \"".date("H:i:s",strtotime($time))."\"";
+			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 1 && startTime = \"".date("H:i:s",strtotime($time))."\"";
 			if (mysqli_query($link, $sql)) {
-				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."Opvolg-opvolg-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."Opvolg-opvolg-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			} else {
-				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."Opvolg-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."Opvolg-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 			//verwijder startconsultatie
-			$sql = "DELETE FROM afspraken WHERE date = \"".$date."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime =< \"".date("H:i:s",strtotime($time))."\""; 
+			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime =< \"".date("H:i:s",strtotime($time))."\""; 
 			if (mysqli_query($link, $sql)) {
-				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."Opvolg-start-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."Opvolg-start-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			} else {
-				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."Opvolg-start".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."Opvolg-start".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 		}
 		else{
 			//verwijder opvolg consultatie
-			$sql = "DELETE FROM afspraken WHERE date = \"".$date."\" && opvolg = 1 && startTime >= \"".date("H:i:s",strtotime($time))."\" && startTime < \"".date("H:i:s",strtotime($time)+(90*60))."\"";
+			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 1 && startTime >= \"".date("H:i:s",strtotime($time))."\" && startTime < \"".date("H:i:s",strtotime($time)+(90*60))."\"";
 			if (mysqli_query($link, $sql)) {
-				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."else-opvolg-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."else-opvolg-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			} else {
 				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."else-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				error_log($errordate."--"."else-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 			//verwijder startconsultatie
-			$sql = "DELETE FROM afspraken WHERE date = \"".$date."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime < \"".date("H:i:s",strtotime($time)+(90*60))."\"";
+			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime < \"".date("H:i:s",strtotime($time)+(90*60))."\"";
 			if (mysqli_query($link, $sql)) {
-				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."else-start-Record deleted successfully".$sql."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."else-start-Record deleted successfully".$sql."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			} else {
-				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."else-start".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."else-start".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 		}		
 	}
@@ -228,10 +228,10 @@
 			echo "Error: Unable to connect to MySQL." . PHP_EOL;
 			echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
 			echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-			$date = date('d.m.Y h:i:s'); 
-			error_log($date."--"."Error: Unable to connect to MySQL." . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
-			error_log($date."--"."Debugging errno: " . mysqli_connect_errno() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
-			error_log($date."--"."Debugging error: " . mysqli_connect_error() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			$errordate = date('d.m.Y h:i:s'); 
+			error_log($errordate."--"."Error: Unable to connect to MySQL." . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			error_log($errordate."--"."Debugging errno: " . mysqli_connect_errno() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			error_log($errordate."--"."Debugging error: " . mysqli_connect_error() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			exit;
 		}
 		//echo "Connect to mysql.\n" . PHP_EOL;	
@@ -247,8 +247,8 @@
 				echo $row["date"];
 			} else {
 				echo "Error";
-				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."freeAppointment-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."freeAppointment-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 		}
 		else{
@@ -260,8 +260,8 @@
 				echo $row["date"];
 			} else {
 				echo "Error";
-				$date = date('d.m.Y h:i:s'); 
-				error_log($date."--"."freeAppointment-else".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."freeAppointment-else".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 		}			
 	}
@@ -279,8 +279,8 @@
 			$accessToken = json_decode(file_get_contents($credentialsPath), true);
 		} else {
 			printf("Er is een probleem met de mailing functionaliteit. \n Gelieve een mail te sturen naar dietiste.borah@gmail.com");
-			$date = date('d.m.Y h:i:s'); 
-			error_log($date."--"."mail-issue in send_email.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			$errordate = date('d.m.Y h:i:s'); 
+			error_log($errordate."--"."mail-issue in send_email.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 		}
 		$client->setAccessToken($accessToken);
 
@@ -342,8 +342,8 @@
 			print('Hartelijk dank voor het maken van een afspraak op '.$date.' om '.$time);
 
 		} catch (Exception $e) {
-			$date = date('d.m.Y h:i:s'); 
-			error_log($date."--"."mail-issue:".$e->getMessage()."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			$errordate = date('d.m.Y h:i:s'); 
+			error_log($errordate."--"."mail-issue:".$e->getMessage()."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 		}
 
 	}
