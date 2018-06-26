@@ -189,13 +189,13 @@
 				error_log($errordate."--"."Opvolg-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 			//verwijder startconsultatie
-			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime =< \"".date("H:i:s",strtotime($time))."\""; 
+			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime < \"".date("H:i:s",strtotime($time)+(30*60))."\""; 
 			if (mysqli_query($link, $sql)) {
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."Opvolg-start-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			} else {
 				$errordate = date('d.m.Y h:i:s'); 
-				error_log($errordate."--"."Opvolg-start".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				error_log($errordate."--"."Opvolg-start".mysqli_error($link)."SQL query: ".$sql."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 		}
 		else{
@@ -212,7 +212,7 @@
 			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(90*60))."\" && startTime < \"".date("H:i:s",strtotime($time)+(90*60))."\"";
 			if (mysqli_query($link, $sql)) {
 				$errordate = date('d.m.Y h:i:s'); 
-				error_log($errordate."--"."else-start-Record deleted successfully".$sql."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				error_log($errordate."--"."else-start-Record deleted successfully\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			} else {
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."else-start".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
