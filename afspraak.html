@@ -219,14 +219,13 @@
 						  'remark' : remark,
 						  'type' : appointment_Type};
 				$.post(phpfile, data, function (response) {
-					//window.location = "http://www.borahvandoorslaer.be/bevestiging.html";
-					while (document.getElementById("kalender").firstChild) {
-						document.getElementById("kalender").removeChild(document.getElementById("kalender").firstChild);
-					}
 					if(response.includes("Gelieve")){
 						alert(response);
 					}
 					else{
+						while (document.getElementById("kalender").firstChild) {
+							document.getElementById("kalender").removeChild(document.getElementById("kalender").firstChild);
+						}
 						$('#afspraken_container').html(response);
 					}
 				});		
