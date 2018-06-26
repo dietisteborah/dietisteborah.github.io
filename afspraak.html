@@ -44,7 +44,7 @@
 <body>
 	<div id="header">
 	</div>	
-	<div class="container">
+	<div class="container" id="afspraken_container">
 		<!-- Terugbetaling -->
 		<h1 class="brown_text custom_header top-buffer-35" align="left">Online afspraak maken</h1>
 		<br>
@@ -154,7 +154,15 @@
 						}					
 					});
 				}
-				$('#timeList').html(node);
+				$('#timeList').html(
+				."<div class=\"row top-buffer brown_text\">"
+						."<div class=\"col-md-6\">"
+								."<img src=\"/assets/bord.jpg\"style=\"width:100%\">"
+						."</div>"
+						."<div class=\"col-md-6\">"
+							."<h1 class=\"custom_header\" brown_text\" align=\"left\">Bedankt voor het maken van de afspraak!</h1>"
+						."</div>"
+				."</div>");
 			});
 
 		}
@@ -219,7 +227,11 @@
 						  'remark' : remark,
 						  'type' : appointment_Type};
 				$.post(phpfile, data, function (response) {
-					window.location = "http://www.borahvandoorslaer.be/bevestiging.html";
+					//window.location = "http://www.borahvandoorslaer.be/bevestiging.html";
+					while (document.getElementById("timeList").firstChild) {
+						document.getElementById("timeList").removeChild(document.getElementById("timeList").firstChild);
+					}
+					$('afspraken_container').html(node);
 				});		
 			}
 			updateInfo(); //TODO
