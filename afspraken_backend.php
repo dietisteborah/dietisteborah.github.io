@@ -374,8 +374,8 @@
 			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-%\" && date > \"".$today->format('Y-m-d')."\" && opvolg = 1";
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
-				$row = mysqli_fetch_assoc($result);
-				echo $row["date"];
+				//$row = mysqli_fetch_assoc($result);
+				echo $result;
 			} else {
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."highlightfreedays-opvolg".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
@@ -386,8 +386,8 @@
 			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-%\" && date > \"".$today->format('Y-m-d')."\" && opvolg = 0";
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
-				$row = mysqli_fetch_assoc($result);
-				echo $row["date"];
+				//$row = mysqli_fetch_assoc($result);
+				echo $result;
 			} else {
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."highlightfreedays-else".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
