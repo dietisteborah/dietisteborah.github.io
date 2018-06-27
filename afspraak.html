@@ -294,7 +294,7 @@
 		minDate: false,
 		maxDate: false,
         onLoad: loadToday,
-        onChange: highlightfreedays(document.getElementById('week_year').innerHTML),
+        onChange: () => { /** callback function */ },
         onSelect: updateInfo,
 		onClear: () => { /** callback function */ }
 	});
