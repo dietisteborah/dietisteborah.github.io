@@ -352,6 +352,8 @@
 		//echo $date[0]; // month
 		//echo $date[1]; // year
 		$month = getMonthNumber($date[0]);
+		$errordate = date('d.m.Y h:i:s'); 
+		error_log($errordate."--"."highlightfreedays-opvolg".$month_year."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 		$year = $date[1];
 
 		//Create database connection
@@ -371,26 +373,26 @@
 
 		if($type=="opvolg"){
 			//find the first day with an "opvolg" appointment free
-			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-% && date > \"".$today->format('Y-m-d')."\" && opvolg = 1";
+			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-%\" && date > \"".$today->format('Y-m-d')."\" && opvolg = 1";
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
 				$row = mysqli_fetch_assoc($result);
 				echo $row["date"];
 			} else {
 				$errordate = date('d.m.Y h:i:s'); 
-				error_log($errordate."--"."freeAppointment-opvolg".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				error_log($errordate."--"."highlightfreedays-opvolg".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 		}
 		else{
 			//find the first day with a "start" appointment free
-			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-% && date > \"".$today->format('Y-m-d')."\" && opvolg = 0";
+			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-%\" && date > \"".$today->format('Y-m-d')."\" && opvolg = 0";
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
 				$row = mysqli_fetch_assoc($result);
 				echo $row["date"];
 			} else {
 				$errordate = date('d.m.Y h:i:s'); 
-				error_log($errordate."--"."freeAppointment-else".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				error_log($errordate."--"."highlightfreedays-else".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 		}			
 	}
