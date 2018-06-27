@@ -437,5 +437,6 @@
 			default:
 				break;		
 		return $month;
+		}
 	}
 ?>
