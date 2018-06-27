@@ -397,7 +397,7 @@
 	function getMonthNumber($monthstr){
 		$month="";
 		//get number of month
-		switch ($monthstr]){
+		switch ($monthstr){
 			case "Januari":
 				$month="01";
 				break;
