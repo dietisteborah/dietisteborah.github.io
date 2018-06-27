@@ -60,6 +60,7 @@
 					</div>
 					<div class="hello-week__week"></div>
 					<div class="hello-week__month"></div>
+					<a class="small_note brown_text font_Khula">*Data in het <b>vet</b> zijn vrij.</a>
 				</div>	
 				<div class="custom-hello-week col-md-3">
 					<div class="radio" style="white-space:nowrap overflow:hidden">
@@ -266,7 +267,6 @@
 				  'month_year' : document.getElementById('week_year').innerHTML,
 				  'type' : appointment_Type};
 		$.post(phpfile, data, function (response) {
-			window.alert(response);
 			if(response==""){
 				//do nothing
 			}
