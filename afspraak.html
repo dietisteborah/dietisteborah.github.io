@@ -104,8 +104,10 @@
 		$("#footer").load("footer.html");
 	});
 	$(document).ready(function(){
-		alert("hallo");
-		highlightfreedays(document.getElementById('week_year').innerHTML);
+		setTimeout(function(){
+			highlightfreedays(document.getElementById('week_year').innerHTML);
+		}, 5000);
+		
 	});	
 	//update functie
 	const availablehours = document.querySelector('.available-hours');
