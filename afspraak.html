@@ -104,9 +104,9 @@
 	});
 	$(document).ready(function(){
 		//window.alert(document.getElementById('week_year').innerHTML);
-		var $monthInfo = $('.hello-week__label');
+		//var $monthInfo = $('.hello-week__label');
 		//window.alert($monthInfo.innerHTML);
-		$monthInfo.bind("DOMSubtreeModified", highlightfreedays(document.getElementById('week_year').innerHTML));
+		//$monthInfo.bind("DOMSubtreeModified", highlightfreedays(document.getElementById('week_year').innerHTML));
 	});	
 	//update functie
 	const availablehours = document.querySelector('.available-hours');
@@ -294,7 +294,7 @@
 		minDate: false,
 		maxDate: false,
         onLoad: loadToday,
-        onChange: () => { /** callback function */ },
+        onChange: highlightfreedays(document.getElementById('week_year').innerHTML),
         onSelect: updateInfo,
 		onClear: () => { /** callback function */ }
 	});
