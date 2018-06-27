@@ -104,9 +104,8 @@
 	});
 	$(document).ready(function(){
 		//window.alert(document.getElementById('week_year').innerHTML);
-		//var $monthInfo = $('.hello-week__label');
-		//window.alert($monthInfo.innerHTML);
-		//$monthInfo.bind("DOMSubtreeModified", highlightfreedays(document.getElementById('week_year').innerHTML));
+		var $monthInfo = document.getElementById('week_year');
+		$monthInfo.bind("DOMSubtreeModified", highlightfreedays($monthInfo.innerHTML));
 	});	
 	//update functie
 	const availablehours = document.querySelector('.available-hours');
