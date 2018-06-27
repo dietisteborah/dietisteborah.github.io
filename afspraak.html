@@ -102,7 +102,10 @@
 	$(function(){
 		$("#footer").load("footer.html");
 	});
-	
+	$(document).ready(function(){
+		var $monthInfo = $('.hello-week__label');
+		$monthInfo.bind("DOMSubtreeModified", highlightfreedays($monthInfo.innerHTML));
+	});	
 	//update functie
 	const availablehours = document.querySelector('.available-hours');
 	//global variables
@@ -258,6 +261,17 @@
 			availablehours.appendChild(li);
 		});
 	}
+	function highlightfreedays(var month_year){
+		window.alert(month_year);
+		/*data =  {'action': 'highlightfreedays',
+				  'date' : selected_Day};
+		$.post(phpfile, data, function (response) {
+			availablehours.innerHTML = '';
+			var li = document.createElement('li');
+			li.innerHTML = response;
+			availablehours.appendChild(li);
+		});*/
+	}
 	//hello week init
 	const myCalendar = new HelloWeek({
 		selector: '.hello-week',
@@ -278,7 +292,7 @@
 		minDate: false,
 		maxDate: false,
         onLoad: loadToday,
-        onChange: () => { /** callback function */ },
+        onChange: highlightfreedays,
         onSelect: updateInfo,
 		onClear: () => { /** callback function */ }
 	});
