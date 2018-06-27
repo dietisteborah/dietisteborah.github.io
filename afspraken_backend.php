@@ -378,7 +378,7 @@
 				echo $row["date"];
 			} else {
 				$errordate = date('d.m.Y h:i:s'); 
-				error_log($errordate."--"."freeAppointment-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				error_log($errordate."--"."freeAppointment-opvolg".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 		}
 		else{
@@ -390,7 +390,7 @@
 				echo $row["date"];
 			} else {
 				$errordate = date('d.m.Y h:i:s'); 
-				error_log($errordate."--"."freeAppointment-else".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+				error_log($errordate."--"."freeAppointment-else".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 		}			
 	}
