@@ -374,11 +374,9 @@
 			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-%\" && date > \"".$today->format('Y-m-d')."\" && opvolg = 1";
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
-				//$row = mysqli_fetch_assoc($result);
-				//echo $result;
 				$resultdates = "";
 				while( $row = mysqli_fetch_assoc( $result)){
-					$resultdates = $resultdates.$row.","; // Inside while loop
+					$resultdates = $resultdates.$row["date"].","; // Inside while loop
 				}
 				echo $resultdates;
 			} else {
@@ -391,11 +389,9 @@
 			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-%\" && date > \"".$today->format('Y-m-d')."\" && opvolg = 0";
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
-				//$row = mysqli_fetch_assoc($result);
-				//echo $result;
 				$resultdates = "";
 				while( $row = mysqli_fetch_assoc( $result)){
-					$resultdates = $resultdates.$row.","; // Inside while loop
+					$resultdates = $resultdates.$row["date"].","; // Inside while loop
 				}
 				echo $resultdates;
 			} else {
