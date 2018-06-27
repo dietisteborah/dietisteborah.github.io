@@ -103,10 +103,10 @@
 		$("#footer").load("footer.html");
 	});
 	$(document).ready(function(){
-		window.alert(document.getElementById('week_year').innerHTML);
-		//var $monthInfo = $('.hello-week__label');
+		//window.alert(document.getElementById('week_year').innerHTML);
+		var $monthInfo = $('.hello-week__label');
 		//window.alert($monthInfo.innerHTML);
-		//$monthInfo.bind("DOMSubtreeModified", highlightfreedays($monthInfo.innerHTML));
+		$monthInfo.bind("DOMSubtreeModified", highlightfreedays(document.getElementById('week_year').innerHTML));
 	});	
 	//update functie
 	const availablehours = document.querySelector('.available-hours');
