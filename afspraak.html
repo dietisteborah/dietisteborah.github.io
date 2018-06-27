@@ -104,8 +104,8 @@
 	});
 	$(document).ready(function(){
 		//window.alert(document.getElementById('week_year').innerHTML);
-		var $monthInfo = document.getElementById('week_year');
-		$monthInfo.bind("DOMSubtreeModified", highlightfreedays($monthInfo.innerHTML));
+		//var $monthInfo = document.getElementById('week_year');
+		//$monthInfo.bind("DOMSubtreeModified", highlightfreedays($monthInfo.innerHTML));
 	});	
 	//update functie
 	const availablehours = document.querySelector('.available-hours');
@@ -262,8 +262,8 @@
 			availablehours.appendChild(li);
 		});
 	}
-	function highlightfreedays(month_year){
-		window.alert(month_year);
+	function highlightfreedays(){
+		window.alert(document.getElementById('week_year').innerHTML);
 		/*data =  {'action': 'highlightfreedays',
 				  'date' : selected_Day};
 		$.post(phpfile, data, function (response) {
@@ -293,7 +293,7 @@
 		minDate: false,
 		maxDate: false,
         onLoad: loadToday,
-        onChange: () => { /** callback function */ },
+        onChange: highlightfreedays,
         onSelect: updateInfo,
 		onClear: () => { /** callback function */ }
 	});
