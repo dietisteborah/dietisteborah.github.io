@@ -208,7 +208,7 @@
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."else-opvolg-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			} else {
-				$date = date('d.m.Y h:i:s'); 
+				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."else-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 			//verwijder startconsultatie
@@ -307,7 +307,7 @@
 		$strToMailBcc = 'dietiste.borah@gmail.com';
 		$strSesFromName = 'Diëtiste Borah';
 		$strSesFromEmail = 'dietiste.borah@gmail.com';
-		$strSubject = 'Afspraak Dïetiste Borah op '. $date .' om '. $time;
+		$strSubject = 'Afspraak Dïetiste Borah op '. date("d-m-Y",$date)->format("d-m-Y") .' om '. $time;
 
 		$strRawMessage .= 'To: ' . encodeRecipients($strToMailName . " <" . $strToMail . ">") . "\r\n";
 		$strRawMessage .= 'Bcc: '. encodeRecipients($strToMailNameBcc . " <" . $strToMailBcc . ">") . "\r\n";
