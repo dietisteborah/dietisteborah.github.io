@@ -377,7 +377,7 @@
 				//$row = mysqli_fetch_assoc($result);
 				//echo $result;
 				$resultdates = "";
-				while( $row = mysql_fetch_assoc( $result)){
+				while( $row = mysqli_fetch_assoc( $result)){
 					$resultdates = $resultdates.$row.","; // Inside while loop
 				}
 				echo $resultdates;
@@ -394,7 +394,7 @@
 				//$row = mysqli_fetch_assoc($result);
 				//echo $result;
 				$resultdates = "";
-				while( $row = mysql_fetch_assoc( $result)){
+				while( $row = mysqli_fetch_assoc( $result)){
 					$resultdates = $resultdates.$row.","; // Inside while loop
 				}
 				echo $resultdates;
