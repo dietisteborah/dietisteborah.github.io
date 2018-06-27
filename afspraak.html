@@ -55,7 +55,7 @@
 					
 					<div class="hello-week__header padding_small">
 						<button class="hello-week__prev controle_button orange_text font_Khula bold_text">Vorige</button>
-						<div class="hello-week__label"></div>
+						<div class="hello-week__label" id="week_year"></div>
 						<button class="hello-week__next controle_button orange_text font_Khula bold_text">Volgende</button>
 					</div>
 					<div class="hello-week__week"></div>
@@ -103,9 +103,10 @@
 		$("#footer").load("footer.html");
 	});
 	$(document).ready(function(){
-		var $monthInfo = $('.hello-week__label');
-		window.alert($monthInfo.innerHTML);
-		$monthInfo.bind("DOMSubtreeModified", highlightfreedays($monthInfo.innerHTML));
+		window.alert(document.getElementById('week_year').innerHTML);
+		//var $monthInfo = $('.hello-week__label');
+		//window.alert($monthInfo.innerHTML);
+		//$monthInfo.bind("DOMSubtreeModified", highlightfreedays($monthInfo.innerHTML));
 	});	
 	//update functie
 	const availablehours = document.querySelector('.available-hours');
