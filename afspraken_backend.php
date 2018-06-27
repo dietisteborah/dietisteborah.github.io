@@ -348,7 +348,7 @@
 
 	}
 	function highlightfreedays($month_year,$type) {
-		$month_year = explode(" ", $date);
+		$date = explode(" ", $month_year);
 		//echo $date[0]; // month
 		//echo $date[1]; // year
 		$month = getMonthNumber($date[0]);
@@ -373,7 +373,7 @@
 			//find the first day with an "opvolg" appointment free
 			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-% && date > \"".$today->format('Y-m-d')."\" && opvolg = 1";
 			$result = mysqli_query($link, $sql);
-			if (mysqli_num_rows($result) == 1) {
+			if (mysqli_num_rows($result) > 0) {
 				$row = mysqli_fetch_assoc($result);
 				echo $row["date"];
 			} else {
@@ -385,7 +385,7 @@
 			//find the first day with a "start" appointment free
 			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-% && date > \"".$today->format('Y-m-d')."\" && opvolg = 0";
 			$result = mysqli_query($link, $sql);
-			if (mysqli_num_rows($result) == 1) {
+			if (mysqli_num_rows($result) > 0) {
 				$row = mysqli_fetch_assoc($result);
 				echo $row["date"];
 			} else {
