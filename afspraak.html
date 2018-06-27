@@ -275,10 +275,10 @@
 				var arrayLength = dataArray.length;
 				for (var i = 0; i < arrayLength; i++) {
 					var x = document.getElementsByClassName("hello-week__day");
-					var i;
-					for (i = 0; i < x.length; i++) {
-						if(i==parseInt(dataArray[i].substr(8,2))){
-							x[i-1].classList.add('is_free');
+					var j;
+					for (j = 0; j < x.length; j++) {
+						if(j==parseInt(dataArray[i].substr(8,2))){
+							x[j-1].classList.add('is_free');
 						}
 					}
 				}
