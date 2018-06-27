@@ -126,7 +126,7 @@
 					send_email($date,$time,$name,$email,$phone,$remark,$type);
 					$bericht = 
 					"<div class=\"col-md-12 top-buffer brown_text\">"
-						."<h1 class=\"font_Khula\" brown_text\" align=\"left\">Bedankt voor het maken van een afspraak op <a class=\"orange_text bold_text\">".date("d-M-Y",strtotime($date)."</a> om <a class=\"orange_text bold_text\">".$time."</a>.</h1>"
+						."<h1 class=\"font_Khula\" brown_text\" align=\"left\">Bedankt voor het maken van een afspraak op <a class=\"orange_text bold_text\">".date("d-M-Y",strtotime($date))."</a> om <a class=\"orange_text bold_text\">".$time."</a>.</h1>"
 					."</div>";
 			}
 			print $bericht;
