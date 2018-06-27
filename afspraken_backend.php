@@ -307,7 +307,7 @@
 		$strToMailBcc = 'dietiste.borah@gmail.com';
 		$strSesFromName = 'Diëtiste Borah';
 		$strSesFromEmail = 'dietiste.borah@gmail.com';
-		$strSubject = 'Afspraak Dïetiste Borah op '. date("d-m-Y",$date)->format("d-m-Y") .' om '. $time;
+		$strSubject = 'Afspraak Dïetiste Borah op '. $date->format("d-m-Y") .' om '. $time;
 
 		$strRawMessage .= 'To: ' . encodeRecipients($strToMailName . " <" . $strToMail . ">") . "\r\n";
 		$strRawMessage .= 'Bcc: '. encodeRecipients($strToMailNameBcc . " <" . $strToMailBcc . ">") . "\r\n";
