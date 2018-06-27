@@ -375,7 +375,12 @@
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
 				//$row = mysqli_fetch_assoc($result);
-				echo $result;
+				//echo $result;
+				$resultdates = "";
+				while( $row = mysql_fetch_assoc( $result)){
+					$resultdates = $resultdates.$row.","; // Inside while loop
+				}
+				echo $resultdates;
 			} else {
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."highlightfreedays-opvolg".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
@@ -387,7 +392,12 @@
 			$result = mysqli_query($link, $sql);
 			if (mysqli_num_rows($result) > 0) {
 				//$row = mysqli_fetch_assoc($result);
-				echo $result;
+				//echo $result;
+				$resultdates = "";
+				while( $row = mysql_fetch_assoc( $result)){
+					$resultdates = $resultdates.$row.","; // Inside while loop
+				}
+				echo $resultdates;
 			} else {
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."highlightfreedays-else".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
