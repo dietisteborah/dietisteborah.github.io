@@ -103,9 +103,7 @@
 		$("#footer").load("footer.html");
 	});
 	$(document).ready(function(){
-		//window.alert(document.getElementById('week_year').innerHTML);
-		//var $monthInfo = document.getElementById('week_year');
-		//$monthInfo.bind("DOMSubtreeModified", highlightfreedays($monthInfo.innerHTML));
+		highlightfreedays(document.getElementById('week_year').innerHTML);
 	});	
 	//update functie
 	const availablehours = document.querySelector('.available-hours');
@@ -263,15 +261,17 @@
 		});
 	}
 	function highlightfreedays(){
-		window.alert(document.getElementById('week_year').innerHTML);
-		/*data =  {'action': 'highlightfreedays',
-				  'date' : selected_Day};
+		//window.alert(document.getElementById('week_year').innerHTML);
+		data =  {'action': 'highlightfreedays',
+				  'month_year' : document.getElementById('week_year').innerHTML,
+				  'type' : appointment_Type};
 		$.post(phpfile, data, function (response) {
-			availablehours.innerHTML = '';
-			var li = document.createElement('li');
-			li.innerHTML = response;
-			availablehours.appendChild(li);
-		});*/
+			window.alert(response);
+			//availablehours.innerHTML = '';
+			//var li = document.createElement('li');
+			//li.innerHTML = response;
+			//availablehours.appendChild(li);
+		});
 	}
 	//hello week init
 	const myCalendar = new HelloWeek({

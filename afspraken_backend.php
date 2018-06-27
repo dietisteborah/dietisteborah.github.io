@@ -16,6 +16,8 @@
 			case 'freeAppointment':
 				freeAppointment($_POST['type']);
 				break;
+			case 'highlightfreedays':
+				highlightfreedays($_POST['month_year'],$_POST['type']);
 				}
 	}
 
@@ -344,5 +346,96 @@
 			error_log($errordate."--"."mail-issue:".$e->getMessage()."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 		}
 
+	}
+	function highlightfreedays($month_year,$type) {
+		$month_year = explode(" ", $date);
+		//echo $date[0]; // month
+		//echo $date[1]; // year
+		$month = getMonthNumber($date[0]);
+		$year = $date[1];
+
+		//Create database connection
+		$string = file_get_contents("/home/borahv1q/borah-secrets/pw.txt");
+		$string = str_replace(array("\r", "\n"), '', $string);
+		$link = mysqli_connect("localhost", "borahv1q", $string , "borahv1q_Agenda");
+		if (!$link) {
+			$errordate = date('d.m.Y h:i:s'); 
+			error_log($errordate."--"."Error: Unable to connect to MySQL." . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			error_log($errordate."--"."Debugging errno: " . mysqli_connect_errno() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			error_log($errordate."--"."Debugging error: " . mysqli_connect_error() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			exit;
+		}
+		//echo "Connect to mysql.\n" . PHP_EOL;	
+		
+		$today = new DateTime(); // This object represents current date/time
+
+		if($type=="opvolg"){
+			//find the first day with an "opvolg" appointment free
+			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-% && date > \"".$today->format('Y-m-d')."\" && opvolg = 1";
+			$result = mysqli_query($link, $sql);
+			if (mysqli_num_rows($result) == 1) {
+				$row = mysqli_fetch_assoc($result);
+				echo $row["date"];
+			} else {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."freeAppointment-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			}
+		}
+		else{
+			//find the first day with a "start" appointment free
+			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-% && date > \"".$today->format('Y-m-d')."\" && opvolg = 0";
+			$result = mysqli_query($link, $sql);
+			if (mysqli_num_rows($result) == 1) {
+				$row = mysqli_fetch_assoc($result);
+				echo $row["date"];
+			} else {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."freeAppointment-else".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			}
+		}			
+	}
+	function getMonthNumber($monthstr){
+		$month="";
+		//get number of month
+		switch ($monthstr]){
+			case "Januari":
+				$month="01";
+				break;
+			case "Februari":
+				$month="02";
+				break;
+			case "Maart":
+				$month="03";
+				break;
+			case "April":
+				$month="04";
+				break;
+			case "Mei":
+				$month="05";
+				break;
+			case "Juni":
+				$month="06";
+				break;
+			case "Juli":
+				$month="07";
+				break;
+			case "Augustus":
+				$month="08";
+				break;
+			case "September":
+				$month="09";
+				break;
+			case "Oktober":
+				$month="10";
+				break;
+			case "November":
+				$month="11";
+				break;
+			case "December":
+				$month="12";
+				break;
+			default:
+				break;		
+		return $month;
 	}
 ?>
