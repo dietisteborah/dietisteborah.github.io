@@ -219,3 +219,8 @@ hr.style18 {
 	padding-top: 10px !important;
 	padding-bottom: 10px !important;
 }
+
+/* date is free */
+.is_free {
+	font-weight: bold !important;
+}

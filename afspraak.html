@@ -267,10 +267,22 @@
 				  'type' : appointment_Type};
 		$.post(phpfile, data, function (response) {
 			window.alert(response);
-			//availablehours.innerHTML = '';
-			//var li = document.createElement('li');
-			//li.innerHTML = response;
-			//availablehours.appendChild(li);
+			if(response==""){
+				//do nothing
+			}
+			else{
+				var dataArray = response.split(",");
+				var arrayLength = dataArray.length;
+				for (var i = 0; i < arrayLength; i++) {
+					var x = document.getElementsByClassName("hello-week__day");
+					var i;
+					for (i = 0; i < x.length; i++) {
+						if(i==parseInt(dataArray[i].substr(8,2))){
+							x[i-1].classList.add('is_free');
+						}
+					}
+				}
+			}				
 		});
 	}
 	//hello week init
@@ -302,7 +314,7 @@
 		myCalendar.today();
 		selected_Day = myCalendar.getToday('YYYY-MM-DD');
 		
-		//var firstfreeday = "2018-07-01";//functie die vrije dag geeft vanuit PHP database
+		//functie die vrije dag geeft vanuit PHP database
 		var firstfreeday = "Error";
 		//call php function
 		var phpfile = 'afspraken_backend.php';	
