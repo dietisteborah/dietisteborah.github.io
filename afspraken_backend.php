@@ -352,8 +352,6 @@
 		//echo $date[0]; // month
 		//echo $date[1]; // year
 		$month = getMonthNumber($date[0]);
-		$errordate = date('d.m.Y h:i:s'); 
-		error_log($errordate."--"."highlightfreedays-opvolg".$date[0]."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 		$year = $date[1];
 
 		//Create database connection
@@ -437,6 +435,7 @@
 				$month="12";
 				break;
 			default:
+				$month="99";
 				break;		
 		return $month;
 		}
