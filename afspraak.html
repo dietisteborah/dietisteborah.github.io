@@ -280,12 +280,12 @@
 				for (var i = 0; i < arrayLength; i++) {
 					var x = document.getElementsByClassName("hello-week__day");
 					var j;
-					for (j = 1; j < x.length; j++) {
+					for (j = 0; j < x.length; j++) {
 						if(j==parseInt(dataArray[i].substr(8,2))){
 							//x[j-1].classList.add('is_free');
 						}
 						else{
-							x[j-1].classList.add('is-disabled');
+							x[j].classList.add('is-disabled');
 						}
 					}
 				}
