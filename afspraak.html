@@ -281,7 +281,7 @@
 					var x = document.getElementsByClassName("hello-week__day");
 					var j;
 					for (j = 0; j < x.length; j++) {
-						if(j!=parseInt(dataArray[i].substr(8,2))){
+						if(j==parseInt(dataArray[i].substr(8,2))){
 							//x[j-1].classList.add('is_free');
 							x[j].classList.add('is_free');
 						}
@@ -310,7 +310,7 @@
 		disabledDaysOfWeek: false,
 		disableDates: false,
 		weekStart: 1,
-		daysHighlight: false,
+		daysHighlight: "2018-07-04",
 		range: false,
 		minDate: false,
 		maxDate: false,
