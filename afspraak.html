@@ -280,17 +280,15 @@
 				for (var i = 0; i < arrayLength; i++) {
 					var x = document.getElementsByClassName("hello-week__day");
 					var j;
+					}
+					for (j = 0; j < x.length; j++) {
+						x[j].classList.add('is-disabled');
+					}
 					for (j = 0; j < x.length; j++) {
 						if(j==parseInt(dataArray[i].substr(8,2))){
-							//x[j-1].classList.add('is_free');
-							x[j].classList.add('is_free');
+							x[j-1].classList.remove('is-disabled');
+							x[j-1].classList.add('is_free');
 						}
-						/*else{
-							if(j>1){
-								x[j-1].classList.add('is-disabled');
-							}
-						}*/
-					}
 				}
 			}				
 		});
@@ -310,7 +308,7 @@
 		disabledDaysOfWeek: false,
 		disableDates: false,
 		weekStart: 1,
-		daysHighlight: "2018-07-04",
+		daysHighlight: false,
 		range: false,
 		minDate: false,
 		maxDate: false,
