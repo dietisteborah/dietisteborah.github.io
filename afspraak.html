@@ -285,7 +285,9 @@
 							x[j-1].classList.add('is_free');
 						}
 						else{
-							//x[j-1].classList.add('is-disabled');
+							if(j>1){
+								x[j-1].classList.add('is-disabled');
+							}
 						}
 					}
 				}
