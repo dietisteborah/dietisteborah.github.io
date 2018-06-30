@@ -272,7 +272,10 @@
 				  'type' : appointment_Type};
 		$.post(phpfile, data, function (response) {
 			if(response==""){
-				//do nothing
+				//disable all appointments
+				for (j = 1; j <= x.length; j++) {
+					x[j-1].classList.add('is-disabled');
+				}
 			}
 			else{
 				//disable everything
@@ -287,6 +290,7 @@
 					for (j = 0; j < x.length; j++) {
 						if(j==parseInt(dataArray[i].substr(8,2))){
 							x[j-1].classList.remove('is-disabled');
+							x[i].classList.remove('is-weekend');
 							x[j-1].classList.add('is_free');
 						}
 					}
@@ -347,7 +351,6 @@
 					//remove all "is-selected"
 					for (i = 0; i < x.length; i++) {
 						x[i].classList.remove('is-selected');
-						x[i].classList.remove('is-weekend');
 					}
 					for (i = 0; i < x.length; i++) {
 						if(i==parseInt(firstfreeday.substr(8,2))){
