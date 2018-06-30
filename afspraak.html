@@ -273,6 +273,7 @@
 		$.post(phpfile, data, function (response) {
 			if(response==""){
 				//disable all appointments
+				var x = document.getElementsByClassName("hello-week__day");
 				for (j = 1; j <= x.length; j++) {
 					x[j-1].classList.add('is-disabled');
 				}
@@ -290,7 +291,7 @@
 					for (j = 0; j < x.length; j++) {
 						if(j==parseInt(dataArray[i].substr(8,2))){
 							x[j-1].classList.remove('is-disabled');
-							x[i].classList.remove('is-weekend');
+							x[j-1].classList.remove('is-weekend');
 							x[j-1].classList.add('is_free');
 						}
 					}
