@@ -129,6 +129,9 @@
 					$bericht = 
 					"<div class=\"col-md-12 top-buffer brown_text\">"
 						."<h1 class=\"font_Khula\" brown_text\" align=\"left\">Bedankt voor het maken van een afspraak op <a class=\"orange_text bold_text\">".date("d-m-Y",strtotime($date))."</a> om <a class=\"orange_text bold_text\">".$time."</a>.</h1>"
+					."</div>"
+					."<div>"
+					.'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2510.7758153433583!2d4.330278215220721!3d51.001814755364286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3e9c37b0e00f1%3A0x3a07463f3d43ce8b!2sDi%C3%ABtiste+%26+Diabeteseducator+Borah+Van+Doorslaer!5e0!3m2!1snl!2sbe!4v1530373189648" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>'
 					."</div>";
 			}
 			print $bericht;
