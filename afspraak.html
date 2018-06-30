@@ -282,13 +282,21 @@
 				var x = document.getElementsByClassName("hello-week__day");
 				for (j = 1; j <= x.length; j++) {
 					x[j-1].classList.add('is-disabled');
+					x[j-1].classList.remove('is-selected');
 				}
 				var dataArray = response.split(",");
 				var arrayLength = dataArray.length;
+				var first = true;
 				for (var i = 0; i < arrayLength; i++) {
 					var j;
 					for (j = 0; j < x.length; j++) {
 						if(j==parseInt(dataArray[i].substr(8,2))){
+							if(first){
+								x[j-1].classList.add('is-selected');
+								first = false;
+								selected_Day = dataArray[i];
+								updateInfoSelectedDayKnown();
+							}
 							x[j-1].classList.remove('is-disabled');
 							x[j-1].classList.remove('is-weekend');
 							x[j-1].classList.add('is_free');
