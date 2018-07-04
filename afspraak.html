@@ -245,7 +245,7 @@
 			*/
 			selected_Time = clicked_id;
 			document.getElementById(clicked_id).setAttribute("class","clicked_button");
-			if(previousId != ""){
+			if(previousId != "" && previousId != clicked_id){
 				document.getElementById(previousId).setAttribute("class","brown_text not_clicked");
 			}
 			previousId = clicked_id;
