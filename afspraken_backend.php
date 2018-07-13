@@ -413,7 +413,7 @@
 			exit;
 		}
 		$reminder_date = new DateTime($date);
-		$reminder_date->sub(new DateInterval('P2D'));
+		$reminder_date->modify('-2 days');
 		$errordate = date('d.m.Y h:i:s'); 
 		error_log($errordate."--"."reminder_date is ".date_format($reminder_date, 'Y-m-d')." \n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 
