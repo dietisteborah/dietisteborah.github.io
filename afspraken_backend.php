@@ -123,7 +123,7 @@
 					//create appointment in calendar
 					create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type);
 					//send mail
-					send_email($date,$time,$name,$email,$phone,$remark,$type);
+					//send_email($date,$time,$name,$email,$phone,$remark,$type);
 					//remove options from calendar
 					remove_database_records($date,$time,$type);
 					//create field for reminder
@@ -413,7 +413,7 @@
 			exit;
 		}
 		$reminder_date = new DateTime($date);
-		$date->sub(new DateInterval('P2D'));
+		$reminder_date->sub(new DateInterval('P2D'));
 		$errordate = date('d.m.Y h:i:s'); 
 		error_log($errordate."--"."reminder_date is ".$reminder_date." \n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 
