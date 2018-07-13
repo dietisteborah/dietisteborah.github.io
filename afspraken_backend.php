@@ -412,8 +412,8 @@
 			error_log($errordate."--"."createOpvolg - Debugging error: " . mysqli_connect_error() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			exit;
 		}
-		$reminder_date = date("d-m-Y",strtotime($date));
-		date_sub($reminder_date, date_interval_create_from_date_string('2 days'));
+		$reminder_date = date("Y-m-d",strtotime($date));
+		$reminder_date->modify('-1 day');
 		$errordate = date('d.m.Y h:i:s'); 
 		error_log($errordate."--"."reminder_date is ".$reminder_date." \n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 
