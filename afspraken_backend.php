@@ -8,7 +8,7 @@
 				getAvailable($_POST['date'],$_POST['opvolg']);
 				break;
 			case 'createAppointment':
-				createAppointment($_POST['date'],$_POST['time'],$_POST['name'],$_POST['email'],$_POST['phone'],$_POST['remark'],$_POST['type']);
+				createAppointment($_POST['date'],$_POST['time'],$_POST['name'],$_POST['email'],$_POST['phone'],$_POST['remark'],$_POST['type'],$_POST['reminder']);
 				break;
 			case 'loadToday':
 				loadToday($_POST['date']);
@@ -97,7 +97,7 @@
 	function loadToday($strdate){
 		print "Geen tijdstippen vrij vandaag.\n";
 	}
-	function createAppointment($date,$time,$name,$email,$phone,$remark,$type){
+	function createAppointment($date,$time,$name,$email,$phone,$remark,$type,$reminder){
 			$complete = true;
 			$bericht = "";
 			if($name == ""){
@@ -122,10 +122,14 @@
 			if($complete){
 					//create appointment in calendar
 					create_calendar_appointment($date,$time,$name,$email,$phone,$remark,$type);
-					//remove options from calendar
-					remove_database_records($date,$time,$type);
 					//send mail
 					send_email($date,$time,$name,$email,$phone,$remark,$type);
+					//remove options from calendar
+					remove_database_records($date,$time,$type);
+					//create field for reminder
+					if($reminder=="true"){
+						create_reminder($date,$time,$name,$email,$phone,$remark,$type);
+					}
 					$bericht = 
 					"<div class=\"col-md-12 top-buffer brown_text\">"
 						."<h1 class=\"font_Khula\" brown_text\" align=\"left\">Bedankt voor het maken van een afspraak op <a class=\"orange_text bold_text\">".date("d-m-Y",strtotime($date))."</a> om <a class=\"orange_text bold_text\">".$time."</a>.</h1>"
@@ -350,10 +354,78 @@
 		}
 
 	}
+	function create_reminder($date,$time,$name,$email,$phone,$remark,$type){
+		/*
+		 * creat the mail content
+		 */
+		if($type=="opvolg"){
+			$strMailContent = 'Beste '. $name .',<br/><br/>ter herrinering voor jouw opvolgconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien je niet aanwezig kan zijn op deze afspraak.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
+		}
+		else{
+			$strMailContent = 'Beste '. $name .',<br/><br/>ter herrinering voor jouw startconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien je niet aanwezig kan zijn op deze afspraak.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/>+32 485 36 04 09<br/>Stuiverstraat 17/1, 1840 Londerzeel';
+		}
+		$strMailTextVersion = strip_tags($strMailContent, '');
+
+		$strRawMessage = "";
+		$boundary = uniqid(rand(), true);
+		$subjectCharset = $charset = 'utf-8';
+		$strToMailName = $name;
+		$strToMail = $email;
+		$strToMailNameBcc = 'Diëtiste Borah';
+		$strToMailBcc = 'dietiste.borah@gmail.com';
+		$strSesFromName = 'Diëtiste Borah';
+		$strSesFromEmail = 'dietiste.borah@gmail.com';
+		$strSubject = 'Herrinering afspraak Dïetiste Borah op '. date("d-m-Y",strtotime($date)) .' om '. $time;
+
+		$strRawMessage .= 'To: ' . encodeRecipients($strToMailName . " <" . $strToMail . ">") . "\r\n";
+		$strRawMessage .= 'Bcc: '. encodeRecipients($strToMailNameBcc . " <" . $strToMailBcc . ">") . "\r\n";
+		$strRawMessage .= 'From: '. encodeRecipients($strSesFromName . " <" . $strSesFromEmail . ">") . "\r\n";
+
+		$strRawMessage .= 'Subject: =?' . $subjectCharset . '?B?' . base64_encode($strSubject) . "?=\r\n";
+		$strRawMessage .= 'MIME-Version: 1.0' . "\r\n";
+		$strRawMessage .= 'Content-type: Multipart/Alternative; boundary="' . $boundary . '"' . "\r\n";
+
+
+		$strRawMessage .= "\r\n--{$boundary}\r\n";
+		$strRawMessage .= 'Content-Type: text/plain; charset=' . $charset . "\r\n";
+		$strRawMessage .= 'Content-Transfer-Encoding: 7bit' . "\r\n\r\n";
+		$strRawMessage .= $strMailTextVersion . "\r\n";
+
+		$strRawMessage .= "--{$boundary}\r\n";
+		$strRawMessage .= 'Content-Type: text/html; charset=' . $charset . "\r\n";
+		$strRawMessage .= 'Content-Transfer-Encoding: quoted-printable' . "\r\n\r\n";
+		$strRawMessage .= $strMailContent . "\r\n";
+
+		/*
+		 * insert the records into the database using mysqli
+		 */
+		$string = file_get_contents("/home/borahv1q/borah-secrets/pw.txt");
+		$string = str_replace(array("\r", "\n"), '', $string);
+		$link = mysqli_connect("localhost", "borahv1q", $string , "borahv1q_Agenda");
+		if (!$link) {
+			echo "Error: Unable to connect to MySQL." . PHP_EOL;
+			echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+			echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+			$errordate = date('d.m.Y h:i:s'); 
+			error_log($errordate."--"."createOpvolg - Error: Unable to connect to MySQL." . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			error_log($errordate."--"."createOpvolg - Debugging errno: " . mysqli_connect_errno() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			error_log($errordate."--"."createOpvolg - Debugging error: " . mysqli_connect_error() . PHP_EOL ."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			exit;
+		}
+		$reminder_date = date("d-m-Y",strtotime($date));
+		date_sub($reminder_date, date_interval_create_from_date_string('2 days'));
+		$errordate = date('d.m.Y h:i:s'); 
+		error_log($errordate."--"."reminder_date is ".$reminder_date." \n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+
+		$sql = "INSERT INTO reminders (reminder_date, body)	VALUES (".$reminder_date.",'".$strRawMessage."')";
+		if (mysqli_query($link, $sql)) {
+			echo "_OK_";
+		} else {
+			echo "Error: " . $sql . "<br>" . mysqli_error($link);
+		}		
+	}
 	function highlightfreedays($month_year,$type) {
 		$date = explode(" ", $month_year);
-		//echo $date[0]; // month
-		//echo $date[1]; // year
 		$month = getMonthNumber($date[0]);
 		$year = $date[1];
 

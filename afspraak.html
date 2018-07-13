@@ -230,7 +230,8 @@
 						  'email' : email,
 						  'phone' : phone,
 						  'remark' : remark,
-						  'type' : appointment_Type};
+						  'type' : appointment_Type,
+						  'reminder' : reminder};
 				$.post(phpfile, data, function (response) {
 					if(response.includes("Gelieve")){
 						alert(response);
@@ -243,7 +244,6 @@
 					}
 				});		
 			}
-			//updateInfo(); //TODO
 	}
 	function select_hour(clicked_id){
 		if(clicked_id != "geen"){
