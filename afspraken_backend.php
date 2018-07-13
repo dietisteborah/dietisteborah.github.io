@@ -414,10 +414,11 @@
 		}
 		$reminder_date = new DateTime($date);
 		$reminder_date->modify('-2 days');
+		$reminder_date_string = date_format($reminder_date, 'Y-m-d');
 		$errordate = date('d.m.Y h:i:s'); 
-		error_log($errordate."--"."reminder_date is ".date_format($reminder_date, 'Y-m-d')." \n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+		error_log($errordate."--"."reminder_date is ".$reminder_date_string." \n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 
-		$sql = "INSERT INTO reminders (reminder_date, body)	VALUES ('".date_format($reminder_date, 'Y-m-d')."','".$strRawMessage."')";
+		$sql = "INSERT INTO reminders (reminder_date, body)	VALUES ('".$reminder_date_string."','".$strRawMessage."')";
 		if (mysqli_query($link, $sql)) {
 			echo "_OK_";
 		} else {
