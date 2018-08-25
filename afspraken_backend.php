@@ -300,10 +300,10 @@
 		$service = new Google_Service_Gmail($client);
 
 		if($type=="opvolg"){
-			$strMailContent = 'Beste '. $name .',<br/><br/>hierbij bevestig ik jouw opvolgconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1</br>1840 Londerzeel<br/>+32 485 36 04 09';
+			$strMailContent = 'Beste '. $name .',<br/><br/>hierbij bevestig ik jouw opvolgconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
 		}
 		else{
-			$strMailContent = 'Beste '. $name .',<br/><br/>hierbij bevestig ik jouw startconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1</br>1840 Londerzeel<br/>+32 485 36 04 09';
+			$strMailContent = 'Beste '. $name .',<br/><br/>hierbij bevestig ik jouw startconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
 		}
 		$strMailTextVersion = strip_tags($strMailContent, '');
 
@@ -359,10 +359,10 @@
 		 * creat the mail content
 		 */
 		if($type=="opvolg"){
-			$strMailContent = 'Beste '. $name .',<br/><br/>Deze e-mail wordt u automatisch toegestuurd ter herinnering aan jouw opvolgconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1</br>1840 Londerzeel<br/>+32 485 36 04 09';
+			$strMailContent = 'Beste '. $name .',<br/><br/>Deze e-mail wordt u automatisch toegestuurd ter herinnering aan jouw opvolgconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
 		}
 		else{
-			$strMailContent = 'Beste '. $name .',<br/><br/>Deze e-mail wordt u automatisch toegestuurd ter herinnering aan jouw startconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/><br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1</br>1840 Londerzeel<br/>+32 485 36 04 09';
+			$strMailContent = 'Beste '. $name .',<br/><br/>Deze e-mail wordt u automatisch toegestuurd ter herinnering aan jouw startconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
 		}
 		$strMailTextVersion = strip_tags($strMailContent, '');
 
@@ -417,9 +417,9 @@
 
 		$sql = "INSERT INTO reminders (reminder_date, body)	VALUES ('".$reminder_date_string."','".$strRawMessage."')";
 		if (mysqli_query($link, $sql)) {
-			echo "_OK_";
+			error_log($errordate."--"."Reminder created OK\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 		} else {
-			echo "Error: " . $sql . "<br>" . mysqli_error($link);
+			error_log($errordate."--"."Reminder created NOT OK".$sql." & ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");			
 		}		
 	}
 	function highlightfreedays($month_year,$type) {
