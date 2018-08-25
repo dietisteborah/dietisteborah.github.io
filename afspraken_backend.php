@@ -300,10 +300,10 @@
 		$service = new Google_Service_Gmail($client);
 
 		if($type=="opvolg"){
-			$strMailContent = 'Beste '. $name .',<br/><br/>hierbij bevestig ik jouw opvolgconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
+			$strMailContent = 'Beste '. $name .',<br/><br/>Hierbij bevestig ik jouw opvolgconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
 		}
 		else{
-			$strMailContent = 'Beste '. $name .',<br/><br/>hierbij bevestig ik jouw startconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
+			$strMailContent = 'Beste '. $name .',<br/><br/>Hierbij bevestig ik jouw startconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
 		}
 		$strMailTextVersion = strip_tags($strMailContent, '');
 
