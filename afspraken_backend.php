@@ -60,6 +60,9 @@
 		if($opvolg=="opvolg"){
 			$appType=1;
 		}
+		elseif($opvolg=="tweede"){
+			$appType=2;
+		}
 		//Check to make sure the day is different from today (no appointments to be made on the same day)
 		if($diffDays > 0){
 			$notime = true;
@@ -148,6 +151,9 @@
 		if($type=="opvolg"){
 			$endTime = strtotime($time) + (30*60);			
 		}
+		elseif($type=="tweede"){
+			$endTime = strtotime($time) + (45*60);	
+		}
 		else{
 			$endTime = strtotime($time) + (90*60);
 		}
@@ -209,6 +215,44 @@
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."Opvolg-start".mysqli_error($link)."SQL query: ".$sql."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
+			//verwijder tweede consultatie
+			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 2 && startTime > \"".date("H:i:s",strtotime($time)-(45*60))."\" && startTime < \"".date("H:i:s",strtotime($time)+(30*60))."\""; 
+			if (mysqli_query($link, $sql)) {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."Opvolg-tweede-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			} else {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."Opvolg-tweede".mysqli_error($link)."SQL query: ".$sql."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			}
+		}
+		elseif($type=="tweede"){
+			//verwijder opvolg consultatie
+			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 1 && startTime >= \"".date("H:i:s",strtotime($time))."\" && startTime < \"".date("H:i:s",strtotime($time)+(45*60))."\"";
+			if (mysqli_query($link, $sql)) {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."tweede-opvolg-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			} else {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."tweede-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			}
+			//verwijder startconsultatie
+			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 0 && startTime > \"".date("H:i:s",strtotime($time)-(45*60))."\" && startTime < \"".date("H:i:s",strtotime($time)+(45*60))."\"";
+			if (mysqli_query($link, $sql)) {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."tweede-start-Record deleted successfully\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			} else {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."tweede-start".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			}
+			//verwijder tweede consultatie
+			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 2 && startTime = \"".date("H:i:s",strtotime($time))."\"";
+			if (mysqli_query($link, $sql)) {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."tweede-tweede-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			} else {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."tweede-tweede".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			}
 		}
 		else{
 			//verwijder opvolg consultatie
@@ -228,6 +272,15 @@
 			} else {
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."else-start".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			}
+			//verwijder tweede consultatie
+			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 2 && startTime > \"".date("H:i:s",strtotime($time)-(45*60))."\" && startTime < \"".date("H:i:s",strtotime($time)+(90*60))."\"";
+			if (mysqli_query($link, $sql)) {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."else-tweede-Record deleted successfully\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			} else {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."else-twee".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 		}		
 	}
@@ -258,6 +311,18 @@
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."freeAppointment-opvolg".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
+		}
+		elseif($type=="tweede"){
+			//find the first day with an "tweede" appointment free
+			$sql = "SELECT date FROM afspraken WHERE date > \"".$today->format('Y-m-d')."\" && opvolg = 2 LIMIT 1";
+			$result = mysqli_query($link, $sql);
+			if (mysqli_num_rows($result) == 1) {
+				$row = mysqli_fetch_assoc($result);
+				echo $row["date"];
+			} else {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."freeAppointment-tweede".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			}			
 		}
 		else{
 			//find the first day with a "start" appointment free
@@ -301,6 +366,9 @@
 
 		if($type=="opvolg"){
 			$strMailContent = 'Beste '. $name .',<br/><br/>Hierbij bevestig ik jouw opvolgconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
+		}
+		elseif($type=="tweede"){
+			$strMailContent = 'Beste '. $name .',<br/><br/>Hierbij bevestig ik jouw tweede consultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';			
 		}
 		else{
 			$strMailContent = 'Beste '. $name .',<br/><br/>Hierbij bevestig ik jouw startconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Volgende opmerkingen werden toegevoegd:<br/>'.$remark.'<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
@@ -360,6 +428,9 @@
 		 */
 		if($type=="opvolg"){
 			$strMailContent = 'Beste '. $name .',<br/><br/>Deze e-mail wordt u automatisch toegestuurd ter herinnering aan jouw opvolgconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
+		}
+		elseif($type=="tweede"){
+			$strMailContent = 'Beste '. $name .',<br/><br/>Deze e-mail wordt u automatisch toegestuurd ter herinnering aan jouw tweede consultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';			
 		}
 		else{
 			$strMailContent = 'Beste '. $name .',<br/><br/>Deze e-mail wordt u automatisch toegestuurd ter herinnering aan jouw startconsultatie op '.date("d-m-Y",strtotime($date)). ' om '.$time. '.<br/><br/>Gelieve een seintje te geven indien het niet mogelijk is om op deze afspraak aanwezig te zijn.<br/><br/><br/>Met vriendelijke groeten,<br/>Borah Van Doorslaer<br/><br/>Stuiverstraat 17/1<br/>1840 Londerzeel<br/>+32 485 36 04 09';
@@ -456,6 +527,21 @@
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."highlightfreedays-opvolg".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
+		}
+		elseif($type=="tweede"){
+			//find the first day with an "tweede" appointment free
+			$sql = "SELECT DISTINCT date FROM afspraken WHERE date like \"".$year."-".$month."-%\" && date > \"".$today->format('Y-m-d')."\" && opvolg = 2";
+			$result = mysqli_query($link, $sql);
+			if (mysqli_num_rows($result) > 0) {
+				$resultdates = "";
+				while( $row = mysqli_fetch_assoc( $result)){
+					$resultdates = $resultdates.$row["date"].","; // Inside while loop
+				}
+				echo $resultdates;
+			} else {
+				$errordate = date('d.m.Y h:i:s'); 
+				error_log($errordate."--"."highlightfreedays-opvolg".$sql."  ".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
+			}			
 		}
 		else{
 			//find the first day with a "start" appointment free
