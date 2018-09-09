@@ -245,7 +245,7 @@
 				error_log($errordate."--"."tweede-start".mysqli_error($link)."\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
 			}
 			//verwijder tweede consultatie
-			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 2 && startTime = \"".date("H:i:s",strtotime($time))."\"";
+			$sql = "DELETE FROM afspraken WHERE date = \"".$appdate."\" && opvolg = 2 && startTime >= \"".date("H:i:s",strtotime($time))."\" && startTime < \"".date("H:i:s",strtotime($time)+(45*60))."\"";
 			if (mysqli_query($link, $sql)) {
 				$errordate = date('d.m.Y h:i:s'); 
 				error_log($errordate."--"."tweede-tweede-Record deleted successfully.\n", 3, "/home/borahv1q/logs/php-afspraken-backend.log");
