@@ -122,6 +122,7 @@
 	$("input[name='optradio']").on("change", function () {
 	   appointment_Type = this.value;
 	   updateInfo();
+	   highlightfreedays(document.getElementById('week_year').innerHTML);
 	});
 	
 	function updateInfo() {
@@ -292,6 +293,7 @@
 					x[j-1].classList.add('is-disabled');
 					x[j-1].classList.remove('is-selected');
 				}
+				//enable the correct dates 
 				var dataArray = response.split(",");
 				var arrayLength = dataArray.length;
 				var first = true;
