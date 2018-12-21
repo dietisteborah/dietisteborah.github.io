@@ -230,3 +230,6 @@ hr.style18 {
 .navbar .navbar-nav {
     justify-content: center !important;
 }
+.navbar {
+    justify-content: center !important;
+}
