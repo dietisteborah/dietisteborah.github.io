@@ -227,12 +227,7 @@ hr.style18 {
 
 
 /* center the navbar */
-.navbar .navbar-nav {
-    justify-content: center !important;
-}
-.navbar {
-    justify-content: center !important;
-}
 .center-navbar {
+	display: flex;
     justify-content: center !important;
 }
