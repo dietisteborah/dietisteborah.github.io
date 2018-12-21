@@ -62,6 +62,12 @@ ul {
 .font_Khula {
 	font-family: 'Khula';font-size: 18px;
 }
+.font_Khula_bold {
+	font-family: 'Khula';font-size: 18px;font-weight: bold;
+}
+.font_Khula_small_italic {
+	font-family: 'Khula';font-size: 15px;font-style: italic;
+}
 .font_Alegreya_navbar {
 	font-family: 'Alegreya Sans SC';font-size: 18px;
 }
