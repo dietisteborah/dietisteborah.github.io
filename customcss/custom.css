@@ -245,3 +245,8 @@ hr.style18 {
 .reverse-href:hover {
 	text-decoration: none;
 }
+
+.image-bottom {
+	vertical-align: bottom;
+}
+
