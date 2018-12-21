@@ -237,3 +237,11 @@ hr.style18 {
 	display: flex;
     justify-content: center !important;
 }
+
+/* custom href */
+.reverse-href {
+	text-decoration: underline;
+}
+.reverse-href:hover {
+	text-decoration: none;
+}
