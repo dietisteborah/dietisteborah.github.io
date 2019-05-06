@@ -48,7 +48,30 @@
 		<!-- Afspraak maken -->
 		<h1 class="brown_text custom_header top-buffer no-bottom-buffer" align="left">Een afspraak maken</h1>
 		<br>
-		<div class="row brown_text top-buffer-10" id="kalender">
+		<div class="row top-buffer brown_text" id="mezelf">
+				<div class="col-md-12">
+					<div class="text-center">
+						<p class="font_Khula" align="left"><br>
+							Door de combinatie met mijn job in de Diabeteskliniek van het AZ Jan Portaels ben ik telefonisch niet altijd bereikbaar. Om die reden werk ik met een online afsprakensysteem.
+							<br><br>
+							Bij het maken van de afspraak kan je kiezen uit één locatie:
+							Stuiverstraat 17/1, 1840 Londerzeel (privépraktijk)
+							<br><br>
+							Betaling kan cash of met de bancontact app.
+							<br><br>
+							Voor vragen kan u mij bereiken via mail dietiste.borah@gmail.com of via het nummer +32 485 36 04 09. Indien ik niet meteen uw oproep kan beantwoorden kan u uw naam en telefoonnumer achterlaten en bel ik u zo spoedig mogelijk terug.
+							<br><br>
+							Groetjes,
+							<br><br>
+							Borah
+							<br><br>
+							<a href="https://dietisteborah.nutriportal.eu/" class="btn controle_button orange_text font_Khula bold_text" role="button">Klik hier voor een afspraak</a>
+						</p>
+
+					</div>
+				</div>
+		</div>
+		<!-- <div class="row brown_text top-buffer-10" id="kalender">
 				<div class="hello-week col-md-5">
 					<h2 class="custom_header_small" align="left" style="white-space:nowrap;">Kies een datum:</h2>			
 					<div class="hello-week__header padding_small">
@@ -94,7 +117,7 @@
 					</ul>
 				</div>	
 			</div>
-	</div>
+	</div> -->
 	<div id="footer">
 	</div>
 </body>
@@ -105,6 +128,7 @@
 	$(function(){
 		$("#footer").load("footer.html");
 	});
+	/*
 	$(document).ready(function(){
 		setTimeout(function(){
 			vrijeAfspraak();
@@ -249,9 +273,9 @@
 	}
 	function select_hour(clicked_id){
 		if(clicked_id != "geen"){
-			/*
-				update selected_Time
-			*/
+			
+				//update selected_Time
+			
 			selected_Time = clicked_id;
 			document.getElementById(clicked_id).setAttribute("class","clicked_button");
 			if(previousId != "" && previousId != clicked_id){
@@ -338,7 +362,7 @@
         onLoad: loadToday,
         onChange: highlightfreedays,
         onSelect: updateInfo,
-		onClear: () => { /** callback function */ }
+		//onClear: () => { callback function  }
 	});
 	function vrijeAfspraak() {
 		var previous_selected_Day = selected_Day;
@@ -400,5 +424,6 @@
 			}
 		});		
 	}
+	*/
 </script>
 </html>
