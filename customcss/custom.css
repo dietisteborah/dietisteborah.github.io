@@ -30,17 +30,17 @@
 	margin-bottom:0px; 
 }
 .appelList {
-    list-style-image: url('appellogo_small2.png');
+    list-style-image: url('/assets/appellogo_small2.png');
 }
 .appelListTarieven {
-    list-style-image: url('appellogo_small2.png');
+    list-style-image: url('/assets/appellogo_small2.png');
 	margin-left: 5px;
 }
 ul {
   list-style-type: none;
 }
 .backgroundcirkel{
-    background-image: url("vragen.png");
+    background-image: url('/assets/vragen.png');
     background-repeat: no-repeat;
 	background-position: right bottom;
 }
@@ -70,6 +70,9 @@ ul {
 }
 .font_Khula_medium {
 	font-family: 'Khula';font-size: 24px;
+}
+.font_Khula__medium_bold {
+	font-family: 'Khula';font-size: 18px;font-weight: bold;
 }
 .font_Khula_bold {
 	font-family: 'Khula';font-size: 18px;font-weight: bold;
